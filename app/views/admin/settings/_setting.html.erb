@@ -1,0 +1,8 @@
+<div class="card-row">
+  <% setting = Setting.find_by(name: name) %>
+  <% if setting.present? %>
+    <%= text_editor(label, setting.value, admin_setting_path(id: setting.id), 'setting', 'value', "setting-#{setting.name}", policy(setting).update?, { method: :put }) %>
+  <% else %>
+    <%= text_editor(label, "", admin_settings_path, 'setting', 'value', "setting-#{name}", policy(Setting).update?, { method: :post, custom_values: { 'name': name, 'value_type': value_type } }) %>
+  <% end %>
+</div>

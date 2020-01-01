@@ -1,0 +1,27 @@
+<div id="two-columns-wrapper-settings-modal-<%= wrapper.id %>" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><%= t('admin.modal.two_columns_wrapper_settings_modal.settings') %></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= form_for wrapper, url: admin_page_wrapper_path(page_id: page.id, id: wrapper.id), method: :put, remote: true, html: { id: "update-wrapper-#{wrapper.id}-properties-form", class: 'form-horizontal' } do |f| %>
+          <% properties = [['Horní okraj', 'top-padding'], ['Dolní okraj', 'bottom-padding']] %>
+          <% properties.each_with_index do |p, i| %>
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" name="wrapper[css_class][]" value="<%= p.last %>" id="wrapper-<%= wrapper.id %>-css-class-<%= i+1 %>" class="custom-control-input" <%= wrapper.css_class.include?(p.last) ? 'checked="checked"' : '' %>>
+              <label class="custom-control-label" for="wrapper-<%= wrapper.id %>-css-class-<%= i+1 %>"><%= p.first %></label>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><%= t('admin.modal.two_columns_wrapper_settings_modal.cancel') %></button>
+        <button type="button" data-action="send-form" data-form="<%= "#update-wrapper-#{wrapper.id}-properties-form" %>" class="btn btn-success"><%= t('admin.modal.two_columns_wrapper_settings_modal.save') %></button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,291 @@
+cs:
+  admin:
+
+    sidebar:
+      dashboard: 'Dashboard'
+      users: 'Uživatelé'
+      menu: 'Menu'
+      pages: 'Stránky'
+      galeries: 'Galerie'
+      settings: 'Nastavení'
+      view_web: 'Zobrazit web'
+
+    general:
+      logout: 'Odhlásit se'
+      copyright_text: 'Jakub Malina, made with love for better web apps'
+      filter:
+        filter: 'Filter'
+        cancel_filter: 'Zrušit filtr'
+        search: 'hledat'
+
+    modal:
+      delete_modal:
+        delete_for_sure: 'Určitě odstranit?'
+        you_want_to_delete: 'Chcete odstranit'
+        delete: 'Smazat'
+      create_menu_item_modal:
+        add_link_to_menu: 'Přidat odkaz do menu'
+        link_to_page: 'Odkaz na stránku'
+        custom_link: 'Vlastní odkaz'
+        links_group: 'Skupina odkazů'
+        cancel: 'Zrušit'
+        add_link: 'Přidat odkaz'
+        choose_page: 'Zvolte stránku'
+        link_label: 'Popisek'
+        url: 'URL'
+        open_in_new_window: 'Otevřít v novém okně'
+      update_menu_item_modal:
+        edit_link: 'Upravit odkaz'
+        cancel: 'Zrušit'
+        save_changes: 'Uložit změny'
+        choose_page: 'Zvolte stránku'
+        link_label: 'Popisek'
+        url: 'URL'
+        open_in_new_window: 'Otevřít v novém okně'
+      create_gallery_item_modal:
+        new_image: 'Nový obrázek'
+        name: 'Název'
+        description: 'Popis'
+        choose_image: 'Vyberte obrázek'
+        cancel: 'Zrušit'
+        add_image: 'Nahrát obrázek'
+      edit_gallery_item_modal:
+        edit_image: 'Upravit obrázek'
+        name: 'Název'
+        description: 'Popis'
+        choose_image: 'Vyberte obrázek'
+        cancel: 'Zrušit'
+        add_image: 'Nahrát obrázek'
+      basic_section_settings_modal:
+        section_settings: 'Nastavení sekce'
+        properties: 'Vlastnosti'
+        description: 'Popis'
+        save: 'Uložit'
+      container_section_settings_modal:
+        section_settings: 'Nastavení sekce'
+        properties: 'Vlastnosti'
+        description: 'Popis'
+        save: 'Uložit'
+      fluid_wrapper_settings_modal:
+        settings: 'Nastavení'
+        size: 'Velikost'
+        cancel: 'Zrušit'
+        save: 'Uložit'
+      one_column_wrapper_settings_modal:
+        settings: 'Nastavení'
+        cancel: 'Zrušit'
+        save: 'Uložit'
+      two_columns_wrapper_settings_modal:
+        settings: 'Nastavení'
+        cancel: 'Zrušit'
+        save: 'Uložit'
+      three_columns_wrapper_settings_modal:
+        settings: 'Nastavení'
+        cancel: 'Zrušit'
+        save: 'Uložit'
+
+    admin_user_policies:
+      index:
+        dashboard: 'Dashboardasdad'
+        admin_users: 'Uživatelé'
+        menu: 'Menu'
+        menu_items: 'Položky menu'
+        pages: 'Stránky'
+        galleries: 'Galerie'
+        gallery_items: 'Obrázky v galerii'
+        settings: 'Nastavení'
+
+    admin_users:
+      index:
+        filter:
+          first_name: 'Jméno'
+          last_name: 'Přijmení'
+          email: 'E-mail'
+        new_user: 'Nový uživatel'
+        users: 'Uživatelé'
+        first_name: 'Jméno'
+        last_name: 'Přijmení'
+        email: 'E-mail'
+        signin_count: 'Počet přihlášení'
+        user_model_name: 'Uživatele'
+      new:
+        users: 'Uživatelé'
+        new_user: 'Nový uživatel'
+        cancel: 'Zrušit'
+      shared:
+        form:
+          new_user: 'Nový uživatel'
+          first_name: 'Jméno'
+          last_name: 'Přijmení'
+          email: 'E-mail'
+          password: 'Heslo'
+          password_again: 'Heslo znovu'
+          create_user: 'Vytvořit uživatele'
+      show:
+        users: 'Uživatelé'
+        user: 'Uživatel'
+        first_name: 'Jméno'
+        last_name: 'Přijmení'
+        email: 'E-mail'
+        created_at: 'Vytvořen'
+        updated_at: 'Upraven'
+        settings: 'Nastavení'
+        password: 'Heslo'
+        change_password: 'Změnit heslo'
+        user_policies: 'Uživatelská práva'
+        edit_user_policies: 'Upravit prava uživatele'
+        module: 'Modul'
+        policy: 'Práva'
+        cancel: 'Zrušit'
+
+    menus:
+      index:
+        new_menu: 'Nové menu'
+        menu: 'Menu'
+        name: 'Název'
+        language: 'Jazyk'
+      new:
+        menu: 'Menu'
+        new_menu: 'Nové menu'
+        cancel: 'Zrušit'
+      shared:
+        form:
+          new_menu: 'Nové menu'
+          menu_copy: 'Kopie menu'
+          create_menu: 'Vytvořit menu'
+          menu_settings: 'Nastavení menu'
+          layout: 'Rozložení'
+          language: 'Jazyk'
+      show:
+        edit_order: 'Upravit pořadí'
+        add_link: 'Přidat odkaz'
+        save_changes: 'Uložit změny'
+        menu: 'Menu'
+        menu_has_no_items: 'Menu nemá žádné položky'
+
+    galleries:
+      index:
+        filter:
+          name: 'Název'
+        new_gallery: 'Nová galerie'
+        galleries: 'Galerie'
+        gallery: 'Galerie'
+        name: 'Název'
+        created_at: 'Vytvořena'
+        updated_at: 'Změněna'
+        gallery_model_name: 'Galerii'
+      new:
+        galleries: 'Galerie'
+        new_gallery: 'Nová galerie'
+        cancel: 'Zrušit'
+      shared:
+        form:
+          new_gallery: 'Nová galerie'
+          name: 'Název'
+          description: 'Popis'
+          create_gallery: 'Vytvořit galerii'
+      show:
+        add_new_image: 'Přidat nový obrázek'
+        galleries: 'Galerie'
+        gallery: 'Galerie'
+        name: 'Název'
+        description: 'Popis'
+        created_at: 'Vytvořena'
+        updated_at: 'Upravena'
+        images: 'Obrázky'
+        edit: 'Upravit'
+
+    pages:
+      index:
+        filter:
+          title: 'Titulek'
+          language: 'Jazyk'
+          state: 'Stav'
+        new_page: 'Nová stránka'
+        pages: 'Stránky'
+        title: 'Titulek'
+        author: 'Autor'
+        created_at: 'Vytvořena'
+        updated_at: 'Změněna'
+        page_model_name: 'Stránku'
+      new:
+        pages: 'Stránky'
+        new_page: 'Nová stránka'
+        cancel: 'Zrušit'
+      shared:
+        form:
+          new_page: 'Nová stránka'
+          page_translation: 'Překlad stránky'
+          title: 'Titulek'
+          copy: 'Kopírovat'
+          change: 'Změnit'
+          lock: 'Zamknout'
+          create_page: 'Vytvořit stránku'
+          page_settings: 'Nastavení stránky'
+          layout: 'Rozložení'
+          language: 'Jazyk'
+          state: 'Stav'
+      show:
+        pages: 'Stránky'
+        edit_page: 'Editovat stránku'
+        title: 'Titulek'
+        created_at: 'Vytvořena'
+        updated_at: 'Upravena'
+        page_links: 'Odkazy na stránku'
+        change_page_link: 'Změnit odkaz na stránku'
+        permalink: 'Permalink'
+        type: 'Typ'
+        date: 'Datum'
+        page_settings: 'Nastavení stránky'
+        layout: 'Rozložení'
+        language: 'Jazyk'
+        keywords: 'Klíčová slova'
+        label: 'Popisek'
+        og_title: 'OG Titulek'
+        og_image: 'OG Obrázek'
+        og_text: 'OG Popisek'
+        translations: 'Překlady'
+        create_translation: 'Vytvořit překlad'
+        no_translations: 'K této stránce neexistují žádné překlady'
+        close: 'Zavřít'
+
+    sections:
+      index:
+        add_section: 'Přidat sekci'
+        basic_section: 'Základní sekce'
+        container_section: 'Kontainerová sekce'
+        save_all: 'Uložit vše'
+        build_page: 'Uložit změny na stránce'
+      shared:
+        wrapper_dropdown:
+          add_one_column: 'Přidat jeden sloupec'
+          add_two_columns: 'Přidat dva sloupce'
+          add_three_columns: 'Přidat tři sloupce'
+
+    settings:
+      index:
+        settings: 'Nastavení'
+        home_page: 'Úvodní stánka'
+        choose_page: 'Zvolte stránku'
+        set_home_page: 'Nastavit stránku'
+        seo: 'SEO'
+        title: 'Titulek'
+        meta_title: 'Meta titulek'
+        meta_description: 'Meta popis webu'
+        meta_keywords: 'Meta klíčová slova'
+        share_web: 'Sdílení webu'
+        og_title: 'OG titulek'
+        og_description: 'OG popis webu'
+        og_url: 'OG URL'
+        og_image: 'OG obrázek'
+
+    wrappers:
+      forms:
+        container_fluid:
+          remove: 'Odstranit'
+        one_column:
+          remove: 'Odstranit'
+        two_columns:
+          remove: 'Odstranit'
+        three_columns:
+          remove: 'Odstranit'

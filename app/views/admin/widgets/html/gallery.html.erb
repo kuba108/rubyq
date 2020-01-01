@@ -1,0 +1,20 @@
+<div class="gallery">
+  <div class="images">
+    <% gallery = Gallery.find_by(id: json['gallery_id'].to_i) %>
+    <% if gallery.present? %>
+      <% gallery.gallery_items.order(position: :asc).in_groups_of(json['columns'].to_i, false).each do |group| %>
+        <div class="row no-gutters">
+          <% group.each do |item| %>
+            <div class="bs-column col-md-<%= (12 / json['columns'].to_i).round %>">
+              <div class="gallery-item">
+                <%= link_to item.image, title: item.label, class: 'image-link' do %>
+                  <%= image_tag item.image, alt: item.label, class: 'image img-responsive' %>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

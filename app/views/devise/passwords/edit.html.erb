@@ -1,0 +1,54 @@
+<% if flash[:alert] %>
+  <div class="alert alert-primary" role="alert">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
+
+<div class="content">
+  <div class="container">
+    <div class="col-md-4 col-sm-6 ml-auto mr-auto">
+      <!-- Start: Head bar -->
+      <div class="head-bar">
+        <%= image_tag 'devise/ruby-logo-64-64.png' %>
+        <h1>Ruby<em>Q</em> | admin</h1>
+      </div>
+      <!-- End: Head bar -->
+
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {method: :put}) do |f| %>
+        <%= devise_error_messages! %>
+        <%= f.hidden_field :reset_password_token %>
+        <div class="card card-login">
+          <div class="card-header ">
+            <h3 class="header text-center">Zapomněli jste heslo?</h3>
+          </div>
+          <div class="card-body ">
+            <div class="card-body">
+              <div class="form-group">
+                <%= f.label :password, 'Nové heslo' %>
+                <%= f.password_field :password, class: 'form-control', autofocus: true, autocomplete: "off", placeholder: 'Nové heslo' %>
+              </div>
+              <div class="form-group">
+                <%= f.label :password_confirmation, 'Kontrola hesla' %>
+                <%= f.password_field :password_confirmation, class: 'form-control', autofocus: true, autocomplete: "off", placeholder: 'Ještě jednou nové heslo' %>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer ml-auto mr-auto">
+            <%= f.submit "Změnit heslo", class: 'login-btn btn btn-danger btn-wd btn-fill' %>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="container-footer">
+        <div class="float-left">
+          <%= link_to 'Zpět na web', '/' %>
+        </div>
+        <div class="float-right">
+          <%= link_to new_session_path(resource_name) do %>
+            Přihlásit se
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

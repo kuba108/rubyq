@@ -1,0 +1,27 @@
+<% title t('.users') %>
+<% breadcrumbs [
+   { label: t('.users'), path: admin_admin_users_path },
+   { label: t('.new_user'), path: new_admin_admin_user_path }
+] %>
+
+<div class="content">
+  <div class="container-fluid">
+    <div class="top-panel">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="float-left">
+            <%= link_to admin_admin_users_path, class: 'btn btn-danger' do %>
+              <i class="fa fa-times"></i> <%= t('.cancel') %>
+            <% end %>
+          </div>
+          <div class="float-right">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <%= render partial: 'admin/admin_users/shared/form', locals: {resource: @admin_user, resource_action: 'create', resource_method: :post} %>
+    </div>
+  </div>
+</div>

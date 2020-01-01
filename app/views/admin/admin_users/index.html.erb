@@ -1,0 +1,101 @@
+<% title t('.users') %>
+<% breadcrumbs [
+   { label: t('.users'), path: admin_admin_users_path }
+] %>
+
+<div id="filter">
+  <h4>
+    <%= t('admin.general.filter.filter') %>
+    <button class="btn btn-default btn-xs close-filter-btn"><i class="fa fa-times"></i></button>
+  </h4>
+  <%= search_form_for @search, url: admin_admin_users_path do |f| %>
+    <!-- Start: Filter part -->
+    <div class="row filter-part open">
+      <div class="col-md-3">
+        <%= text_filter(f, 'first_name', t('.filter.first_name')) %>
+      </div>
+      <div class="col-md-3">
+        <%= text_filter(f, 'last_name', t('.filter.last_name')) %>
+      </div>
+      <div class="col-md-3">
+        <%= text_filter(f, 'email', t('.filter.email')) %>
+      </div>
+    </div>
+    <!-- End: Filter part -->
+
+    <!-- Start: Action row -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="float-left">
+          <a href="#" class="clear-filter-btn btn btn-danger"><%= t('admin.general.filter.cancel_filter') %></a>
+        </div>
+        <div class="float-right">
+          <%= f.submit t('admin.general.filter.search'), class: 'btn btn-success btn-fill' %>
+        </div>
+      </div>
+    </div>
+    <!-- End: Action row -->
+  <% end %>
+</div>
+
+<div class="content">
+  <div class="container-fluid">
+
+    <div class="top-panel">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="float-left">
+            <% if policy(AdminUser).new? %>
+              <%= link_to new_admin_admin_user_path, class: 'btn btn-primary' do %>
+                <i class="fa fa-plus"></i> <%= t('.new_user') %>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="float-right">
+            <button class="open-filter-btn btn btn-warning btn-fill"><i class="fa fa-filter"></i> <%= t('admin.general.filter.filter') %></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card strpied-tabled-with-hover">
+          <div class="card-header ">
+            <h4 class="card-title"><%= t('.users') %></h4>
+          </div>
+          <div class="card-body table-full-width table-responsive">
+            <table class="table table-hover table-striped">
+              <thead>
+                <th><%= t('.first_name') %></th>
+                <th><%= t('.last_name') %></th>
+                <th><%= t('.email') %></th>
+                <th><%= t('.signin_count') %></th>
+                <th></th>
+              </thead>
+              <tbody>
+                <% @admin_users.each do |admin_user| %>
+                  <tr>
+                    <td><%= policy(admin_user).show? ? link_to(admin_user.first_name, admin_admin_user_path(id: admin_user.id)) : admin_user.first_name %></td>
+                    <td><%= policy(admin_user).show? ? link_to(admin_user.last_name, admin_admin_user_path(id: admin_user.id)) : admin_user.last_name %></td>
+                    <td><%= admin_user.email %></td>
+                    <td><%= admin_user.sign_in_count %></td>
+                    <td><%= admin_user.email %></td>
+                    <td class="row-actions">
+                      <% if policy(admin_user).destroy? %>
+                        <a href="#" data-action="delete-model" data-url="<%= admin_admin_user_path(id: admin_user.id) %>" data-delete-label="<%= "#{t('.user_model_name')} #{admin_user.full_name}" %>" rel="tooltip" title="" class="btn btn-danger btn-link btn-xs" data-original-title="<%= t('admin.modal.delete_modal.delete') %>">
+                          <i class="fa fa-times"></i>
+                        </a>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

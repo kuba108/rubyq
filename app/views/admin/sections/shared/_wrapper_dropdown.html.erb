@@ -1,0 +1,10 @@
+<div class="dropdown">
+  <button class="section-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span class="fa fa-plus"></span>
+  </button>
+  <div class="dropdown-menu">
+    <%= link_to t('.add_one_column'), admin_wrappers_path(wrapper: {section_id: section.id, name: 'one_column'}), method: :post, remote: true, class: 'dropdown-item' %>
+    <%= link_to t('.add_two_columns'), admin_wrappers_path(wrapper: {section_id: section.id, name: 'two_columns'}), method: :post, remote: true, class: 'dropdown-item' %>
+    <%= link_to t('.add_three_columns'), admin_wrappers_path(wrapper: {section_id: section.id, name: 'three_columns'}), method: :post, remote: true, class: 'dropdown-item' %>
+  </div>
+</div>

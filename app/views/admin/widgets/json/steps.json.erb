@@ -1,0 +1,14 @@
+{
+  "steps": [
+    <% if params[:json].present? && params[:json][:steps].present? %>
+    <% params[:json][:steps].each do |k, v| %>
+    {
+      "title": "<%= "#{v[:title]}" %>",
+      "icon": "<%= "#{v[:icon]}" %>",
+      "text": "<%= "#{v[:text]}" %>"
+    }
+    <% if k.to_i < params[:json][:steps].values.size - 1 %>,<% end %>
+    <% end %>
+    <% end %>
+  ]
+}

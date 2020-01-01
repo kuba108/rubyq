@@ -1,0 +1,21 @@
+<div class="widget" data-item-id="<%= wrapper_widget.id %>" data-widget-id="<%= widget.id %>">
+  <div class="widget-header">
+    <h4><%= I18n.t(widget.name, scope: 'widget') %></h4>
+    <div class="float-right">
+      <a class="widget-save-btn header-btn">
+        <span class="fa fa-save"></span>
+      </a>
+      <%= link_to admin_wrapper_widget_path(id: wrapper_widget.id), method: :delete, remote: true, class: 'remove-widget-btn header-btn' do %>
+        <span class="fa fa-times-circle"></span>
+      <% end %>
+    </div>
+  </div>
+  <div class="widget-body">
+    <%= render template: "admin/widgets/forms/#{widget.name}", locals: { page: page, wrapper: wrapper_widget, widget: widget, json: JSON.parse(widget.json) } %>
+  </div>
+  <div class="widget-footer">
+    <div class="float-left">
+
+    </div>
+  </div>
+</div>

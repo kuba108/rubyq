@@ -1,0 +1,11 @@
+<%= form_for widget, url: admin_widget_path(id: widget.id), method: :put, remote: true do |f| %>
+  <%= f.hidden_field :page_id, value: page.id %>
+  <%= f.fields_for :json do |fj| %>
+    <div class="widget-divide">
+      <div class="form-group">
+        <%= fj.label :size, t('widget.divide.size') %>
+        <%= fj.select :size, locale_options_to_select('widget.divide.size_options', json['size']), {}, class: 'form-control select-picker' %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

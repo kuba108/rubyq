@@ -1,0 +1,23 @@
+<%= form_for widget, url: admin_widget_path(id: widget.id), method: :put, remote: true do |f| %>
+  <%= f.hidden_field :page_id, value: page.id %>
+  <%= f.fields_for :json do |fj| %>
+    <div class="widget-contact-form">
+      <div class="form-group">
+        <%= fj.label :target_email, t('widget.contact_form.send_to_email') %>
+        <%= fj.text_field :target_email, value: json['target_email'], class: 'form-control', placeholder: t('widget.contact_form.send_to_email_placeholder') %>
+      </div>
+      <div class="form-group">
+        <%= fj.label :label_name, t('widget.contact_form.name_label') %>
+        <%= fj.text_field :label_name, value: json['label_name'], class: 'form-control', placeholder: t('widget.contact_form.name_placeholder') %>
+      </div>
+      <div class="form-group">
+        <%= fj.label :label_email, t('widget.contact_form.email_label') %>
+        <%= fj.text_field :label_email, value: json['label_email'], class: 'form-control', placeholder: t('widget.contact_form.email_placeholder') %>
+      </div>
+      <div class="form-group">
+        <%= fj.label :label_text, t('widget.contact_form.text_label') %>
+        <%= fj.text_field :label_text, value: json['label_text'], class: 'form-control', placeholder: t('widget.contact_form.text_placeholder') %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

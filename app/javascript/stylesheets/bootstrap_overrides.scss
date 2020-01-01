@@ -1,0 +1,22 @@
+.carousel-caption {
+  position: absolute;
+  right: 30%;
+  bottom: 100px;
+  left: 30%;
+  z-index: 10;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #fff;
+  text-align: center;
+  background: rgba(235,149,63,0.9);
+  border-radius: 15px;
+
+  h3 {
+    font-size: 38px;
+    font-weight: 300;
+  }
+
+  p {
+    font-size: 20px;
+  }
+}

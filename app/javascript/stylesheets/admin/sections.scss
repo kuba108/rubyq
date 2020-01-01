@@ -1,0 +1,80 @@
+body.admin-sections.index {
+
+  #sections {
+    margin: 0;
+    padding: 0;
+
+    &.editable {
+      .section {
+        .section-header {
+          display: block;
+        }
+      }
+    }
+  }
+
+  .placeholder {
+    height: 45px;
+    border: 1px dashed #73b1f1;
+    background-color: transparent;
+    list-style: none;
+    margin-bottom: 10px;
+    border-radius: $border-radius-base;
+  }
+
+  .section {
+    margin: 16px 0;
+
+    .section-header {
+      display: block;
+      position: relative;
+      bottom: -15px;
+      text-align: center;
+      @include clearfix;
+    }
+
+    .section-body {
+      display: block;
+      min-height: 40px;
+      background-color: #f1f1f1;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 15px;
+      @include clearfix;
+    }
+
+    .drag-placeholder {
+      display: block;
+      cursor: move;
+      margin: 0 auto;
+    }
+
+    .section-btn {
+      background: none;
+      border: 0;
+      padding: 4px;
+      cursor: pointer;
+      color: #000;
+
+      &:hover {
+        color: $primary-color;
+      }
+
+      &.drag-placeholder {
+        cursor: move;
+      }
+
+      &.remove-btn:hover {
+        color: $danger-color;
+      }
+    }
+  }
+
+  .section-drop {
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border: 1px dashed #aaa;
+    opacity: 0.7;
+  }
+
+}

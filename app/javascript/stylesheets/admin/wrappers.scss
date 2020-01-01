@@ -1,0 +1,48 @@
+.wrapper-list {
+  min-height: 10px;
+}
+
+.wrapper-card {
+  list-style: none;
+  margin-bottom: 15px;
+  position: relative;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .wrapper-header {
+    display: none;
+    @include clearfix;
+  }
+
+  .wrapper-body {
+    display: block;
+    min-height: 40px;
+  }
+
+  .drag-placeholder {
+    position: absolute;
+    left: -12px;
+    top: 46%;
+    background-color: #fff;
+    padding: 1px;
+    border-radius: 5px 0 0 5px;
+  }
+}
+
+.wrapper-column {
+  border-radius: $border-radius-base;
+  background-color: $white-color;
+  list-style: none;
+  box-shadow: 0 1px 2px #ececec;
+  padding: 10px;
+}
+
+.wrapper-drop {
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  border: 1px dashed #eee;
+  opacity: 0.7;
+}

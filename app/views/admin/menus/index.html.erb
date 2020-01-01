@@ -1,0 +1,60 @@
+<% title t('.menu') %>
+<% breadcrumbs [
+   {label: t('.menu'), path: admin_menus_path}
+] %>
+
+<div class="content">
+  <div class="container-fluid">
+
+    <div class="top-panel">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="float-left">
+            <% if policy(Menu).new? %>
+              <%= link_to new_admin_menu_path, class: 'btn btn-primary' do %>
+                <i class="fa fa-plus"></i> <%= t('.new_menu') %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card strpied-tabled-with-hover">
+          <div class="card-header ">
+            <h4 class="card-title"><%= t('.menu') %></h4>
+          </div>
+          <div class="card-body table-full-width table-responsive">
+            <table class="table table-hover table-striped">
+              <thead>
+                <tr>
+                  <th><%= t('.name') %></th>
+                  <th><%= t('.language') %></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @menus.each do |menu| %>
+                  <tr>
+                    <td><%= link_to I18n.t(menu.name, scope: 'menu.name'), admin_menu_path(id: menu.id) %></td>
+                    <td><%= I18n.t(menu.language, scope: 'language') %></td>
+                    <td class="row-actions">
+                      <% if policy(menu).destroy? %>
+                        <a href="#" data-action="delete-model" data-url="<%= admin_menu_path(id: menu.id) %>" data-delete-label="<%= "<strong>#{I18n.t(menu.name, scope: 'menu.name')}</strong> pro jazyk <strong>#{I18n.t(menu.language, scope: 'language')}</strong>" %>" rel="tooltip" title="" class="btn btn-danger btn-link btn-xs" data-original-title="<%= t('admin.modal.delete_modal.delete') %>">
+                          <i class="fa fa-times"></i>
+                        </a>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="owl-portfolio owlcarousel carousel-th">
+  <% GalleryItem.where(gallery_id: json['gallery_id']).order(position: :asc).each do |item| %>
+    <div class="item">
+      <figure class="icon-overlay medium icn-link">
+        <%= image_tag item.image, alt: item.label %>
+      </figure>
+      <div class="image-caption">
+        <h3><%= item.label_i18n.present? ? item.label_i18n[page.language] : item.label %></h3>
+        <span class="meta"><%= item.description_i18n.present? ? item.description_i18n[page.language] : item.description %></span>
+      </div>
+    </div>
+  <% end %>
+</div>

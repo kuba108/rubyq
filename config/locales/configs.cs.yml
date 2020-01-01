@@ -1,0 +1,33 @@
+cs:
+  menu:
+    name:
+      main: 'Hlavní menu'
+
+  page:
+    layout:
+      name:
+        default: 'Defaultní'
+        reviews: 'Recenze'
+    state:
+      hidden: 'Skrytá'
+      visible: 'Viditelná'
+
+  language:
+    cs: 'Čeština'
+    en: 'Angličtina'
+    de: 'Němčina'
+
+  asset:
+    type:
+      header_image: 'Obrázek do hlavičky'
+      page_image: 'Obrázek na stránku'
+      gallery_image: 'Obrázek do galerie'
+      pdf_file: 'PDF soubor'
+
+  number:
+    currency:
+      format:
+        format: '%n %u'
+        precision: 0
+        unit: 'Kč'
+        delimiter: ' '

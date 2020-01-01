@@ -1,0 +1,35 @@
+<%= form_for widget, url: admin_widget_path(id: widget.id), method: :put, remote: true do |f| %>
+  <%= f.hidden_field :page_id, value: page.id %>
+  <%= f.fields_for :json do |fj| %>
+    <div class="widget-yt-video">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= fj.label :url, t('widget.yt_video.youtube_url') %>
+            <%= fj.text_field :url, value: json['url'], class: 'form-control', placeholder: t('widget.yt_video.youtube_url_placeholder') %>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= fj.label :align, t('widget.yt_video.align') %>
+            <%= fj.select :align, locale_options_to_select('widget.yt_video.align', json['align']), {}, class: 'form-control select-picker' %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= fj.label :width, t('widget.yt_video.video_width') %>
+            <%= fj.text_field :width, value: json['width'], class: 'form-control', placeholder: t('widget.yt_video.video_width_placeholder') %>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= fj.label :height, t('widget.yt_video.video_height') %>
+            <%= fj.text_field :height, value: json['height'], class: 'form-control', placeholder: t('widget.yt_video.video_height_placeholder') %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

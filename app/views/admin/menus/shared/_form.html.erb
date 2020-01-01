@@ -1,0 +1,43 @@
+<%= form_for resource, url: { action: resource_action }, method: resource_method, html: { id: 'new-page-form', class: 'form-horizontal' } do |f| %>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card strpied-tabled-with-hover">
+        <div class="card-header ">
+          <h4 class="card-title"><%= t('.new_menu') %></h4>
+          <% if @parent_menu.present? %>
+            <p><em>(<%= t('.menu_copy') %> <%= "#{@parent_menu.title} | #{I18n.t(@parent_menu.language, scope: 'language')}" %>)</em></p>
+          <% end %>
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <%= f.label :name, 'Název', class: 'col-sm-2 control-label' %>
+            <%= f.select :name, locale_options_to_select('menu.name'), {}, class: 'custom-select' %>
+          </div>
+          <button type="submit" class="btn btn-success btn-fill float-right"><%= t('.create_menu') %></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card strpied-tabled-with-hover">
+        <div class="card-header ">
+          <h4 class="card-title"><%= t('.menu_settings') %></h4>
+        </div>
+        <div class="card-body">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td><%= t('.layout') %></td>
+                <td><%= f.select :layout, locale_options_to_select('menu.layout.name'), {}, class: 'custom-select' %></td>
+              </tr>
+              <tr>
+                <td><%= t('.language') %></td>
+                <td><%= f.select :language, locale_options_to_select('language', @parent_menu.present? ? [@parent_menu.language] : nil), {}, class: 'custom-select' %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

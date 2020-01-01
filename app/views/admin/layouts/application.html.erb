@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <title><%= content_for?(:title) ? "#{yield(:title)} | RubyQ" : 'RubyQ' %></title>
+    <meta name="turbolinks-cache-control" content="no-cache">
+    <%= csrf_meta_tags %>
+    <%= stylesheet_pack_tag 'admin/manifest', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'admin_manifest', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body class="admin <%= params[:controller].gsub('/', '-') %> <%= params[:action] %>" data-controller="<%= controller_name %>" data-action="<%= action_name %>">
+  <div class="wrapper">
+    <div class="sidebar" data-color="blue" data-image="<%= asset_pack_path('media/admin/sidebar-5.jpg') %>">
+      <!--
+        Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
+        Tip 2: you can also add an image using data-image tag
+      -->
+      <div class="sidebar-wrapper">
+        <div class="logo">
+          <%= link_to admin_dashboard_path, class: 'simple-text' do %>
+            <% if ENV['APP_ENV'] == 'test' %>
+              RubyQ Admin - <strong>TEST</strong>
+            <% else %>
+              RubyQ Admin
+            <% end %>
+          <% end %>
+        </div>
+        <ul class="nav">
+          <% if policy(:dashboard).index? %>
+            <li class="nav-item <%= active_sidebar_item('dashboard') %>">
+              <%= link_to admin_dashboard_path, class: 'nav-link' do %>
+                <i class="nc-icon nc-chart-pie-35"></i>
+                <p><%= t('admin.sidebar.dashboard') %></p>
+              <% end %>
+            </li>
+          <% end %>
+          <% if policy(AdminUser).index? %>
+            <li class="nav-item <%= active_sidebar_item('admin_users') %>">
+              <%= link_to admin_admin_users_path, class: 'nav-link' do %>
+                <i class="nc-icon nc-circle-09"></i>
+                <p><%= t('admin.sidebar.users') %></p>
+              <% end %>
+            </li>
+          <% end %>
+          <% if policy(Menu).index? %>
+            <li class="nav-item <%= active_sidebar_item('menus') %>">
+              <%= link_to admin_menus_path, class: 'nav-link' do %>
+                <i class="nc-icon nc-compass-05"></i>
+                <p><%= t('admin.sidebar.menu') %></p>
+              <% end %>
+            </li>
+          <% end %>
+          <% if policy(Page).index? %>
+            <li class="nav-item <%= active_sidebar_item('pages') %>">
+              <%= link_to admin_pages_path, class: 'nav-link' do %>
+                <i class="nc-icon nc-single-copy-04"></i>
+                <p><%= t('admin.sidebar.pages') %></p>
+              <% end %>
+            </li>
+          <% end %>
+          <% if policy(Gallery).index? %>
+            <li class="nav-item <%= active_sidebar_item('galleries') %>">
+              <%= link_to admin_galleries_path, class: 'nav-link' do %>
+                <i class="nc-icon nc-album-2"></i>
+                <p><%= t('admin.sidebar.galeries') %></p>
+              <% end %>
+            </li>
+          <% end %>
+          <% if policy(Setting).index? %>
+            <li class="nav-item <%= active_sidebar_item('settings') %>">
+              <%= link_to admin_settings_path, class: 'nav-link' do %>
+                <i class="nc-icon nc-settings-gear-64"></i>
+                <p><%= t('admin.sidebar.settings') %></p>
+              <% end %>
+            </li>
+          <% end %>
+          <li class="nav-item">
+            <%= link_to root_path, class: 'nav-link', target: '_blank' do %>
+              <i class="nc-icon nc-tv-2"></i>
+              <p><%= t('admin.sidebar.view_web') %></p>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg " color-on-scroll="500">
+        <div class=" container-fluid  ">
+          <div class="breadcrumbs">
+            <%= content_for?(:breadcrumbs) ? yield(:breadcrumbs) : link_to('<span class="fa fa-home"></span>'.html_safe, admin_dashboard_path, class: 'home') %>
+          </div>
+          <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-bar burger-lines"></span>
+            <span class="navbar-toggler-bar burger-lines"></span>
+            <span class="navbar-toggler-bar burger-lines"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end" id="navigation">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <%= link_to admin_admin_user_path(id: current_admin_user.id), class: 'nav-link' do %>
+                  <%= current_admin_user.email %>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to destroy_admin_user_session_path, method: :delete, class: 'nav-link' do %>
+                  <span class="no-icon"><%= t('admin.general.logout') %></span>
+                <% end %>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- End Navbar -->
+
+      <% if flash[:notice].present? %>
+        <div class="alert alert-success">
+          <button type="button" aria-hidden="true" class="close" data-dismiss="alert">
+            <i class="nc-icon nc-simple-remove"></i>
+          </button>
+          <span data-notify="message"><%= raw flash[:notice] %></span>
+        </div>
+      <% end %>
+
+      <% if flash[:alert].present? %>
+        <div class="alert alert-warning">
+          <button type="button" aria-hidden="true" class="close" data-dismiss="alert">
+            <i class="nc-icon nc-simple-remove"></i>
+          </button>
+          <span data-notify="message"><%= raw flash[:alert] %></span>
+        </div>
+      <% end %>
+
+      <% if flash[:error].present? %>
+        <div class="alert alert-danger">
+          <button type="button" aria-hidden="true" class="close" data-dismiss="alert">
+            <i class="nc-icon nc-simple-remove"></i>
+          </button>
+          <span data-notify="message"><%= raw flash[:error] %></span>
+        </div>
+      <% end %>
+
+      <%= yield %>
+
+      <footer class="footer">
+        <div class="container-fluid">
+          <nav>
+            <p class="copyright text-center">
+              &copy; <%= Time.now.year %> <%= t('admin.general.copyright_text') %>
+            </p>
+          </nav>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Start: Delete modal -->
+  <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title"><%= t('admin.modal.delete_modal.delete_for_sure') %></h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <%= t('admin.modal.delete_modal.you_want_to_delete') %> %model_name%?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default float-left" data-dismiss="modal">Zavřít</button>
+          <%= link_to 'Odstranit', '#', method: :delete, remote: true, class: 'delete-btn btn btn-danger btn-fill' %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End: Delete modal -->
+
+  </body>
+</html>

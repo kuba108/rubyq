@@ -1,0 +1,17 @@
+.modal {
+
+  .modal-header {
+    h4 {
+      margin-top: 0;
+    }
+  }
+
+  .modal-footer {
+    -webkit-box-shadow: inset 0px 2px 7px 0px rgba(245,245,245,1);
+    -moz-box-shadow: inset 0px 2px 7px 0px rgba(245,245,245,1);
+    box-shadow: inset 0px 2px 7px 0px rgba(245,245,245,1);
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+  }
+
+}

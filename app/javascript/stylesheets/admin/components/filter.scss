@@ -1,0 +1,54 @@
+#filter {
+  background-color: #fff;
+  padding: 0 30px 20px 30px;
+  -webkit-box-shadow: inset 0px -8px 5px -5px rgba(230,230,230,1);
+  -moz-box-shadow: inset 0px -8px 5px -5px rgba(230,230,230,1);
+  box-shadow: inset 0px -8px 5px -5px rgba(230,230,230,1);
+  display: none;
+
+  &.open {
+    display: block;
+  }
+
+  h4 {
+    padding: 2px 10px;
+    border-bottom: 1px dashed #eee;
+    color: #aaa;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+    margin-bottom: 10px;
+    position: relative;
+
+    .close-filter-btn {
+      position: absolute;
+      right: 0;
+      top: 6px;
+      border: 0;
+
+      &:hover {
+        color: white;
+        background: $red;
+      }
+    }
+  }
+
+  .input-label {
+    text-align: center;
+
+    label {
+      color: #888;
+      font-size: 12px;
+    }
+  }
+
+  .date-range-filter {
+    .input-group:after {
+      content: '-';
+      position: absolute;
+      left: 49%;
+      top: 20%;
+    }
+  }
+}

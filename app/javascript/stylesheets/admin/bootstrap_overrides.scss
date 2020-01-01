@@ -1,0 +1,8 @@
+.table-responsive {
+  width: auto !important;
+}
+
+.card .table tbody td:last-child,
+.card .table thead th:last-child {
+  display: block !important;
+}

@@ -1,0 +1,27 @@
+<% title t('.new_gallery') %>
+<% breadcrumbs [
+   { label: t('.galleries'), path: admin_galleries_path },
+   { label: t('.new_gallery'), path: '#' }
+] %>
+
+<div class="content">
+  <div class="container-fluid">
+    <div class="top-panel">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="float-left">
+            <%= link_to admin_galleries_path, class: 'btn btn-danger' do %>
+              <i class="fa fa-times"></i> <%= t('.cancel') %>
+            <% end %>
+          </div>
+          <div class="float-right">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <%= render partial: 'admin/galleries/shared/form', locals: {resource: @gallery, resource_action: 'create', resource_method: :post} %>
+    </div>
+  </div>
+</div>

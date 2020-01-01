@@ -1,0 +1,94 @@
+<% title t('.galleries') %>
+<% breadcrumbs [
+   { label: t('.galleries'), path: admin_galleries_path }
+] %>
+
+<div id="filter">
+  <h4>
+    <%= t('admin.general.filter.filter') %>
+    <button class="btn btn-default btn-xs close-filter-btn"><i class="fa fa-times"></i></button>
+  </h4>
+  <%= search_form_for @search, url: admin_galleries_path do |f| %>
+    <!-- Start: Filter part -->
+    <div class="row filter-part open">
+      <div class="col-md-3">
+        <%= text_filter(f, 'name', t('.filter.name')) %>
+      </div>
+    </div>
+    <!-- End: Filter part -->
+
+    <!-- Start: Action row -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="float-left">
+          <a href="#" class="clear-filter-btn btn btn-danger"><%= t('admin.general.filter.cancel_filter') %></a>
+        </div>
+        <div class="float-right">
+          <%= f.submit t('admin.general.filter.search'), class: 'btn btn-success btn-fill' %>
+        </div>
+      </div>
+    </div>
+    <!-- End: Action row -->
+  <% end %>
+</div>
+
+<div class="content">
+  <div class="container-fluid">
+
+    <div class="top-panel">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="float-left">
+            <% if policy(Gallery).new? %>
+              <%= link_to new_admin_gallery_path, class: 'btn btn-primary' do %>
+                <i class="fa fa-plus"></i> <%= t('.new_gallery') %>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="float-right">
+            <button class="open-filter-btn btn btn-warning btn-fill"><i class="fa fa-filter"></i> <%= t('admin.general.filter.filter') %></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card strpied-tabled-with-hover">
+          <div class="card-header ">
+            <h4 class="card-title"><%= t('.gallery') %></h4>
+          </div>
+          <div class="card-body table-full-width table-responsive">
+            <table class="table table-hover table-striped">
+              <thead>
+                <th><%= sort_link(@search, :name, t('.name')) %></th>
+                <th>Autor</th>
+                <th><%= sort_link(@search, :created_at, t('.created_at')) %></th>
+                <th><%= sort_link(@search, :updated_at, t('.updated_at')) %></th>
+                <th></th>
+              </thead>
+              <tbody>
+                <% @galleries.each do |gallery| %>
+                  <tr>
+                    <td><%= policy(gallery).show? ? link_to(gallery.name, admin_gallery_path(id: gallery.id)) : gallery.name %></td>
+                    <td><%= gallery.admin_user.full_name if gallery.admin_user %></td>
+                    <td><%= date_to_string(gallery.created_at) %></td>
+                    <td><%= date_to_string(gallery.updated_at) %></td>
+                    <td class="row-actions">
+                      <% if policy(gallery).destroy? %>
+                        <a href="#" data-action="delete-model" data-url="<%= admin_gallery_path(id: gallery.id) %>" data-delete-label="<%= "#{t('.gallery_model_name')} #{gallery.name}" %>" rel="tooltip" title="" class="btn btn-danger btn-link btn-xs" data-original-title="<%= t('admin.modal.delete_modal.delete') %>">
+                          <i class="fa fa-times"></i>
+                        </a>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

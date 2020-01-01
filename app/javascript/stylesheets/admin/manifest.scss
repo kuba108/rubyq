@@ -1,0 +1,52 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ */
+
+$fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
+$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+@import "../admin/variables";
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import "bootstrap_custom";
+@import '~bootstrap-select/sass/variables';
+@import '~bootstrap-select/sass/bootstrap-select';
+@import "bootstrap_overrides";
+//@import "bootstrap-datepicker";
+//@import "notyf";
+
+@import "../admin/light-bootstrap-dashboard";
+
+// Components
+@import "../admin/components/filter";
+@import "../admin/components/top_panel";
+@import "../admin/components/table";
+@import "../admin/components/modal";
+@import "../admin/components/card";
+@import "../admin/components/breadcrumbs";
+
+// Editors
+@import "../admin/editors/text_editor";
+@import "../admin/editors/number_editor";
+@import "../admin/editors/text_area_editor";
+@import "../admin/editors/select_editor";
+//@import "../admin/editors/date_editor";
+
+@import "../admin/general";
+@import "../admin/admin_user_policies";
+@import "../admin/menus";
+@import "../admin/pages";
+@import "../admin/widgets";
+@import "../admin/wrappers";
+@import "../admin/sections";
+@import "../admin/galleries";
+@import "../admin/dashboard";

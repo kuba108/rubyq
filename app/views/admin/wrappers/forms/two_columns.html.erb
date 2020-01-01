@@ -1,0 +1,37 @@
+<div class="two-columns-wrapper wrapper-card" data-item-id="<%= wrapper.id %>">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="left-column wrapper-column">
+        <div class="widget-wrapper" data-wrapper-id="<%= wrapper.id %>" data-wrapper-part="left_column">
+          <% wrapper.wrapper_widgets.where(part: 'left_column').order(position: :asc).each do |item| %>
+            <%= render partial: 'admin/widgets/widget', locals: { page: @page, wrapper_widget: item, widget: item.widget } %>
+          <% end %>
+        </div>
+
+        <div class="btn-group" role="group">
+          <%= render partial: 'admin/wrappers/shared/widget_dropdown', locals: { wrapper: wrapper, part: 'left_column' } %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="right-column wrapper-column clearfix">
+        <div class="widget-wrapper" data-wrapper-id="<%= wrapper.id %>" data-wrapper-part="right_column">
+          <% wrapper.wrapper_widgets.where(part: 'right_column').order(position: :asc).each do |item| %>
+            <%= render partial: 'admin/widgets/widget', locals: { page: @page, wrapper_widget: item, widget: item.widget } %>
+          <% end %>
+        </div>
+
+        <div class="float-left">
+          <%= render partial: 'admin/wrappers/shared/widget_dropdown', locals: { wrapper: wrapper, part: 'right_column' } %>
+        </div>
+        <div class="float-right">
+          <%= link_to t('.remove'), admin_wrapper_path(id: wrapper.id, page_id: @page.id), method: :delete, remote: true, class: 'btn btn-danger' %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="drag-placeholder">
+    <span class='fa fa-bars'></span>
+  </div>
+</div>

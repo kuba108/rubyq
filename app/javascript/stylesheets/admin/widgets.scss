@@ -1,0 +1,89 @@
+.widget-wrapper {
+  padding-left: 0;
+  min-height: 10px;
+}
+
+.widget {
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  border: 1px dashed #73b1f1;
+
+  .widget-header {
+    padding: 4px 14px;
+    cursor: move;
+    @include clearfix;
+
+    h4 {
+      font-size: 16px;
+      padding: 3px 0;
+      margin: 0;
+      color: #666;
+      float: left;
+    }
+
+    .header-btn {
+      display: none;
+      cursor: pointer;
+      width: 26px;
+      height: 32px;
+      font-size: 24px;
+      text-align: center;
+      margin: 2px 0;
+      color: #73b1f1;
+    }
+
+    .remove-widget-btn:hover {
+      color: $danger-color;
+    }
+
+    .widget-save-btn:hover {
+      color: $success-color;
+    }
+  }
+
+  .widget-body {
+    display: none;
+    padding: 8px;
+    min-height: 40px;
+  }
+
+  .widget-footer {
+    display: none;
+    padding: 8px 8px;
+    @include clearfix;
+  }
+
+  &:hover,
+  &.open {
+    .widget-header {
+      background-color: #f2f8ff;
+
+      .header-btn {
+        display: inline-block;
+      }
+    }
+  }
+
+  &.open {
+    .widget-body,
+    .widget-footer {
+      display: block;
+    }
+  }
+}
+
+.widget.edited {
+  .widget-header {
+    .widget-save-btn {
+      color: orange;
+    }
+  }
+}
+
+.widget-drop {
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  border: 1px dashed #ccc;
+}

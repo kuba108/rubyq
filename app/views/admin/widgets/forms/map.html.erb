@@ -1,0 +1,21 @@
+<%= form_for widget, url: admin_widget_path(id: widget.id), method: :put, remote: true do |f| %>
+  <%= f.hidden_field :page_id, value: page.id %>
+  <%= f.fields_for :json do |fj| %>
+    <div class="widget-map">
+      <div class="row">
+        <div class="col-lg-3 col-xs-12">
+          <div class="form-group">
+            <%= fj.label :maptype, t('widget.map.map_type') %>
+            <%= fj.select :maptype, locale_options_to_select('widget.map.map_type_options', json['maptype']), {}, class: 'form-control select-picker' %>
+          </div>
+        </div>
+        <div class="col-lg-3 col-xs-12">
+          <div class="form-group">
+            <%= fj.label :zoom, t('widget.map.zoom') %>
+            <%= fj.number_field :zoom, value: json['zoom'], class: 'form-control', placeholder: t('widget.map.zoom_placeholder') %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

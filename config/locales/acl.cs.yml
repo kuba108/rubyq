@@ -1,0 +1,54 @@
+cs:
+  policy:
+
+    dashboard:
+      show_stats: 'Zobrazit statistiky'
+
+    admin_user:
+      index: 'Zobrazit seznam'
+      show: 'Zobrazit detail'
+      create: 'Vytvořit'
+      update: 'Upravit'
+      destroy: 'Smazat'
+      update_acl: 'Upravit práva uživatelů'
+      change_passwords: 'Měnit hesla'
+
+    menu:
+      index: 'Zobrazit seznam'
+      show: 'Zobrazit detail'
+      change_order: 'Měnit pořadí'
+
+    menu_item:
+      index: 'Zobrazit seznam'
+      show: 'Zobrazit detail'
+      create: 'Vytvořit'
+      update: 'Upravit'
+      destroy: 'Smazat'
+
+    page:
+      index: 'Zobrazit seznam'
+      show: 'Zobrazit detail'
+      create: 'Vytvořit'
+      update: 'Upravit'
+      destroy: 'Smazat'
+
+    gallery:
+      index: 'Zobrazit seznam'
+      show: 'Zobrazit detail'
+      create: 'Vytvořit'
+      update: 'Upravit'
+      destroy: 'Smazat'
+
+    gallery_item:
+      index: 'Zobrazit seznam'
+      show: 'Zobrazit detail'
+      create: 'Vytvořit'
+      update: 'Upravit'
+      destroy: 'Smazat'
+
+    setting:
+      index: 'Zobrazit seznam'
+      show: 'Zobrazit detail'
+      create: 'Vytvořit'
+      update: 'Upravit'
+      destroy: 'Smazat'

@@ -1,0 +1,7 @@
+<div class="section-body">
+  <div class="wrapper-list wrapper-dropable" data-section-id="<%= section.id %>">
+    <% section.wrappers.order(position: :asc).each do |wrapper| %>
+      <%= render template: "admin/wrappers/forms/#{wrapper.name}", locals: {wrapper: wrapper} %>
+    <% end %>
+  </div>
+</div>

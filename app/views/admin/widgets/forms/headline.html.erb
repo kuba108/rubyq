@@ -1,0 +1,41 @@
+<%= form_for widget, url: admin_widget_path(id: widget.id), method: :put, remote: true do |f| %>
+  <%= f.hidden_field :page_id, value: page.id %>
+  <%= f.fields_for :json do |fj| %>
+    <div class="widget-headline">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <%= fj.label :size, t('widget.headline.size') %>
+            <%= fj.select :size, locale_options_to_select('widget.headline.size_options', json['size']), {}, class: 'form-control select-picker' %>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <%= fj.label :align, t('widget.headline.align') %>
+            <%= fj.select :align, locale_options_to_select('widget.headline.align_options', json['align']), {}, class: 'form-control select-picker' %>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <%= fj.label :style, t('widget.headline.style') %>
+            <%= fj.select :style, locale_options_to_select('widget.headline.style_options', json['style']), {}, class: 'form-control select-picker' %>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <%= fj.label :icon, t('widget.headline.icon') %>
+            <%= fj.select :icon, locale_options_to_select('widget.headline.icon_options', json['icon']), {}, class: 'form-control select-picker' %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <%= fj.label :label, t('widget.headline.text') %>
+            <%= fj.text_field :label, value: json['label'], class: 'form-control', placeholder: t('widget.headline.headline') %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

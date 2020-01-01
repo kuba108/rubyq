@@ -1,0 +1,147 @@
+<% title 'Menu' %>
+<% breadcrumbs [
+   {label: 'Menu', path: admin_menus_path}
+] %>
+
+<div class="content">
+  <div class="container-fluid">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-md-8">
+            <h4 class="card-title"><%= raw "Upravit prava uživatele <strong>#{@admin_user.full_name}</strong>" %></h4>
+          </div>
+          <div class="col-md-4">
+            <div class="float-right">
+              <%= link_to 'Zpět na detail uživatele', admin_admin_user_path(id: @admin_user.id), class: 'btn btn-default' %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <%= form_for @admin_user, url: update_acl_admin_admin_user_admin_user_policies_path(admin_user_id: @admin_user.id), method: :put, remote: true, class: 'form-inline' do |f| %>
+          <%= f.fields_for 'acl' do |g| %>
+            <%= g.fields_for 'dashboard' do |group| %>
+              <div class="acl-group">
+                <h5>
+                  <label>
+                    <input type="checkbox" class="check-all"/> <strong><%= t('.dashboard') %></strong>
+                  </label>
+                </h5>
+                <%= policy_check_box(group, 'dashboard', 'show_stats') %>
+              </div>
+            <% end %>
+            <%= g.fields_for 'admin_user' do |group| %>
+              <div class="acl-group">
+                <h5>
+                  <label>
+                    <input type="checkbox" class="check-all"/> <strong><%= t('.admin_users') %></strong>
+                  </label>
+                </h5>
+                <%= policy_check_box(group, 'admin_user', 'index') %>
+                <%= policy_check_box(group, 'admin_user', 'show') %>
+                <%= policy_check_box(group, 'admin_user', 'update') %>
+                <%= policy_check_box(group, 'admin_user', 'create') %>
+                <%= policy_check_box(group, 'admin_user', 'destroy') %>
+                <%= policy_check_box(group, 'admin_user', 'update_acl') %>
+                <%= policy_check_box(group, 'admin_user', 'change_passwords') %>
+              </div>
+            <% end %>
+            <%= g.fields_for 'menu' do |group| %>
+              <div class="acl-group">
+                <h5>
+                  <label>
+                    <input type="checkbox" class="check-all"/> <strong><%= t('.menu') %></strong>
+                  </label>
+                </h5>
+                <%= policy_check_box(group, 'menu', 'index') %>
+                <%= policy_check_box(group, 'menu', 'show') %>
+                <%= policy_check_box(group, 'menu', 'update') %>
+                <%= policy_check_box(group, 'menu', 'create') %>
+                <%= policy_check_box(group, 'menu', 'destroy') %>
+                <%= policy_check_box(group, 'menu', 'change_order') %>
+              </div>
+            <% end %>
+            <%= g.fields_for 'menu_item' do |group| %>
+              <div class="acl-group">
+                <h5>
+                  <label>
+                    <input type="checkbox" class="check-all"/> <strong><%= t('.menu_items') %></strong>
+                  </label>
+                </h5>
+                <%= policy_check_box(group, 'menu_item', 'index') %>
+                <%= policy_check_box(group, 'menu_item', 'show') %>
+                <%= policy_check_box(group, 'menu_item', 'update') %>
+                <%= policy_check_box(group, 'menu_item', 'create') %>
+                <%= policy_check_box(group, 'menu_item', 'destroy') %>
+              </div>
+            <% end %>
+            <%= g.fields_for 'page' do |group| %>
+              <div class="acl-group">
+                <h5>
+                  <label>
+                    <input type="checkbox" class="check-all"/> <strong><%= t('.pages') %></strong>
+                  </label>
+                </h5>
+                <%= policy_check_box(group, 'page', 'index') %>
+                <%= policy_check_box(group, 'page', 'show') %>
+                <%= policy_check_box(group, 'page', 'update') %>
+                <%= policy_check_box(group, 'page', 'create') %>
+                <%= policy_check_box(group, 'page', 'destroy') %>
+              </div>
+            <% end %>
+            <%= g.fields_for 'gallery' do |group| %>
+              <div class="acl-group">
+                <h5>
+                  <label>
+                    <input type="checkbox" class="check-all"/> <strong><%= t('.galleries') %></strong>
+                  </label>
+                </h5>
+                <%= policy_check_box(group, 'gallery', 'index') %>
+                <%= policy_check_box(group, 'gallery', 'show') %>
+                <%= policy_check_box(group, 'gallery', 'update') %>
+                <%= policy_check_box(group, 'gallery', 'create') %>
+                <%= policy_check_box(group, 'gallery', 'destroy') %>
+              </div>
+            <% end %>
+            <%= g.fields_for 'gallery_item' do |group| %>
+              <div class="acl-group">
+                <h5>
+                  <label>
+                    <input type="checkbox" class="check-all"/> <strong><%= t('.gallery_items') %></strong>
+                  </label>
+                </h5>
+                <%= policy_check_box(group, 'gallery_item', 'index') %>
+                <%= policy_check_box(group, 'gallery_item', 'show') %>
+                <%= policy_check_box(group, 'gallery_item', 'update') %>
+                <%= policy_check_box(group, 'gallery_item', 'create') %>
+                <%= policy_check_box(group, 'gallery_item', 'destroy') %>
+              </div>
+            <% end %>
+            <%= g.fields_for 'setting' do |group| %>
+              <div class="acl-group">
+                <h5>
+                  <label>
+                    <input type="checkbox" class="check-all"/> <strong><%= t('.settings') %></strong>
+                  </label>
+                </h5>
+                <%= policy_check_box(group, 'setting', 'index') %>
+                <%= policy_check_box(group, 'setting', 'show') %>
+                <%= policy_check_box(group, 'setting', 'update') %>
+                <%= policy_check_box(group, 'setting', 'create') %>
+                <%= policy_check_box(group, 'setting', 'destroy') %>
+              </div>
+            <% end %>
+          <% end %>
+          <div class="form-group clearfix">
+            <div class="float-right">
+              <%= f.submit 'Uložit nastavení práv', class: 'btn btn-success btn-fill' %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+</div>

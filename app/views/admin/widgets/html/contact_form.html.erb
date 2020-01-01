@@ -1,0 +1,22 @@
+<div class="contact-form-widget">
+  <div class="success-message"></div>
+  <div class="error-message"></div>
+  <%= form_tag send_contact_form_path, method: :post, class: 'contact-form needs-validation', remote: true, novalidate: 'novalidate' do %>
+    <% if json['target_email'].present? %>
+      <%= hidden_field_tag :target_email, json['target_email'] %>
+    <% end %>
+    <div class="form-group">
+      <%= label_tag :name, json['label_name'].present? ? json['label_name'] : 'Vaše jméno' %>
+      <%= text_field_tag :name, '', class: 'form-control', required: 'required' %>
+    </div>
+    <div class="form-group">
+      <%= label_tag :email, json['label_email'].present? ? json['label_email'] : 'Váš e-mail' %>
+      <%= email_field_tag :email, '', class: 'form-control', required: 'required' %>
+    </div>
+    <div class="form-group">
+      <%= label :text, json['label_text'].present? ? json['label_text'] : 'Váš text' %>
+      <%= text_area_tag :text, '', class: 'form-control' %>
+    </div>
+    <%= submit_tag 'Odeslat', class: 'btn btn-primary' %>
+  <% end %>
+</div>

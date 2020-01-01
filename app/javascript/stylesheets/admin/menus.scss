@@ -1,0 +1,118 @@
+body.admin-menus.show {
+
+  .items-panel {
+    ul {
+      padding-left: 0;
+
+      li {
+        list-style: none;
+        padding: 6px 10px 6px 10px;
+        line-height: 22px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        background-color: #fff;
+        border: 1px dashed #73b1f1;
+
+        em {
+          color: #888;
+          display: inline-block;
+        }
+
+        .draggable {
+          display: none;
+        }
+
+        &.placeholder {
+          height: 36px;
+          background-color: #fff;
+          border: 1px dashed #ccc;
+        }
+
+        .remove-link-btn {
+          display: inline-block;
+          float: right;
+        }
+
+        .btn-link {
+          display: inline-block;
+          float: right;
+        }
+
+        .btn-simple {
+          border: 0;
+          padding: 0 4px;
+          outline: none;
+          cursor: pointer;
+        }
+
+        .sub-menu li {
+          border: 1px dashed #ccc;
+
+          &:first-child {
+            margin-top: 10px;
+          }
+        }
+
+        @include clearfix;
+      }
+
+      &.edit {
+        li {
+          padding: 6px 10px 6px 10px;
+        }
+
+        .draggable {
+          display: inline-block;
+          margin-right: 10px;
+          cursor: pointer;
+        }
+      }
+    }
+
+    #changed-icon {
+      margin: 0 6px 0 0;
+      display: inline-block;
+
+      span {
+        color: #ccc;
+        vertical-align: middle;
+      }
+
+      &.active span {
+        color: #d73a2e;
+      }
+    }
+  }
+
+  #detail-table {
+    tr {
+      td:first-child {
+        width: 140px;
+      }
+    }
+  }
+
+
+  .tab-content {
+    padding-top: 20px;
+  }
+}
+
+body.dragging, body.dragging * {
+  cursor: move !important;
+}
+
+.dragged {
+  position: absolute;
+  opacity: 0.5;
+  z-index: 2000;
+}
+
+ol.example li.placeholder {
+  position: relative;
+  /** More li styles **/
+}
+ol.example li.placeholder:before {
+  position: absolute;
+  /** Define arrowhead **/
+}

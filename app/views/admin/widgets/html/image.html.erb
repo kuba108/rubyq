@@ -1,0 +1,3 @@
+<% if widget.attachments.attached? %>
+  <%= image_tag widget.attachments.first, alt: json['alt'], class: 'img-responsive' %>
+<% end %>

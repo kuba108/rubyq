@@ -1,0 +1,37 @@
+<div class="col-md-8">
+  <div class="card strpied-tabled-with-hover">
+    <div class="card-header">
+      <h4 class="card-title"><%= t('.new_user') %></h4>
+    </div>
+    <div class="card-body">
+      <%= form_for resource, url: { action: resource_action }, method: resource_method, html: { class: 'form-horizontal' } do |f| %>
+        <div class="form-group">
+          <%= f.label :first_name, t('.first_name'), class: 'col-sm-2 control-label' %>
+          <%= f.text_field :first_name, value: '', class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :last_name, t('.last_name'), class: 'col-sm-2 control-label' %>
+          <%= f.text_field :last_name, value: '', class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :email, t('.email'), class: 'col-sm-2 control-label' %>
+          <%= f.text_field :email, value: '', class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :password, t('.password'), class: 'col-sm-2 control-label' %>
+          <%= f.password_field :password, value: '', class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :password_confirmation, t('.password_again'), class: 'col-sm-2 control-label' %>
+          <%= f.password_field :password_confirmation, value: '', class: 'form-control' %>
+        </div>
+
+        <button type="submit" class="btn btn-success btn-fill float-right"><%= t('.create_user') %></button>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+.breadcrumbs {
+  margin: 10px 0;
+
+  a {
+    font-weight: 400;
+    font-size: 16px;
+    color: #888888;
+    margin: 0 5px;
+    height: 30px;
+    line-height: 30px;
+
+    &:last-child {
+      font-size: 18px;
+    }
+
+    &.home {
+      font-size: 18px;
+    }
+  }
+
+  &:hover{
+    color: #5e5e5e;
+  }
+}

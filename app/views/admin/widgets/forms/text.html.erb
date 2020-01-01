@@ -1,0 +1,29 @@
+<%= form_for widget, url: admin_widget_path(id: widget.id), method: :put, remote: true do |f| %>
+  <%= f.hidden_field :page_id, value: page.id %>
+  <%= f.fields_for :json do |fj| %>
+    <div class="widget-text">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <%= fj.label :align, t('widget.text.align') %>
+            <%= fj.select :align, locale_options_to_select('widget.text.align_options', selected: json['align']), {}, class: 'form-control select-picker' %>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <%= fj.label :style, t('widget.text.style') %>
+            <%= fj.select :style, locale_options_to_select('widget.text.style_options', selected: json['style']), {}, class: 'form-control select-picker' %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <%= fj.label :text, t('widget.text.text') %>
+            <%= fj.text_field :text, value: json['text'], class: 'form-control', placeholder: t('widget.text.text_placeholder') %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

@@ -1,0 +1,17 @@
+<div class="dropdown">
+  <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Přidat widget
+  </button>
+  <div class="dropdown-menu">
+    <%= link_to t('widget.headline.name'), admin_wrapper_widgets_path(wrapper_widget: { wrapper_id: wrapper, widget_name: 'headline', part: part }), method: :post, remote: true, class: 'dropdown-item' %>
+    <%= link_to t('widget.text.name'), admin_wrapper_widgets_path(wrapper_widget: { wrapper_id: wrapper, widget_name: 'text', part: part }), method: :post, remote: true, class: 'dropdown-item' %>
+    <%= link_to t('widget.wysiwyg.name'), admin_wrapper_widgets_path(wrapper_widget: { wrapper_id: wrapper, widget_name: 'wysiwyg', part: part }), method: :post, remote: true, class: 'dropdown-item' %>
+    <%= link_to t('widget.image.name'), admin_wrapper_widgets_path(wrapper_widget: { wrapper_id: wrapper, widget_name: 'image', part: part }), method: :post, remote: true, class: 'dropdown-item' %>
+    <%= link_to t('widget.gallery.name'), admin_wrapper_widgets_path(wrapper_widget: { wrapper_id: wrapper, widget_name: 'gallery', part: part }), method: :post, remote: true, class: 'dropdown-item' %>
+    <%= link_to t('widget.yt_video.name'), admin_wrapper_widgets_path(wrapper_widget: { wrapper_id: wrapper, widget_name: 'yt_video', part: part }), method: :post, remote: true, class: 'dropdown-item' %>
+    <%= link_to t('widget.icon_bucket.name'), admin_wrapper_widgets_path(wrapper_widget: {wrapper_id: wrapper, widget_name: 'icon_bucket', part: part}), method: :post, remote: true, class: 'dropdown-item' %>
+    <%= link_to t('widget.contact_form.name'), admin_wrapper_widgets_path(wrapper_widget: {wrapper_id: wrapper, widget_name: 'contact_form', part: part}), method: :post, remote: true, class: 'dropdown-item' %>
+    <%= link_to t('widget.divide.name'), admin_wrapper_widgets_path(wrapper_widget: {wrapper_id: wrapper, widget_name: 'divide', part: part}), method: :post, remote: true, class: 'dropdown-item' %>
+    <%= link_to t('widget.map.name'), admin_wrapper_widgets_path(wrapper_widget: {wrapper_id: wrapper, widget_name: 'map', part: part}), method: :post, remote: true, class: 'dropdown-item' %>
+  </div>
+</div>

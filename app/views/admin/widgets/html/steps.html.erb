@@ -1,0 +1,10 @@
+<div class="steps">
+  <span class="timeline-border"></span>
+  <% json['steps'].each_with_index do |step, i| %>
+    <div class="step <%= i.even? ? 'even' : '' %>">
+      <div class="icon-border"><i class="<%= step['icon'] %>"></i></div>
+      <h5 class="upper"><%= step['title'] %></h5>
+      <p><%= step['text'] %></p>
+    </div>
+  <% end %>
+</div>

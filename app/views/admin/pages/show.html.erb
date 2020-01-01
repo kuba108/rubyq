@@ -1,0 +1,204 @@
+<% title t('.pages') %>
+<% breadcrumbs [
+   {label: t('.pages'), path: admin_pages_path},
+   {label: @page.title, path: '#'}
+] %>
+
+<div class="content">
+  <div class="container-fluid">
+
+    <div class="top-panel">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="float-left">
+            <%= link_to admin_page_sections_path(page_id: @page.id), class: 'btn btn-warning' do %>
+              <span class="fa fa-pencil-alt"></span> <%= t('.edit_page') %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-8">
+        <div class="card striped-tabled-with-hover">
+          <div class="card-header ">
+            <h4 class="card-title">Stránka</h4>
+          </div>
+          <div class="card-body">
+            <div class="card-row">
+              <%= text_editor(t('.title'), @page.title, admin_page_path(id: @page.id), 'page', 'title', 'page-title', policy(@page).update?) %>
+            </div>
+            <div class="card-row">
+              <div class="card-label">
+                <%= t('.created_at') %>
+              </div>
+              <div class="card-text">
+                <%= time_to_string(@page.created_at) %>
+              </div>
+            </div>
+            <div class="card-row">
+              <div class="card-label">
+                <%= t('.updated_at') %>
+              </div>
+              <div class="card-text">
+                <%= time_to_string(@page.updated_at) %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card striped-tabled-with-hover">
+          <div class="card-header ">
+            <div class="row">
+              <div class="col-md-6">
+                <h4 class="card-title"><%= t('.page_links') %></h4>
+              </div>
+              <div class="col-md-6">
+                <div class="float-right">
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#change-route-modal">
+                    <%= t('.change_page_link') %>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <table class="table table-hover table-striped">
+              <thead>
+                <th><%= t('.permalink') %></th>
+                <th><%= t('.type') %></th>
+                <th><%= t('.date') %></th>
+                <th></th>
+              </thead>
+              <tbody>
+                <% @page.routes.order(route_type: :desc, created_at: :asc).each do |route| %>
+                  <tr class="<%= route.route_type == 'standard' ? 'current' : '' %>">
+                    <td><%= route.permalink %></td>
+                    <td><%= I18n.t route.route_type, scope: 'route.route_type' %></td>
+                    <td><%= date_to_string(route.updated_at) %></td>
+                    <td>
+                      <div class="float-right">
+                        <% if route.route_type != 'standard' %>
+                          <%= link_to admin_route_path(id: route.id), method: :delete, remote: true, class: 'btn btn-danger btn-xs' do %>
+                            <span class="fa fa-times"></span>
+                          <% end %>
+                        <% end %>
+                      </div>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card strpied-tabled-with-hover">
+          <div class="card-header ">
+            <h4 class="card-title"><%= t('.page_settings') %></h4>
+          </div>
+          <div class="card-body">
+            <div class="card-row">
+              <%= select_editor(t('.layout'), I18n.t(@page.layout, scope: 'page.layout.name'), admin_page_path(id: @page.id), 'page', 'layout', 'page-layout', locale_options_to_select('page.layout.name'), policy(@page).update?) %>
+            </div>
+            <div class="card-row">
+              <%= select_editor(t('.language'), I18n.t(@page.language, scope: 'language'), admin_page_path(id: @page.id), 'page', 'language', 'page-language', locale_options_to_select('language'), policy(@page).update?) %>
+            </div>
+          </div>
+        </div>
+
+        <div class="card strpied-tabled-with-hover">
+          <div class="card-header">
+            <h4 class="card-title">SEO</h4>
+          </div>
+          <div class="card-body">
+            <div class="card-row">
+              <%= text_editor(t('.title'), @page.meta_title, admin_page_path(id: @page.id), 'page', 'meta_title', 'page-meta_title', policy(@page).update?) %>
+            </div>
+            <div class="card-row">
+              <%= text_editor(t('.keywords'), @page.meta_keywords, admin_page_path(id: @page.id), 'page', 'meta_keywords', 'page-meta_keywords', policy(@page).update?) %>
+            </div>
+            <div class="card-row">
+              <%= text_editor(t('.label'), @page.meta_description, admin_page_path(id: @page.id), 'page', 'meta_description', 'page-meta_description', policy(@page).update?) %>
+            </div>
+            <div class="card-row">
+              <%= text_editor(t('.og_title'), @page.og_title, admin_page_path(id: @page.id), 'page', 'og_title', 'page-og_title', policy(@page).update?) %>
+            </div>
+            <div class="card-row">
+              <%= text_editor(t('.og_image'), @page.og_image, admin_page_path(id: @page.id), 'page', 'og_image', 'page-og_image', policy(@page).update?) %>
+            </div>
+            <div class="card-row">
+              <%= text_editor(t('.og_text'), @page.og_description, admin_page_path(id: @page.id), 'page', 'og_description', 'page-og_description', policy(@page).update?) %>
+            </div>
+          </div>
+        </div>
+
+        <div class="card strpied-tabled-with-hover">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-md-6">
+                <h4 class="card-title"><%= t('.translations') %></h4>
+              </div>
+              <div class="col-md-6">
+                <div class="float-right">
+                  <%= link_to t('.create_translation'), new_admin_page_path(parent_id: @page.id), class: 'btn btn-primary' %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <% if @page.has_locales? %>
+              <table class="table table-hover table-striped">
+                <thead>
+                  <th><%= t('.title') %></th>
+                  <th><%= t('.language') %></th>
+                </thead>
+                <tbody>
+                <% @page.page_locales.each do |page| %>
+                  <tr>
+                    <td><%= link_to page.title, admin_page_path(id: page.id) %></td>
+                    <td><%= I18n.t(page.language, scope: 'language') %></td>
+                  </tr>
+                <% end %>
+                </tbody>
+              </table>
+            <% else %>
+              <p><%= t('.no_translations') %></p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<% if @page.route.present? %>
+<div class="modal fade" id="change-route-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><%= t('.change_page_link') %></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= form_for @page.route, url: admin_route_path(id: @page.route.id), method: :put, remote: true, html: { id: 'change-route-form' } do |f| %>
+          <div class="form-group">
+            <%= f.label :permalink, class: '' %>
+            <%= f.text_field :permalink, class: 'form-control' %>
+          </div>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"><%= t('.close') %></button>
+        <button type="button" class="btn btn-primary" data-action="send-form" data-form="#change-route-form"><%= t('.change_page_link') %></button>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

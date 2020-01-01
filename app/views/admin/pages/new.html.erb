@@ -1,0 +1,25 @@
+<% title t('.pages') %>
+<% breadcrumbs [
+   {label: t('.pages'), path: admin_pages_path},
+   {label: t('.new_page'), path: '#'}
+] %>
+
+<div class="content">
+  <div class="container-fluid">
+    <div class="top-panel">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="float-left">
+            <%= link_to admin_pages_path, class: 'btn btn-danger' do %>
+              <i class="fa fa-times"></i> <%= t('.cancel') %>
+            <% end %>
+          </div>
+          <div class="float-right">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%= render partial: 'admin/pages/shared/form', locals: {resource: @page, resource_action: 'create', resource_method: :post} %>
+  </div>
+</div>

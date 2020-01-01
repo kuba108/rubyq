@@ -1,0 +1,21 @@
+<%= form_for widget, url: admin_widget_path(id: widget.id), method: :put, remote: true, html: { class: 'form-horizontal' } do |f| %>
+  <%= f.hidden_field :page_id, value: page.id %>
+  <%= f.fields_for :json do |fj| %>
+    <div class="widget-gallery">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= fj.label :gallery_id, t('widget.gallery.gallery') %>
+            <%= fj.select :gallery_id, options_for_select(Gallery.all.collect { |g| [g.name, g.id] }, selected: json['gallery_id']), {}, class: 'form-control custom-select' %>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= fj.label :columns, 'Počet sloupců' %>
+            <%= fj.select :columns, locale_options_to_select('widget.gallery.columns_options', json['columns']), {}, { class: 'form-control custom-select' } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

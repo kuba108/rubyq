@@ -1,0 +1,60 @@
+<% if flash[:alert] %>
+  <div class="alert alert-primary" role="alert">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
+
+<div class="content">
+  <div class="container">
+    <div class="col-md-4 col-sm-6 ml-auto mr-auto">
+      <!-- Start: Head bar -->
+      <div class="head-bar">
+        <%= image_pack_tag 'media/devise/ruby-logo-64-64.png' %>
+        <h1>Ruby<em>Q</em> | admin</h1>
+      </div>
+      <!-- End: Head bar -->
+
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: 'form') do |f| %>
+        <div class="card card-login">
+          <div class="card-header ">
+            <h3 class="header text-center">Přihlášení</h3>
+          </div>
+          <div class="card-body ">
+            <div class="card-body">
+              <div class="form-group">
+                <%= f.label :email, 'E-mailová adresa' %>
+                <%= f.email_field :email, class: 'form-control', autofocus: true, autocomplete: "email", placeholder: 'Napište e-mail' %>
+              </div>
+              <div class="form-group">
+                <%= f.label :password, 'Heslo' %>
+                <%= f.password_field :password, class: 'form-control', autocomplete: "off", placeholder: 'Heslo' %>
+              </div>
+              <% if devise_mapping.rememberable? -%>
+              <div class="form-group">
+                <div class="custom-control custom-checkbox">
+                  <%= f.check_box :remember_me, class: 'custom-control-input' %>
+                  <%= f.label :remember_me, 'Zapamatovat', class: 'remember-me-label custom-control-label' %>
+                </div>
+              </div>
+              <% end -%>
+            </div>
+          </div>
+          <div class="card-footer ml-auto mr-auto">
+            <%= f.submit "Přihlásit se", class: 'login-btn btn btn-danger btn-wd btn-fill' %>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="container-footer">
+        <div class="float-left">
+          <%= link_to 'Zpět na web', '/' %>
+        </div>
+        <div class="float-right">
+          <%= link_to new_password_path(resource_name) do %>
+            Zapomněli jste heslo?
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

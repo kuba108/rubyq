@@ -1,0 +1,15 @@
+<div class="col-services">
+  <% if json['link'].present? %>
+  <a href="<%= json['link'] %>" title="<%= json['headline'] %>">
+  <% end %>
+    <div class="icon">
+      <%= inline_svg("icons/svg/#{json['icon']}.svg", class: 'svg-icon') %>
+    </div>
+  <% if json['link'].present? %>
+  </a>
+  <% end %>
+  <div class="text">
+    <h5 class="upper"><%= json['headline'] %></h5>
+    <p><%= json['text'] %></p>
+  </div>
+</div>

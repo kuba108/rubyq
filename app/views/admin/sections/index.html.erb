@@ -1,0 +1,73 @@
+<% title 'Editace stránky' %>
+<% breadcrumbs [
+   {label: 'Stránky', path: admin_pages_path},
+   {label: @page.title, path: admin_page_path(id: @page.id)},
+   {label: 'Editace stránky', path: '#'}
+] %>
+
+<div class="content">
+  <div class="container-fluid">
+
+    <div class="top-panel">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="float-left">
+            <div class="btn-group">
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <%= t('.add_section') %>
+                </button>
+                <div class="dropdown-menu">
+                  <%= link_to t('.basic_section'), admin_page_sections_path(section: {page_id: @page.id, name: 'basic'}), method: :post, remote: true, class: 'dropdown-item' %>
+                  <%= link_to t('.container_section'), admin_page_sections_path(section: {page_id: @page.id, name: 'container_inner'}), method: :post, remote: true, class: 'dropdown-item' %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="float-right">
+            <div class="float-right">
+              <div class="btn-group">
+                <button type="button" id="save-all-widgets-btn" class="btn btn-success" aria-pressed="false">
+                  <span class="fa fa-save"></span> <%= t('.save_all') %>
+                </button>
+                <%= button_to t('.build_page'), admin_page_content_path(id: @page.id), method: :put, remote: true, class: 'btn btn-success btn-fill' %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="sections" class="section-list" data-update-widget-url="<%= admin_page_update_wrapper_widgets_path(page_id: @page.id) %>" data-update-wrapper-url="<%= admin_page_update_wrappers_order_path(id: @page.id) %>" data-update-url="<%= admin_page_update_sections_order_path(id: @page.id) %>">
+      <% @page.sections.order(position: :asc).each do |section| %>
+        <div class="<%= section.name %> section clearfix" data-item-id="<%= section.id %>">
+          <div class="section-header">
+            <div class="float-left">
+              <%= render partial: 'admin/sections/shared/wrapper_dropdown', locals: { section: section } %>
+            </div>
+            <div class="btn-group">
+              <button class="section-btn drag-placeholder">
+                <span class='fa fa-bars'></span>
+              </button>
+
+              <button class="section-btn" data-toggle="modal" data-target="#section-settings-modal-<%= section.id %>">
+                <span class="fa fa-cog"></span>
+              </button>
+            </div>
+            <div class="float-right">
+              <%= link_to admin_section_path(id: section.id), method: :delete, remote: true, class: 'section-btn remove-btn' do %>
+                <span class="fa fa-times"></span>
+              <% end %>
+            </div>
+          </div>
+          <%= render template: "admin/sections/forms/#{section.name}", locals: { section: section } %>
+        </div>
+      <% end %>
+    </div>
+
+  </div>
+</div>
+
+<% @page.sections.order(position: :asc).each do |section| %>
+  <%= render template: "admin/sections/settings/#{section.name}", locals: { page: @page, section: section } %>
+<% end %>

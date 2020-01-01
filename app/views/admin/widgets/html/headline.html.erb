@@ -1,0 +1,10 @@
+<% if json['style'] == 'with_icon' %>
+  <div class="section-title text-<%= json['align'] %>">
+    <%= content_tag json['size'].to_sym, json['label'], class: "title #{json['style'].present? ? "#{json['style']}" : ""}" %>
+    <% if json['style'] == 'with_icon' %>
+      <span class="icon"><i class="<%= json['icon'] %>"></i></span>
+    <% end %>
+  </div>
+<% else %>
+  <%= content_tag json['size'].to_sym, json['label'] %>
+<% end %>

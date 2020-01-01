@@ -1,0 +1,64 @@
+<%= form_for resource, url: { action: resource_action }, method: resource_method, html: { id: 'new-page-form', class: 'form-horizontal' } do |f| %>
+  <% if @parent_page.present? %>
+    <%= f.hidden_field :parent_id, value: @parent_page.id %>
+  <% end %>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card strpied-tabled-with-hover">
+        <div class="card-header ">
+          <h4 class="card-title"><%= t('.new_page') %></h4>
+          <% if @parent_page.present? %>
+            <p><em>(<%= t('.page_translation') %> <%= "#{@parent_page.title} | #{I18n.t(@parent_page.language, scope: 'language')}" %>)</em></p>
+          <% end %>
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <%= f.label :title, t('.title'), class: 'col-sm-2 control-label' %>
+            <%= f.text_field :title, value: '', id: 'page-title', class: 'form-control' %>
+          </div>
+
+          <%= f.fields_for :route do |rf| %>
+            <div class="form-group">
+              <%= rf.label :permalink, 'Permalink', class: 'col-sm-2 control-label' %>
+              <div class="input-group">
+                <%= rf.text_field :permalink, value: '', id: 'permalink-input', class: 'form-control disabled', disabled: 'disabled' %>
+                <div class="input-group-append">
+                  <button id="title-to-permalink-btn" class="btn btn-default hint--top" type="button" data-hint="Kopírovat"><%= t('.copy') %></button>
+                  <button id="enable-permalink-btn" class="btn btn-default" type="button"><%= t('.change') %></button>
+                  <button id="disable-permalink-btn" class="btn btn-default" type="button"><%= t('.lock') %></button>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          <button type="submit" class="btn btn-success btn-fill float-right"><%= t('.create_page') %></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card strpied-tabled-with-hover">
+        <div class="card-header ">
+          <h4 class="card-title"><%= t('.page_settings') %></h4>
+        </div>
+        <div class="card-body">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td><%= t('.layout') %></td>
+                <td><%= f.select :layout, locale_options_to_select('page.layout.name'), {}, class: 'custom-select' %></td>
+              </tr>
+              <tr>
+                <td><%= t('.language') %></td>
+                <td><%= f.select :language, locale_options_to_select('language', @parent_page.present? ? [@parent_page.language] : nil), {}, class: 'custom-select' %></td>
+              </tr>
+              <tr>
+                <td><%= t('.state') %></td>
+                <td><%= f.select :state, locale_options_to_select('page.state'), {}, class: 'custom-select' %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

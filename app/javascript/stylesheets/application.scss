@@ -1,0 +1,16 @@
+$fa-font-path: '~font-awesome/fonts';
+$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+@import '~font-awesome/scss/font-awesome';
+@import '~bootstrap-sass/assets/stylesheets/bootstrap';
+@import '~bootstrap-select/sass/variables';
+@import '~bootstrap-select/sass/bootstrap-select';
+
+@import "general/demo";
+@import "general/light-bootstrap-dashboard";
+@import "general";
+@import "alerts";
+@import "filter";
+@import "top_panel";
+@import "bottom_panel";
+@import "card-stats";
+@import "dashboard";

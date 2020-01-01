@@ -1,0 +1,35 @@
+<%= form_for widget, url: admin_widget_path(id: widget.id), method: :put, remote: true do |f| %>
+  <%= f.hidden_field :page_id, value: page.id %>
+  <%= f.fields_for :json do |fj| %>
+    <div class="widget-icon-bucket">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= fj.label :icon, json['icon'] %>
+            <%= fj.select :icon, locale_options_to_select('icon.sapler', json['icon']), {}, class: 'form-control select-picker' %>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= fj.label :link, t('widget.icon_bucket.link') %>
+            <%= fj.text_field :link, value: json['link'], class: 'form-control', placeholder: t('widget.icon_bucket.link_placeholder') %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= fj.label :headline, t('widget.icon_bucket.headline') %>
+            <%= fj.text_field :headline, value: json['headline'], class: 'form-control', placeholder: t('widget.icon_bucket.headline_placeholder') %>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= fj.label :text, t('widget.icon_bucket.text') %>
+            <%= fj.text_field :text, value: json['text'], class: 'form-control', placeholder: t('widget.icon_bucket.text_placeholder') %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

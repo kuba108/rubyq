@@ -1,0 +1,128 @@
+cs:
+
+  page:
+    state:
+      visible: 'Zobrazená'
+      hidden: 'Nezobrazená'
+    publish_type:
+      public: 'Veřejná'
+      private: 'Neveřejná'
+
+  route:
+    route_type:
+      standard: 'Běžný odkaz'
+      redirect: 'Přesměrování'
+
+  menu_item:
+    kind:
+      page: 'Odkaz na stránku'
+      custom: 'Vlastní odkaz'
+      group: 'Skupina odkazů'
+
+  widget:
+    headline:
+      name: 'Nadpis'
+      size: 'Velikost'
+      size_options:
+        h1: 'h1'
+        h2: 'h2'
+        h3: 'h3'
+        h4: 'h4'
+        h5: 'h5'
+        h6: 'h6'
+      align: 'Zarovnání'
+      align_options:
+        left: 'doleva'
+        center: 'střed'
+        right: 'doprava'
+      style: 'Styl'
+      style_options:
+        without_style: 'bez stylu'
+        with_icon: 's ikonou'
+      icon: 'Ikona'
+      icon_options:
+        pencil: 'fa-pencil'
+        users: 'fa-users'
+      text: 'Text'
+      headline: 'Nadpis'
+    text:
+      name: 'Text'
+      align: 'Zarovnání'
+      align_options:
+        left: 'doleva'
+        center: 'střed'
+        right: 'doprava'
+      style: 'Styl'
+      style_options:
+        without_style: 'bez stylu'
+        jumbotron: 'vyrazný odstavec'
+      text: 'Text'
+      text_placeholder: 'Text'
+    wysiwyg:
+      name: 'HTML widget'
+    gallery:
+      name: 'Galerie'
+      gallery: 'Galerie'
+      columns: 'Počet sloupců'
+      columns_options:
+        2: '2'
+        3: '3'
+        4: '4'
+        5: '5'
+    image:
+      name: 'Obrázek'
+      image: 'Obrázek'
+      choose_image: 'Vyberte obrázek'
+      alt: 'Popis'
+      alt_placeholder: 'Popis'
+    yt_video:
+      name: 'YouTube video'
+      youtube_url: 'YouTube URL'
+      youtube_url_placeholder: 'Adresa videa na YouTube'
+      align: 'Zarovnání'
+      align_options:
+        left: 'doleva'
+        center: 'střed'
+        right: 'doprava'
+      video_width: 'Šířka videa'
+      video_width_placeholder: 'Např. 560'
+      video_height: 'Výška videa'
+      video_height_placeholder: 'Např. 315'
+    contact_form:
+      name: 'Kontaktní formulář'
+      send_to_email: 'Odeslat na e-mail'
+      send_to_email_placeholder: 'E-mail adresa, na kterou se formulář bude posílat.'
+      name_label: 'Popisek jméno'
+      name_placeholder: 'Např. Vaše jméno'
+      email_label: 'Popisek e-mail'
+      email_placeholder: 'Např. E-mail'
+      text_label: 'Popisek text'
+      text_placeholder: 'Např. Text'
+    icon_bucket:
+      name: 'Blok s ikonou'
+      link: 'Odkaz'
+      link_placeholder: 'URL odkaz na stránku'
+      headline: 'Nadpis'
+      headline_placeholder: 'Nadpis'
+      text: 'Text'
+      text_placeholder: 'Text'
+    divide:
+      name: 'Oddělovač'
+      size: 'Velikost'
+      size_options:
+        small: 'malá'
+        middle: 'střední'
+        big: 'velká'
+    map:
+      name: 'Mapa'
+      map_type: 'Typ mapy'
+      map_type_options:
+        roadmap: 'Normální'
+        satellite: 'Satelitní'
+      zoom: 'Zoom'
+      zoom_placeholder: 'Přiblížení (číslo)'
+
+  wrapper:
+    one_column: 'Jeden sloupec'
+    two_columns: 'Dva sloupce'
+    three_columns: 'Tři sloupce'

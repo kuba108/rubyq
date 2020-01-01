@@ -1,0 +1,28 @@
+<%= form_for widget, url: admin_widget_path(id: widget.id), method: :put, multipart: true do |f| %>
+  <%= f.hidden_field :page_id, value: page.id %>
+  <div class="widget-image">
+    <div class="row">
+      <div class="col-lg-6 col-xs-12">
+        <div class="form-group">
+          <%= f.label :attachments, t('widget.image.image') %>
+          <div class="custom-file mb-2 mr-sm-2">
+            <%= f.file_field :attachments, multiple: true, lang: 'cs', id: 'file-browser', class: 'custom-file-input' %>
+            <%= f.label :attachments, t('widget.image.choose_image'), class: 'custom-file-label' %>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-xs-12">
+        <%= f.fields_for :json do |fj| %>
+          <div class="form-group">
+            <%= fj.label :alt, t('widget.image.alt') %>
+            <%= fj.text_field :alt, value: json['alt'], class: 'form-control', placeholder: t('widget.image.alt_placeholder') %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <% if widget.attachments.attached? %>
+      <%= image_tag widget.attachments.first, class: 'img-fluid' %>
+    <% end %>
+  </div>
+<% end %>

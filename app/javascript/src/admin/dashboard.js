@@ -1,0 +1,7 @@
+let Dashboard = {
+
+  init: function() {
+
+  }
+
+};

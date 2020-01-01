@@ -1,0 +1,176 @@
+<% title t('.galleries') %>
+<% breadcrumbs [
+   { label: t('.galleries'), path: admin_galleries_path },
+   { label: @gallery.name, path: '#' }
+] %>
+
+<div class="content">
+  <div class="container-fluid">
+
+    <div class="top-panel">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="float-left">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create-gallery-item-modal">
+              <span class="fa fa-plus"></span> <%= t('.add_new_image') %>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-8">
+        <div class="card strpied-tabled-with-hover">
+          <div class="card-header">
+            <h4 class="card-title"><%= t('.gallery') %></h4>
+          </div>
+          <div class="card-body">
+            <div class="card-row">
+              <%= text_editor(t('.name'), @gallery.name, admin_gallery_path(id: @gallery.id), 'gallery', 'name', 'gallery-name', policy(@gallery).update?) %>
+            </div>
+            <div class="card-row">
+              <%= text_editor(t('.description'), @gallery.description, admin_gallery_path(id: @gallery.id), 'gallery', 'description', 'gallery-description', policy(@gallery).update?) %>
+            </div>
+            <div class="card-row">
+              <div class="card-label">
+                <%= t('.created_at') %>
+              </div>
+              <div class="card-text">
+                <%= time_to_string(@gallery.created_at) %>
+              </div>
+            </div>
+            <div class="card-row">
+              <div class="card-label">
+                <%= t('.updated_at') %>
+              </div>
+              <div class="card-text">
+                <%= time_to_string(@gallery.updated_at) %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card strpied-tabled-with-hover">
+      <div class="card-header">
+        <h4 class="card-title"><%= t('.images') %></h4>
+      </div>
+      <div class="card-body gallery-list" data-update-url="<%= update_gallery_items_order_admin_gallery_path(id: @gallery.id) %>">
+        <% @gallery.gallery_items.order(position: :asc).each do |gallery_item| %>
+          <div class="gallery-item" data-item-id="<%= gallery_item.id %>">
+            <%= image_tag gallery_item.image.variant(combine_options: {thumbnail: "500x500^", gravity: "center", extent: "500x300"}), class: 'img-fluid' %>
+            <div class="shadow">
+              <div class="top-bar d-flex">
+                <a class="drag-placeholder mr-auto">
+                  <span class="fa fa-bars"></span>
+                </a>
+
+                <%= link_to admin_gallery_item_path(id: gallery_item.id), method: :delete, remote: true, class: 'remove-btn' do %>
+                  <span class="fa fa-times"></span>
+                <% end %>
+              </div>
+              <button type="button" class="btn btn-warning btn-fill" data-toggle="modal" data-target="#edit-gallery-item<%= gallery_item.id %>-modal">
+                <span class="fa fa-pencil-alt"></span> <%= t('.edit') %>
+              </button>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="create-gallery-item-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"><%= t('admin.modal.create_gallery_item_modal.new_image') %></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= form_for GalleryItem.new, url: admin_gallery_gallery_items_path(gallery_id: @gallery.id), method: :post, multipart: true, html: { id: 'create-gallery-item-form' } do |f| %>
+          <%= f.hidden_field :gallery_id, value: @gallery.id %>
+          <div class="form-row">
+            <div class="col-md-6 mb-3">
+              <%= f.text_field :label, placeholder: t('admin.modal.create_gallery_item_modal.name'), class: 'form-control' %>
+            </div>
+            <div class="col-md-6 mb-3">
+              <%= f.text_field :description, placeholder: t('admin.modal.create_gallery_item_modal.description'), class: 'form-control' %>
+            </div>
+          </div>
+          <% locale_options_for_filter('language').each do |lang| %>
+            <div class="form-row">
+              <%= f.fields_for :label_i18n do |fl| %>
+                <div class="col-md-6 mb-3">
+                  <%= fl.text_field lang[0].to_sym, placeholder: "#{t('admin.modal.create_gallery_item_modal.name')} #{lang[1]}", class: 'form-control' %>
+                </div>
+              <% end %>
+              <%= f.fields_for :description_i18n do |fl| %>
+                <div class="col-md-6 mb-3">
+                  <%= fl.text_field lang[0].to_sym, placeholder: "#{t('admin.modal.create_gallery_item_modal.description')} #{lang[1]}", class: 'form-control' %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+          <div class="custom-file mb-2 mr-sm-2">
+            <%= f.file_field :image, id: 'file-browser', class: 'custom-file-input', lang: 'cs' %>
+            <%= f.label :image, t('admin.modal.create_gallery_item_modal.choose_image'), class: 'custom-file-label' %>
+          </div>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><%= t('admin.modal.create_gallery_item_modal.cancel') %></button>
+        <button type="button" class="btn btn-primary" data-action="send-form" data-form="#create-gallery-item-form"><%= t('admin.modal.create_gallery_item_modal.cancel') %></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% @gallery.gallery_items.order(position: :asc).each do |gallery_item| %>
+<div class="modal fade" id="edit-gallery-item<%= gallery_item.id %>-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"><%= t('admin.modal.edit_gallery_item_modal.edit_image') %></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= form_for gallery_item, url: admin_gallery_gallery_item_path(id: gallery_item.id, gallery_id: @gallery.id), method: :put, remote: true, html: { id: "edit-gallery-item-#{gallery_item.id}-form" } do |f| %>
+          <div class="form-row">
+            <div class="col-md-6 mb-3">
+              <%= f.text_field :label, value: gallery_item.label, placeholder: t('admin.modal.edit_gallery_item_modal.name'), class: 'form-control' %>
+            </div>
+            <div class="col-md-6 mb-3">
+              <%= f.text_field :description, value: gallery_item.description, placeholder: t('admin.modal.edit_gallery_item_modal.description'), class: 'form-control' %>
+            </div>
+          </div>
+          <% locale_options_for_filter('language').each do |lang| %>
+            <div class="form-row">
+              <%= f.fields_for :label_i18n do |fl| %>
+                <div class="col-md-6 mb-3">
+                  <%= fl.text_field lang[0].to_sym, value: gallery_item[:label_i18n].present? ? gallery_item[:label_i18n][lang[0]] : nil, placeholder: "#{t('admin.modal.edit_gallery_item_modal.name')} #{lang[1]}", class: 'form-control' %>
+                </div>
+              <% end %>
+              <%= f.fields_for :description_i18n do |fl| %>
+                <div class="col-md-6 mb-3">
+                  <%= fl.text_field lang[0].to_sym, value: gallery_item[:description_i18n].present? ? gallery_item[:description_i18n][lang[0]] : nil, placeholder: "#{t('admin.modal.edit_gallery_item_modal.description')} #{lang[1]}", class: 'form-control' %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><%= t('admin.modal.edit_gallery_item_modal.cancel') %></button>
+        <button type="button" class="btn btn-primary" data-action="send-form" data-form="#edit-gallery-item-<%= gallery_item.id %>-form"><%= t('admin.modal.edit_gallery_item_modal.edit_image') %></button>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

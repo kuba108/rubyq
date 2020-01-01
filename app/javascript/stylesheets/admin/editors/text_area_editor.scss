@@ -1,0 +1,90 @@
+.text-area-editor {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  .editor-label {
+    font-size: 1rem;
+    padding-right: 40px;
+    line-height: 38px;
+    display: none;
+    vertical-align: bottom;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-transition: -webkit-transform 0.3s;
+    transition: transform 0.3s, color 0.3s;
+  }
+
+  &.hide-label {
+    .editor-label {
+      display: block;
+    }
+  }
+
+  .tae-show {
+    font-size: 1rem;
+    line-height: 26px;
+    min-height: 38px;
+    position: relative;
+    flex-grow: 1;
+
+    .btn-edit {
+      display: none;
+      position: absolute;
+      top: 1px;
+      right: 0;
+      height: 100%;
+
+      span {
+        font-size: 18px;
+      }
+    }
+
+    &:hover {
+      .btn-edit {
+        display: block;
+      }
+    }
+  }
+
+  .tae-edit {
+    padding: 0;
+    display: none;
+    flex-grow: 1;
+
+    form {
+      textarea {
+        padding: 8px;
+        background-color: rgba(255,255,255,1);
+        border: none;
+        border-radius: 0;
+        font-size: 1rem;
+      }
+    }
+  }
+
+  &.edited {
+    .tae-show {
+      display: none;
+    }
+
+    form {
+      textarea {
+        background-color: rgba(252, 202, 67, 0.12);
+        transition: background-color 0.5s;
+      }
+    }
+
+    .editor-label {
+      display: block;
+      position: absolute;
+      color: #fcca43;
+    }
+
+    .tae-edit {
+      display: block;
+    }
+  }
+}

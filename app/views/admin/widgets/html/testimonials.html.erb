@@ -1,0 +1,23 @@
+<div class="testimonials parallax">
+  <div class="container inner text-center">
+    <div class="section-title text-center bm20">
+      <h2><%= json['title'] %></h2>
+      <span class="icon">
+        <i class="icon-quote"></i>
+      </span>
+    </div>
+    <div id="testimonials" class="tab-container">
+      <% json['testimonials'].each_with_index do |testimonial, i| %>
+        <div id="<%= "tst#{i}" %>">
+          <%= testimonial['text'] %>
+          <span class="author"><%= testimonial['author'] %></span>
+        </div>
+      <% end %>
+      <ul class="etabs">
+        <% json['testimonials'].each_with_index do |testimonial, i| %>
+          <li class="tab"><a href="<%= "#tst#{i}" %>"><%= i %></a></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

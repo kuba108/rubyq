@@ -1,0 +1,8 @@
+<%= form_for widget, url: admin_widget_path(id: widget.id), method: :put, remote: true do |f| %>
+  <%= f.hidden_field :page_id, value: page.id %>
+  <%= f.fields_for :json do |fj| %>
+    <div class="widget-wysiwyg">
+      <%= fj.text_area :html, value: raw(json['html']), class: 'wysiwyg-widget-editor' %>
+    </div>
+  <% end %>
+<% end %>
