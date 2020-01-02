@@ -1,60 +1,58 @@
+import Rails from "@rails/ujs";
+
 const TextAreaEditor = {
 
   init: function () {
-    $(document).on('ajaxSuccess', function (event, xhr, settings) {
-      try {
-        json = $.parseJSON(xhr.responseText);
-        switch(json.source) {
-          case 'text_area_editor':
-            TextAreaEditor.showSavedAttribute(json.comp_id);
-            break;
-        }
-      }
-      catch(e) {
-        // not JSON
+    document.addEventListener('ajax:success', function(event) {
+      let json = event.detail[0];
+      switch(json.source) {
+        case 'text_area_editor':
+          TextAreaEditor.showSavedAttribute(json.comp_id, json.value);
+          break;
       }
     });
 
-    let text_area_editor = $('.text-area-editor');
+    let numberEditors = document.getElementsByClassName('text-area-editor');
+    Array.prototype.forEach.call(numberEditors, function(textAreaEditor) {
+      textAreaEditor.find('.btn-submit').on('click', function(e) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        let p = $(this).parents('.text-area-editor');
+        p.find('form').submit();
+      });
 
-    text_area_editor.find('.btn-submit').on('click', function(e) {
-      e.preventDefault();
-      e.stopImmediatePropagation();
-      let p = $(this).parents('.text-area-editor');
-      p.find('form').submit();
-    });
+      textAreaEditor.find('.btn-edit').on('click', function(e) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        let p = $(this).parents('.text-area-editor');
+        let text_area = p.find('form textarea');
+        TextAreaEditor.showTextEditForm(p.attr('id'));
+        text_area.focus();
+      });
 
-    text_area_editor.find('.btn-edit').on('click', function(e) {
-      e.preventDefault();
-      e.stopImmediatePropagation();
-      let p = $(this).parents('.text-area-editor');
-      let text_area = p.find('form textarea');
-      TextAreaEditor.showTextEditForm(p.attr('id'));
-      text_area.focus();
-    });
-
-    text_area_editor.find('.btn-cancel').on('click', function(e) {
-      e.preventDefault();
-      e.stopImmediatePropagation();
-      let p = $(this).parents('.text-area-editor');
-      TextAreaEditor.hideTextEditForm(p.attr('id'));
+      textAreaEditor.find('.btn-cancel').on('click', function(e) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        let p = $(this).parents('.text-area-editor');
+        TextAreaEditor.hideTextEditForm(p.attr('id'));
+      });
     });
   },
 
-  showSavedAttribute: function (component_id) {
-    let component = $('#' + component_id);
-    component.find('.editor-text').html(json.value);
-    TextAreaEditor.hideTextEditForm(component_id);
+  showSavedAttribute: function (componentID, value) {
+    let component = document.getElementById(componentID);
+    component.querySelector('.editor-text').innerHTML = value;
+    TextAreaEditor.hideEditForm(componentID);
   },
 
-  showTextEditForm: function (component_id) {
-    let component = $('#' + component_id);
-    component.addClass('edited');
+  showEditForm: function (componentID) {
+    let component = document.getElementById(componentID);
+    component.classList.add('edited');
   },
 
-  hideTextEditForm: function (component_id) {
-    let component = $('#' + component_id);
-    component.removeClass('edited');
+  hideEditForm: function (componentID) {
+    let component = document.getElementById(componentID);
+    component.classList.remove('edited');
   }
 
 };
