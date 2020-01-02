@@ -1,60 +1,57 @@
+import Rails from "@rails/ujs";
+
 const SelectEditor = {
-
   init: function () {
-    $(document).on('ajaxSuccess', function (event, xhr, settings) {
-      try {
-        json = $.parseJSON(xhr.responseText);
-        switch(json.source) {
-          case 'select_editor':
-            SelectEditor.showSavedAttribute(json.comp_id);
-            break;
-        }
-      }
-      catch(e) {
-        // not JSON
+    document.addEventListener('ajax:success', function(event) {
+      let json = event.detail[0];
+      switch(json.source) {
+        case 'select_editor':
+          SelectEditor.showSavedAttribute(json.comp_id, json.value);
+          break;
       }
     });
 
-    let select_editor = $('.select-editor');
+    let numberEditors = document.getElementsByClassName('select-editor');
+    Array.prototype.forEach.call(numberEditors, function(selectEditor) {
+      selectEditor.find('.btn-submit').off('click').on('click', function(e) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        let parent = this.closest('.select-editor');
+        let form = parent.querySelector('form');
+        Rails.fire(form, 'submit');
+      });
 
-    select_editor.find('.btn-submit').off('click').on('click', function(e) {
-      e.preventDefault();
-      e.stopImmediatePropagation();
-      let p = $(this).parents('.select-editor');
-      p.find('form').submit();
-    });
+      selectEditor.find('.btn-edit').on('click', function(e) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        let parent = this.closest('.select-editor');
+        SelectEditor.showEditForm(parent.id);
+      });
 
-    select_editor.find('.btn-edit').on('click', function(e) {
-      e.preventDefault();
-      e.stopImmediatePropagation();
-      let p = $(this).parents('.select-editor');
-      SelectEditor.showEditForm(p.attr('id'));
-    });
-
-    select_editor.find('.btn-cancel').on('click', function(e) {
-      e.preventDefault();
-      e.stopImmediatePropagation();
-      let p = $(this).parents('.select-editor');
-      SelectEditor.hideEditForm(p.attr('id'));
+      selectEditor.find('.btn-cancel').on('click', function(e) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        let parent = this.closest('.select-editor');
+        NumberEditor.hideEditForm(parent.id);
+      });
     });
   },
 
-  showSavedAttribute: function (component_id) {
-    let component = $('#' + component_id);
-    component.find('.editor-text').html(json.value);
-    SelectEditor.hideEditForm(component_id);
+  showSavedAttribute: function (componentID, value) {
+    let component = document.getElementById(componentID);
+    component.querySelector('.editor-text').innerHTML = value;
+    SelectEditor.hideEditForm(componentID);
   },
 
-  showEditForm: function (component_id) {
-    let component = $('#' + component_id);
-    component.addClass('edited');
+  showEditForm: function (componentID) {
+    let component = document.getElementById(componentID);
+    component.classList.add('edited');
   },
 
-  hideEditForm: function (component_id) {
-    let component = $('#' + component_id);
-    component.removeClass('edited');
+  hideEditForm: function (componentID) {
+    let component = document.getElementById(componentID);
+    component.classList.remove('edited');
   }
-
 };
 
 export default SelectEditor;
