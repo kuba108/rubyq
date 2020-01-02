@@ -1,60 +1,56 @@
+import Rails from "@rails/ujs";
+
 const DateEditor = {
-
   init: function () {
-    $(document).on('ajaxSuccess', function (event, xhr, settings) {
-      try {
-        json = $.parseJSON(xhr.responseText);
-        switch(json.source) {
-          case 'date_editor':
-            TextEditor.showSavedAttribute(json.comp_id);
-            break;
-        }
-      }
-      catch(e) {
-        // not JSON
+    document.addEventListener('ajax:success', function(event) {
+      let json = event.detail[0];
+      switch(json.source) {
+        case 'date_editor':
+          DateEditor.showSavedAttribute(json.comp_id, json.value);
+          break;
       }
     });
 
-    let date_editor = $('.date-editor');
+    let dateEditors = document.getElementsByClassName('date-editor');
+    Array.prototype.forEach.call(dateEditors, function(dateEditor) {
+      dateEditor.find('.btn-submit').on('click', function(e) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        let parent = this.closest('.date-editor');
+        let form = parent.querySelector('form');
+        Rails.fire(form, 'submit');
+      });
 
-    date_editor.find('.btn-submit').on('click', function(e) {
-      e.preventDefault();
-      e.stopImmediatePropagation();
-      let p = $(this).parents('.date-editor');
-      p.find('form').submit();
-    });
+      dateEditor.find('.btn-edit').on('click', function(e) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        let parent = this.closest('.date-editor');
+        TextEditor.showEditForm(parent.id);
+      });
 
-    date_editor.find('.btn-edit').on('click', function(e) {
-      e.preventDefault();
-      e.stopImmediatePropagation();
-      let p = $(this).parents('.date-editor');
-      let text_input = p.find('form input[type=text]');
-      TextEditor.showTextEditForm(p.attr('id'));
-      text_input.focus();
-    });
-
-    date_editor.find('.btn-cancel').on('click', function(e) {
-      e.preventDefault();
-      e.stopImmediatePropagation();
-      let p = $(this).parents('.date-editor');
-      TextEditor.hideTextEditForm(p.attr('id'));
+      dateEditor.find('.btn-cancel').on('click', function(e) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        let parent = this.closest('.date-editor');
+        DateEditor.hideEditForm(parent.id);
+      });
     });
   },
 
-  showSavedAttribute: function (component_id) {
-    let component = $('#' + component_id);
-    component.find('.editor-text').html(json.value);
-    TextEditor.hideTextEditForm(component_id);
+  showSavedAttribute: function (componentID, value) {
+    let component = document.getElementById(componentID);
+    component.querySelector('.de-show .editor-text').innerHTML = value;
+    DateEditor.hideEditForm(componentID);
   },
 
-  showTextEditForm: function (component_id) {
-    let component = $('#' + component_id);
-    component.addClass('edited');
+  showEditForm: function (componentID) {
+    let component = document.getElementById(componentID);
+    component.classList.add('edited');
   },
 
-  hideTextEditForm: function (component_id) {
-    let component = $('#' + component_id);
-    component.removeClass('edited');
+  hideEditForm: function (componentID) {
+    let component = document.getElementById(componentID);
+    component.classList.remove('edited');
   }
 
 };

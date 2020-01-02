@@ -12,8 +12,8 @@ const TextAreaEditor = {
       }
     });
 
-    let numberEditors = document.getElementsByClassName('text-area-editor');
-    Array.prototype.forEach.call(numberEditors, function(textAreaEditor) {
+    let textAreaEditors = document.getElementsByClassName('text-area-editor');
+    Array.prototype.forEach.call(textAreaEditors, function(textAreaEditor) {
       textAreaEditor.find('.btn-submit').on('click', function(e) {
         e.preventDefault();
         e.stopImmediatePropagation();

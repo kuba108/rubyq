@@ -11,8 +11,8 @@ const SelectEditor = {
       }
     });
 
-    let numberEditors = document.getElementsByClassName('select-editor');
-    Array.prototype.forEach.call(numberEditors, function(selectEditor) {
+    let selectEditors = document.getElementsByClassName('select-editor');
+    Array.prototype.forEach.call(selectEditors, function(selectEditor) {
       selectEditor.find('.btn-submit').off('click').on('click', function(e) {
         e.preventDefault();
         e.stopImmediatePropagation();
