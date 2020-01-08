@@ -1,41 +1,32 @@
+import { Notyf } from 'notyf';
+import 'notyf/notyf.min.css'; // for React and Vue
+
 const Flash = {
 
   success: function (msg) {
-    $.notify({
-      // options
-      message: msg
-    }, {
-      // settings
-      element: '#flash-messages',
-      type: 'success',
-      position: 'fixed',
-      delay: 50000,
-      allow_dismiss: true,
-      onShown: function() {
-        // so it wont get animated again with turbolinks page visit
-        $(this).removeClass('animated');
-      }
+    // Create an instance of Notyf
+    var notyf = new Notyf({
+      delay: 5000,
+      alertIcon: 'fa fa-exclamation-circle',
+      confirmIcon: 'fa fa-check-circle'
     });
+
+    // Display an alert notification
+    notyf.success(msg);
   },
 
   error: function (msg) {
-    $.notify({
-      // options
-      message: msg
-    }, {
-      // settings
-      element: '#flash-messages',
-      position: 'fixed',
-      type: 'danger',
-      delay: 1000000,
-      timer: 1000000,
-      allow_dismiss: true,
-      onShown: function() {
-        // so it wont get animated again with turbolinks page visit
-        $(this).removeClass('animated');
-      }
+    // Create an instance of Notyf
+    var notyf = new Notyf({
+      delay: 10000,
+      alertIcon: 'fa fa-exclamation-circle',
+      confirmIcon: 'fa fa-check-circle'
     });
+
+    // Display an alert notification
+    notyf.error(msg);
   }
+
 };
 
-export default Flash
+export default Flash;
