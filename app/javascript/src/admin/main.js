@@ -40,7 +40,7 @@ const SITENAME = {
       General.init();
 
       // Components init
-      //AjaxListener.init();
+      AjaxListener.init();
 
       Filter.init();
       TextEditor.init();
