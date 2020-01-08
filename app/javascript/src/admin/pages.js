@@ -1,4 +1,6 @@
-var PagesNewView = {
+import String from  "./prototypes/string"
+
+export const PagesNewView = {
 
   init: function() {
     PagesNewView.initPermalink();

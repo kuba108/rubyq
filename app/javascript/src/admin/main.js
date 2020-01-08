@@ -10,6 +10,8 @@ import SelectEditor from "./editors/select_editor"
 import DateEditor from "./editors/date_editor"
 //import Dashboard from "dashboard"
 
+import { PagesNewView } from "./pages"
+
 const UTIL = {
   exec: function( controller, action ) {
     var ns = SITENAME,
@@ -51,7 +53,37 @@ const SITENAME = {
 
   dashboard: {
     show: function() {
-      //Dashboard.init();
+      Dashboard.init();
+    }
+  },
+
+  admin_user_policies: {
+    index: function() {
+      AdminUserPoliciesIndexView.init();
+    }
+  },
+
+  menus: {
+    show: function() {
+      MenuShowView.init();
+    }
+  },
+
+  pages: {
+    new: function() {
+      PagesNewView.init();
+    }
+  },
+
+  sections: {
+    index: function() {
+      SectionsIndexView.init();
+    }
+  },
+
+  galleries: {
+    show: function() {
+      GalleriesShowView.init();
     }
   }
 };
