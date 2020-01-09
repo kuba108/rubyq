@@ -1,7 +1,11 @@
 cs:
+
   menu:
+    layout:
+      name:
+        default: 'Defaultní'
     name:
-      main: 'Hlavní menu'
+      main_menu: 'Hlavní menu'
 
   page:
     layout:
@@ -15,7 +19,6 @@ cs:
   language:
     cs: 'Čeština'
     en: 'Angličtina'
-    de: 'Němčina'
 
   asset:
     type:

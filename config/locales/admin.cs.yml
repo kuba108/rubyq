@@ -1,6 +1,10 @@
 cs:
-  admin:
 
+  will_paginate:
+    previous_label: "Předchozí"
+    next_label: "Další"
+
+  admin:
     sidebar:
       dashboard: 'Dashboard'
       users: 'Uživatelé'

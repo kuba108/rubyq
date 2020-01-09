@@ -16,6 +16,9 @@ cs:
     menu:
       index: 'Zobrazit seznam'
       show: 'Zobrazit detail'
+      create: 'Vytvořit'
+      update: 'Upravit'
+      destroy: 'Smazat'
       change_order: 'Měnit pořadí'
 
     menu_item:

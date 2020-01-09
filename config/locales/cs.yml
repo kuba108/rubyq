@@ -1,5 +1,2 @@
 cs:
 
-  will_paginate:
-    previous_label: "Předchozí"
-    next_label: "Další"
