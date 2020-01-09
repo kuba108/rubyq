@@ -28,7 +28,7 @@ class Admin::BaseController < ActionController::Base
   def component_render(params, data)
     type = params[:type]
     component = params[:comp_id]
-    value = data[:value]
+    value = data.values.first
     { source: type, comp_id: component, value: format_value(type, value) }
   end
 

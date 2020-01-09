@@ -27,7 +27,7 @@
           </div>
           <div class="card-body">
             <div class="card-row">
-              <%= text_editor(t('.name'), @gallery.name, admin_gallery_path(id: @gallery.id), 'gallery', 'name', 'gallery-name', policy(@gallery).update?) %>
+              <%= text_editor(t('.name'), @gallery.name, admin_gallery_path(id: @gallery.id), 'gallery', 'name', 'gallery-name', policy(@gallery).update?, { method: :put }) %>
             </div>
             <div class="card-row">
               <%= text_editor(t('.description'), @gallery.description, admin_gallery_path(id: @gallery.id), 'gallery', 'description', 'gallery-description', policy(@gallery).update?) %>
