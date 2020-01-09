@@ -60,7 +60,9 @@
       <div class="card-body gallery-list" data-update-url="<%= update_gallery_items_order_admin_gallery_path(id: @gallery.id) %>">
         <% @gallery.gallery_items.order(position: :asc).each do |gallery_item| %>
           <div class="gallery-item" data-item-id="<%= gallery_item.id %>">
-            <%= image_tag gallery_item.image.variant(combine_options: {thumbnail: "500x500^", gravity: "center", extent: "500x300"}), class: 'img-fluid' %>
+            <% if gallery_item.image.present? %>
+              <%= image_tag gallery_item.image.variant(combine_options: {thumbnail: "500x500^", gravity: "center", extent: "500x300"}), class: 'img-fluid' %>
+            <% end %>
             <div class="shadow">
               <div class="top-bar d-flex">
                 <a class="drag-placeholder mr-auto">

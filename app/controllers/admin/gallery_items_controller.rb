@@ -25,6 +25,7 @@ class Admin::GalleryItemsController < Admin::BaseController
   def destroy
     gallery_item = GalleryItem.find(params[:id])
     gallery_id = gallery_item.gallery_id
+    gallery_item.image.purge
     gallery_item.destroy!
 
     render json: {
