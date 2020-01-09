@@ -45,9 +45,9 @@ const SITENAME = {
 
       Filter.init();
       TextEditor.init();
-      NumberEditor.init();
-      TextAreaEditor.init();
-      SelectEditor.init();
+      //NumberEditor.init();
+      //TextAreaEditor.init();
+      //SelectEditor.init();
       //DateEditor.init();
     }
   },
@@ -115,10 +115,10 @@ document.addEventListener('turbolinks:load', function(e) {
   }
 });
 
-document.addEventListener('turbolinks:before-render', function(e) {
-  // Unbinds AJAX success listener.
-  $(document).unbind('ajaxSuccess');
-
-  // Unbinds AJAX error listener.
-  $(document).unbind('ajaxError');
-});
+// document.addEventListener('turbolinks:before-render', function(e) {
+//   // // Unbinds AJAX success listener.
+//   // document.removeEventListener('ajax:success');
+//   //
+//   // // Unbinds AJAX error listener.
+//   // document.removeEventListener('ajax:error');
+// });

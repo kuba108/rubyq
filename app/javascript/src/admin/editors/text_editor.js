@@ -13,30 +13,34 @@ const TextEditor = {
 
     let textEditors = document.getElementsByClassName('text-editor');
     Array.prototype.forEach.call(textEditors, function(textEditor) {
-      textEditor.querySelector('.btn-submit').addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        let parent = this.closest('.text-editor');
-        let form = parent.querySelector('form');
-        Rails.fire(form, 'submit');
-      });
-
-      textEditor.querySelector('.btn-edit').addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        let parent = this.closest('.text-editor');
-        let textInput = parent.querySelector('form input[type=text]');
-        TextEditor.showEditForm(parent.id);
-        textInput.focus();
-      });
-
-      textEditor.querySelector('.btn-cancel').addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        let parent = this.closest('.text-editor');
-        TextEditor.hideEditForm(parent.id);
-      });
+      textEditor.querySelector('.btn-submit').addEventListener('click', TextEditor.submitButtonClickHandler);
+      textEditor.querySelector('.btn-edit').addEventListener('click', TextEditor.editButtonClickHandler);
+      textEditor.querySelector('.btn-cancel').addEventListener('click', TextEditor.cancelButtonClickHandler);
     });
+  },
+
+  submitButtonClickHandler: function(e) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    let parent = this.closest('.text-editor');
+    let form = parent.querySelector('form');
+    Rails.fire(form, 'submit');
+  },
+
+  editButtonClickHandler: function(e) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    let parent = this.closest('.text-editor');
+    let textInput = parent.querySelector('form input[type=text]');
+    TextEditor.showEditForm(parent.id);
+    textInput.focus();
+  },
+
+  cancelButtonClickHandler: function(e) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    let parent = this.closest('.text-editor');
+    TextEditor.hideEditForm(parent.id);
   },
 
   showSavedAttribute: function (componentID, value) {
