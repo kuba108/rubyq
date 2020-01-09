@@ -144,22 +144,22 @@
         <%= form_for gallery_item, url: admin_gallery_gallery_item_path(id: gallery_item.id, gallery_id: @gallery.id), method: :put, remote: true, html: { id: "edit-gallery-item-#{gallery_item.id}-form" } do |f| %>
           <div class="form-row">
             <div class="col-md-6 mb-3">
-              <%= f.text_field :label, value: gallery_item.label, placeholder: t('admin.modal.edit_gallery_item_modal.name'), class: 'form-control' %>
+              <%= f.text_field :label, value: gallery_item.label, placeholder: t('admin.modal.edit_gallery_item_modal.name'), id: "gallery-item-label-#{gallery_item.id}", class: 'form-control' %>
             </div>
             <div class="col-md-6 mb-3">
-              <%= f.text_field :description, value: gallery_item.description, placeholder: t('admin.modal.edit_gallery_item_modal.description'), class: 'form-control' %>
+              <%= f.text_field :description, value: gallery_item.description, placeholder: t('admin.modal.edit_gallery_item_modal.description'), id: "gallery-item-description-#{gallery_item.id}", class: 'form-control' %>
             </div>
           </div>
           <% locale_options_for_filter('language').each do |lang| %>
             <div class="form-row">
               <%= f.fields_for :label_i18n do |fl| %>
                 <div class="col-md-6 mb-3">
-                  <%= fl.text_field lang[0].to_sym, value: gallery_item[:label_i18n].present? ? gallery_item[:label_i18n][lang[0]] : nil, placeholder: "#{t('admin.modal.edit_gallery_item_modal.name')} #{lang[1]}", class: 'form-control' %>
+                  <%= fl.text_field lang[0].to_sym, value: gallery_item[:label_i18n].present? ? gallery_item[:label_i18n][lang[0]] : nil, placeholder: "#{t('admin.modal.edit_gallery_item_modal.name')} #{lang[1]}", id: "gallery-item-label-#{lang[0]}-#{gallery_item.id}", class: 'form-control' %>
                 </div>
               <% end %>
               <%= f.fields_for :description_i18n do |fl| %>
                 <div class="col-md-6 mb-3">
-                  <%= fl.text_field lang[0].to_sym, value: gallery_item[:description_i18n].present? ? gallery_item[:description_i18n][lang[0]] : nil, placeholder: "#{t('admin.modal.edit_gallery_item_modal.description')} #{lang[1]}", class: 'form-control' %>
+                  <%= fl.text_field lang[0].to_sym, value: gallery_item[:description_i18n].present? ? gallery_item[:description_i18n][lang[0]] : nil, placeholder: "#{t('admin.modal.edit_gallery_item_modal.description')} #{lang[1]}", id: "gallery-item-description-#{lang[0]}-#{gallery_item.id}", class: 'form-control' %>
                 </div>
               <% end %>
             </div>
