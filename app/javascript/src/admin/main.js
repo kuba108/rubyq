@@ -13,6 +13,7 @@ import DateEditor from "./editors/date_editor"
 import { PagesNewView } from "./pages"
 import { GalleriesShowView } from "./galleries"
 import { MenuShowView } from "./menus"
+import { SectionsIndexView } from "./sections"
 
 const UTIL = {
   exec: function( controller, action ) {

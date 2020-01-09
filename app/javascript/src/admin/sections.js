@@ -1,4 +1,7 @@
-var SectionsIndexView = {
+import Widget from "./components/widget";
+import sortable from "html5sortable/dist/html5sortable.es"
+
+export const SectionsIndexView = {
 
   init: function() {
     Widget.init();

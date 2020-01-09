@@ -1,4 +1,4 @@
-var Widget = {
+const Widget = {
 
   init: function() {
     $('.widget-header').on('click', function(e) {
@@ -24,3 +24,5 @@ var Widget = {
   }
 
 };
+
+export default Widget;
