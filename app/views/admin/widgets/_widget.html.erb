@@ -1,6 +1,6 @@
 <div class="widget" data-item-id="<%= wrapper_widget.id %>" data-widget-id="<%= widget.id %>">
   <div class="widget-header">
-    <h4><%= I18n.t(widget.name, scope: 'widget') %></h4>
+    <h4><%= I18n.t(widget.name, scope: 'widget')[:name] %></h4>
     <div class="float-right">
       <a class="widget-save-btn header-btn">
         <span class="fa fa-save"></span>
