@@ -11,6 +11,7 @@ import DateEditor from "./editors/date_editor"
 //import Dashboard from "dashboard"
 
 import { PagesNewView } from "./pages"
+import { GalleriesShowView } from "./galleries"
 
 const UTIL = {
   exec: function( controller, action ) {

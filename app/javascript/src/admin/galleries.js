@@ -1,4 +1,7 @@
-var GalleriesShowView = {
+import sortable from "html5sortable/dist/html5sortable.es"
+import Flash from "./components/flash";
+
+export const  GalleriesShowView = {
 
   init: function() {
     sortable('.gallery-list', {
@@ -24,7 +27,7 @@ var GalleriesShowView = {
         url: galleryList.dataset.updateUrl,
         data: { data: json },
         success: function() {
-          console.log('saved');
+          Flash.success("Nastavení uloženo");
         }
       });
     });
