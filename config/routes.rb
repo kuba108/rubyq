@@ -45,4 +45,5 @@ Rails.application.routes.draw do
   # Permalink routing
   get '/:permalink', to: 'pages#show', as: :page
 
+
 end

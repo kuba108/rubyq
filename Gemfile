@@ -34,7 +34,8 @@ gem 'ransack'
 gem "pundit"
 # Decorator solution
 gem 'draper'
-
+# Mini magick
+gem 'mini_magick'
 # Will paginate renderer for Bootstrap
 gem 'will_paginate-bootstrap'
 
