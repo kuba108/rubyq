@@ -1,4 +1,6 @@
-var MenuShowView = {
+
+
+export const MenuShowView = {
 
   init: function() {
     $(document).bind('ajaxSuccess', function (event, xhr, settings) {
