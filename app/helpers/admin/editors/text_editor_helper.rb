@@ -4,7 +4,7 @@ module Admin
       def text_editor(label, text, url, gname, name, comp_id, allow_update = false, args = {})
         unique_id = rand(1000000)
         default = {
-          method: 'post',
+          method: 'put',
           remote: true,
           custom_values: {}
         }
