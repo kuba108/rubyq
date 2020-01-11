@@ -1,31 +1,11 @@
 import LBD from "light-bootstrap-dashboard"
+import ButtonAction from "./components/button_action";
 
 let General = {
 
   init: function() {
     LBD.init();
-
-    // $('.wysiwyg-widget-editor').froalaEditor({
-    //   key: 'bC2A8B5C6C5F4G2H3H3J2C5B4==',
-    //   // Define new paragraph styles.
-    //   paragraphStyles: {
-    //     class1: 'Class 1',
-    //     class2: 'Class 2'
-    //   },
-    //   linkStyles: {
-    //     'btn btn-success': 'Zelené tlačítko',
-    //     'btn btn-warning': 'Oranzove tlačítko'
-    //   },
-    //   toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'fontFamily',
-    //     'fontSize', '|', 'align', 'formatOL', 'formatUL', 'paragraphStyle', 'paragraphFormat', 'align', 'insertLink', '|', 'undo', 'redo', 'html', 'clearFormatting'],
-    //   language: 'cs'
-    // });
-
-    $('[data-action=send-form]').on('click', function() {
-      let button = $(this);
-      let form = $(button.data('form'));
-      form.submit();
-    });
+    ButtonAction.init();
 
     // Action which calls URL and deletes some model row in DB.
     $('[data-action=delete-model]').on('click', function(e) {
@@ -39,6 +19,16 @@ let General = {
       let fileName = $(this).val().split('\\').pop();
       $(this).siblings('.custom-file-label').addClass('selected').html(fileName);
     });
+
+    // let remoteForms = document.querySelectorAll('form[data-remote=true');
+    // Array.prototype.forEach.call(remoteForms, function(remoteForm) {
+    //   remoteForm.addEventListener('submit', function(e) {
+    //     e.preventDefault();
+    //     e.stopImmediatePropagation();
+    //     alert('remote');
+    //     //Rails.fire(remoteForm, "submit");
+    //   });
+    // });
   },
 
   showDeleteWindow: function(delete_label, delete_url) {

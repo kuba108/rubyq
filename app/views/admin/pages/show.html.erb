@@ -187,7 +187,8 @@
         </button>
       </div>
       <div class="modal-body">
-        <%= form_for @page.route, url: admin_route_path(id: @page.route.id), method: :put, remote: true, html: { id: 'change-route-form' } do |f| %>
+        <%= form_for @page.route, url: admin_route_path(id: @page.route.id), method: :post, remote: true, authenticity_token: true, html: { id: 'change-route-form' } do |f| %>
+          <input type="hidden" name="_method" value="put">
           <div class="form-group">
             <%= f.label :permalink, class: '' %>
             <%= f.text_field :permalink, class: 'form-control' %>
