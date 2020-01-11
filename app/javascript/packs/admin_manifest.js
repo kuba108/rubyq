@@ -3,6 +3,7 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 require("../src/admin/bootstrap_custom")
+require("trix")
 require("../src/admin/main")
 require('../stylesheets/admin/manifest.scss')
 

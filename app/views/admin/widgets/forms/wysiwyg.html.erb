@@ -2,7 +2,8 @@
   <%= f.hidden_field :page_id, value: page.id %>
   <%= f.fields_for :json do |fj| %>
     <div class="widget-wysiwyg">
-      <%= fj.text_area :html, value: raw(json['html']), class: 'wysiwyg-widget-editor' %>
+      <%= fj.hidden_field :html, value: raw(json['html']), id: 'wysiwyg-html' %>
+      <trix-editor input="wysiwyg-html" class="wysiwyg-widget-editor"></trix-editor>
     </div>
   <% end %>
 <% end %>
