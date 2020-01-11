@@ -1,7 +1,6 @@
-let Dashboard = {
+export const DashboardShowView = {
 
   init: function() {
-
   }
 
 };

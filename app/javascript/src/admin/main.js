@@ -10,6 +10,7 @@ import SelectEditor from "./editors/select_editor"
 import DateEditor from "./editors/date_editor"
 //import Dashboard from "dashboard"
 
+import { DashboardShowView } from "./dashboard"
 import { PagesNewView } from "./pages"
 import { GalleriesShowView } from "./galleries"
 import { MenuShowView } from "./menus"
@@ -56,7 +57,7 @@ const SITENAME = {
 
   dashboard: {
     show: function() {
-      Dashboard.init();
+      DashboardShowView.init();
     }
   },
 
