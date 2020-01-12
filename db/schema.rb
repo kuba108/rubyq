@@ -88,7 +88,6 @@ ActiveRecord::Schema.define(version: 2018_12_02_130606) do
     t.bigint "menu_id"
     t.bigint "page_id"
     t.integer "parent"
-    t.string "menu_name", null: false
     t.string "label", limit: 100, null: false
     t.string "url", null: false
     t.integer "position", default: 0, null: false
@@ -97,7 +96,6 @@ ActiveRecord::Schema.define(version: 2018_12_02_130606) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["menu_id"], name: "index_menu_items_on_menu_id"
-    t.index ["menu_name"], name: "index_menu_items_on_menu_name"
     t.index ["page_id"], name: "index_menu_items_on_page_id"
     t.index ["parent"], name: "index_menu_items_on_parent"
   end

@@ -4,7 +4,6 @@ class CreateMenuItems < ActiveRecord::Migration[5.2]
       t.references :menu, index: true, foreign_key: true
       t.references :page, foreign_key: true, null: true
       t.integer :parent, null: true, index: true
-      t.string :menu_name, null: false, index: true
       t.string :label, null: false, limit: 100
       t.string :url, null: false
       t.integer :position, null: false, default: 0
