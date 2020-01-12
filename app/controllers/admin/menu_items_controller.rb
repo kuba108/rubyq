@@ -4,16 +4,25 @@ class Admin::MenuItemsController < Admin::BaseController
     authorize MenuItem
     if params[:menu_item][:page_id].present?
       page = Page.find(params[:menu_item][:page_id])
-      MenuItem.create!(menu_item_params.merge({ page_id: page.id, url: page.route.permalink, position: (Page.all.count + 1) }))
+      item = MenuItem.create!(menu_item_params.merge({ page_id: page.id, url: page.route.permalink, position: (Page.all.count + 1) }))
     else
-      MenuItem.create!(menu_item_params.merge({ position: (Page.all.count + 1) }))
+      item = MenuItem.create!(menu_item_params.merge({ position: (Page.all.count + 1) }))
     end
-    redirect_to admin_menu_path(id: menu_item_params[:menu_id])
+    render json: {
+      result: 'success',
+      msg: "Položka menu #{item.label} byla přidána.",
+      redirect_path: admin_menu_path(id: menu_item_params[:menu_id])
+    }
   rescue Pundit::NotAuthorizedError => e
     render Pundit::Responder.not_authorized
   rescue StandardError => e
     Rails.logger.error e.message
     Rails.logger.error e.backtrace.join("\n")
+    render json: {
+      result: 'error',
+      msg: "Položka menu nebyla přidána.",
+      redirect_path: admin_menus_path(id: menu_item_params[:menu_id])
+    }, status: 422
   end
 
   def update

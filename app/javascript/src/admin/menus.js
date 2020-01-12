@@ -1,4 +1,8 @@
+import Rails from "@rails/ujs";
+import * as Sortable from "es-jquery-sortable";
 
+// global export
+window.Sortable = Sortable;
 
 export const MenuShowView = {
 
@@ -36,43 +40,52 @@ export const MenuShowView = {
       e.stopImmediatePropagation();
     });
 
-    $("#menu-items").sortable({
-      handle: '.draggable',
-      onDrop: function ($item, container, _super, event) {
-        $item.removeClass(container.group.options.draggedClass).removeAttr("style");
-        $("body").removeClass(container.group.options.bodyClass);
-      }
-    });
+    // $("#menu-items").sortable({
+    //   handle: '.draggable',
+    //   onDrop: function ($item, container, _super, event) {
+    //     $item.removeClass(container.group.options.draggedClass).removeAttr("style");
+    //     $("body").removeClass(container.group.options.bodyClass);
+    //   }
+    // });
 
     $('#save-menu-items-order-btn').on('click', function() {
       MenuShowView.save_changes();
     });
 
-    $('#create-menu-item-btn').on('click', function() {
-      $('.tab-pane.active').find('form').submit();
-    });
+    document.getElementById('create-menu-item-btn')
+      .addEventListener('click', MenuShowView.sendCreateForm);
 
-    $('.update-menu-item-btn').on('click', function() {
-      $(this).parents('.modal').find('form').submit();
-    });
+    // $('#create-menu-item-btn').on('click', function() {
+    //   $('.tab-pane.active').find('form').submit();
+    //
+    // });
+
+    // $('.update-menu-item-btn').on('click', function() {
+    //   $(this).parents('.modal').find('form').submit();
+    // });
+  },
+
+  sendCreateForm: function(e) {
+    let form = document.querySelector('#create-menu-item-modal .tab-pane.active form');
+    Rails.fire(form, 'submit');
   },
 
   save_changes: function() {
-    var menu = $('#menu-items');
-    var data = menu.sortable("serialize").get();
-    var json = JSON.stringify(data, null, ' ');
-
-    if(json.typeof !== 'undefined') {
-      $.ajax({
-        method: 'put',
-        url: menu.attr('data-update-url'),
-        data: { data: json },
-        success: function() {
-          var save_btn = $('#save-menu-items-order-btn');
-          save_btn.attr('disabled', 'disabled').addClass('disabled');
-        }
-      })
-    }
+    // var menu = $('#menu-items');
+    // var data = menu.sortable("serialize").get();
+    // var json = JSON.stringify(data, null, ' ');
+    //
+    // if(json.typeof !== 'undefined') {
+    //   $.ajax({
+    //     method: 'put',
+    //     url: menu.attr('data-update-url'),
+    //     data: { data: json },
+    //     success: function() {
+    //       var save_btn = $('#save-menu-items-order-btn');
+    //       save_btn.attr('disabled', 'disabled').addClass('disabled');
+    //     }
+    //   })
+    // }
   }
 
 };
