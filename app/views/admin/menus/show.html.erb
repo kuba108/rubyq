@@ -156,7 +156,7 @@
         </div>
         <div class="modal-body">
           <% if item.kind == 'page' %>
-            <%= form_for MenuItem.new, url: admin_menu_item_path(id: item.id), method: :put, remote: true, html: { class: 'form-horizontal' } do |f| %>
+            <%= form_for MenuItem.new, url: admin_menu_item_path(id: item.id), method: :put, remote: true, html: { id: "update-menu-item-form-#{item.id}", class: 'form-horizontal' } do |f| %>
               <%= f.hidden_field :menu_id, value: @menu.id %>
               <%= f.hidden_field :kind, value: 'page' %>
               <div class="form-group">
@@ -175,7 +175,7 @@
           <% end %>
 
           <% if item.kind == 'custom' %>
-            <%= form_for MenuItem.new, url: admin_menu_item_path(id: item.id), method: :put, remote: true, html: { class: 'form-horizontal' } do |f| %>
+            <%= form_for MenuItem.new, url: admin_menu_item_path(id: item.id), method: :put, remote: true, html: { id: "update-menu-item-form-#{item.id}", class: 'form-horizontal' } do |f| %>
               <%= f.hidden_field :menu_id, value: @menu.id %>
               <%= f.hidden_field :kind, value: 'custom' %>
               <div class="form-group">
@@ -200,7 +200,7 @@
           <% end %>
 
           <% if item.kind == 'group' %>
-            <%= form_for MenuItem.new, url: admin_menu_item_path(id: item.id), method: :put, remote: true, html: { class: 'form-horizontal' } do |f| %>
+            <%= form_for MenuItem.new, url: admin_menu_item_path(id: item.id), method: :put, remote: true, html: { id: "update-menu-item-form-#{item.id}", class: 'form-horizontal' } do |f| %>
               <%= f.hidden_field :menu_id, value: @menu.id %>
               <%= f.hidden_field :kind, value: 'group' %>
               <%= f.hidden_field :url, value: '' %>
@@ -215,7 +215,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-dismiss="modal"><%= t('admin.modal.update_menu_item_modal.cancel') %></button>
-          <button type="button" class="update-menu-item-btn btn btn-success"><%= t('admin.modal.update_menu_item_modal.save_changes') %></button>
+          <button type="button" class="update-menu-item-btn btn btn-success" data-action="send-form" data-form="#update-menu-item-form-<%= item.id %>"><%= t('admin.modal.update_menu_item_modal.save_changes') %></button>
         </div>
       </div>
     </div>

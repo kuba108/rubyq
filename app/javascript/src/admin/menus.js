@@ -48,29 +48,23 @@ export const MenuShowView = {
     //   }
     // });
 
-    $('#save-menu-items-order-btn').on('click', function() {
-      MenuShowView.save_changes();
-    });
+    document.getElementById('save-menu-items-order-btn')
+      .addEventListener('click', MenuShowView.saveMenuItemsOrderBtnClickHandler);
 
     document.getElementById('create-menu-item-btn')
-      .addEventListener('click', MenuShowView.sendCreateForm);
-
-    // $('#create-menu-item-btn').on('click', function() {
-    //   $('.tab-pane.active').find('form').submit();
-    //
-    // });
-
-    // $('.update-menu-item-btn').on('click', function() {
-    //   $(this).parents('.modal').find('form').submit();
-    // });
+      .addEventListener('click', MenuShowView.createMenuItemBtnClickHandler);
   },
 
-  sendCreateForm: function(e) {
+  createMenuItemBtnClickHandler: function(e) {
     let form = document.querySelector('#create-menu-item-modal .tab-pane.active form');
     Rails.fire(form, 'submit');
   },
 
-  save_changes: function() {
+  saveMenuItemsOrderBtnClickHandler: function(e) {
+    MenuShowView.saveMenuItemsOrderChanges();
+  },
+
+  saveMenuItemsOrderChanges: function() {
     // var menu = $('#menu-items');
     // var data = menu.sortable("serialize").get();
     // var json = JSON.stringify(data, null, ' ');
