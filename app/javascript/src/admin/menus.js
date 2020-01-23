@@ -1,8 +1,5 @@
 import Rails from "@rails/ujs";
-import * as Sortable from "es-jquery-sortable";
-
-// global export
-window.Sortable = Sortable;
+import sortable from "html5sortable/dist/html5sortable.es";
 
 export const MenuShowView = {
 
@@ -40,6 +37,15 @@ export const MenuShowView = {
       e.stopImmediatePropagation();
     });
 
+    $('#create-menu-item-modal').on('shown.bs.modal', function (e) {
+      MenuShowView.choosePageItemSelected($(this));
+    });
+
+    $('#choose-page-select').on('change', function (e) {
+      let modal = $('#create-menu-item-modal');
+      MenuShowView.choosePageItemSelected(modal);
+    });
+
     // $("#menu-items").sortable({
     //   handle: '.draggable',
     //   onDrop: function ($item, container, _super, event) {
@@ -48,11 +54,25 @@ export const MenuShowView = {
     //   }
     // });
 
+    sortable('#menu-items', {
+      forcePlaceholderSize: true,
+      items: '.menu-item',
+      acceptFrom: '.menu-list',
+      placeholderClass: 'menu-item-drop',
+      handle: '.drag-placeholder'
+    });
+
     document.getElementById('save-menu-items-order-btn')
       .addEventListener('click', MenuShowView.saveMenuItemsOrderBtnClickHandler);
 
     document.getElementById('create-menu-item-btn')
       .addEventListener('click', MenuShowView.createMenuItemBtnClickHandler);
+  },
+
+  choosePageItemSelected: function(modal) {
+    let label = $('#choose-page-menu-item-label');
+    label.val(modal.find('option:selected').text());
+    label.focus();
   },
 
   createMenuItemBtnClickHandler: function(e) {
