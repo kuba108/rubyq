@@ -34,14 +34,14 @@
 
     <div class="row">
       <div class="col-md-12">
-        <div class="card strpied-tabled-with-hover">
+        <div class="card striped-tabled-with-hover">
           <div class="card-header ">
             <h4 class="card-title"><%= t('.menu') %></h4>
           </div>
           <div class="card-body">
             <div class="items-panel">
               <% if @menu.base_items.present? %>
-                <ul id="menu-items" data-update-url="<%= admin_menu_path(id: @menu.id) %>">
+                <ul id="menu-items" class="menu-item-drop menu-list" data-update-url="<%= admin_menu_path(id: @menu.id) %>">
                   <% @menu.base_items.each do |item| %>
                     <%= raw admin_menu_item(item) %>
                   <% end %>
@@ -75,7 +75,7 @@
             <a class="nav-link" id="profile-tab" data-toggle="tab" href="#custom-menu-item-tab" role="tab" aria-controls="profile" aria-selected="false"><%= t('admin.modal.create_menu_item_modal.custom_link') %></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#group-menu-item-tab" role="tab" aria-controls="contact" aria-selected="false"<%= t('admin.modal.create_menu_item_modal.links_group') %>></a>
+            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#group-menu-item-tab" role="tab" aria-controls="contact" aria-selected="false"><%= t('admin.modal.create_menu_item_modal.links_group') %></a>
           </li>
         </ul>
         <div class="tab-content">
@@ -86,13 +86,13 @@
               <div class="form-group">
                 <%= f.label :page_id, t('admin.modal.create_menu_item_modal.choose_page'), class: 'col-sm-4 control-label' %>
                 <div class="col-sm-8">
-                  <%= f.select(:page_id, options_for_select(Page.where(language: @menu.language).order(title: :asc).collect { |p| [p.title, p.id] }), { include_blank: false }, class: 'select-picker form-control' ) %>
+                  <%= f.select(:page_id, options_for_select(Page.where(language: @menu.language).order(title: :asc).collect { |p| [p.title, p.id] }), { include_blank: false }, id: 'choose-page-select', class: 'select-picker form-control' ) %>
                 </div>
               </div>
               <div class="form-group">
                 <%= f.label :label, t('admin.modal.create_menu_item_modal.link_label'), class: 'col-sm-4 control-label' %>
                 <div class="col-sm-8">
-                  <%= f.text_field :label, class: 'form-control' %>
+                  <%= f.text_field :label, id: 'choose-page-menu-item-label', class: 'form-control' %>
                 </div>
               </div>
             <% end %>

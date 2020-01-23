@@ -44,7 +44,7 @@
 
       <% if current_admin_user.id == @admin_user.id || policy(@admin_user).change_passwords? %>
         <div class="col-md-4">
-          <div class="card strpied-tabled-with-hover">
+          <div class="card striped-tabled-with-hover">
             <div class="card-header ">
               <h4 class="card-title"><%= t('.settings') %></h4>
             </div>
