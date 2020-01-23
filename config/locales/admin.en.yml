@@ -1,0 +1,295 @@
+en:
+
+  will_paginate:
+    previous_label: "Previous"
+    next_label: "Next"
+
+  admin:
+    sidebar:
+      dashboard: 'Dashboard'
+      users: 'Users'
+      menu: 'Menu'
+      pages: 'Pages'
+      galeries: 'Galleries'
+      settings: 'Settings'
+      view_web: 'View site'
+
+    general:
+      logout: 'Log out'
+      copyright_text: 'Jakub Malina, made with love for better web apps'
+      filter:
+        filter: 'Filter'
+        cancel_filter: 'Cancel filter'
+        search: 'search'
+
+    modal:
+      delete_modal:
+        delete_for_sure: 'Definitely remove?'
+        you_want_to_delete: 'Are you sure?'
+        delete: 'Delete'
+      create_menu_item_modal:
+        add_link_to_menu: 'Add link to menu'
+        link_to_page: 'Link to page'
+        custom_link: 'Custom link'
+        links_group: 'Links group'
+        cancel: 'Cancel'
+        add_link: 'Add link'
+        choose_page: 'Choose page'
+        link_label: 'Label'
+        url: 'URL'
+        open_in_new_window: 'Open in new window'
+      update_menu_item_modal:
+        edit_link: 'Edit link'
+        cancel: 'Cancel'
+        save_changes: 'Save changes'
+        choose_page: 'Choose page'
+        link_label: 'Label'
+        url: 'URL'
+        open_in_new_window: 'Open in new window'
+      create_gallery_item_modal:
+        new_image: 'New image'
+        name: 'Name'
+        description: 'Description'
+        choose_image: 'Choose image'
+        cancel: 'Cancel'
+        add_image: 'Upload image'
+      edit_gallery_item_modal:
+        edit_image: 'Edit image'
+        name: 'Name'
+        description: 'Description'
+        choose_image: 'Choose image'
+        cancel: 'Cancel'
+        add_image: 'Upload image'
+      basic_section_settings_modal:
+        section_settings: 'Section settings'
+        properties: 'Properties'
+        description: 'Description'
+        save: 'Save'
+      container_section_settings_modal:
+        section_settings: 'Section settings'
+        properties: 'Properties'
+        description: 'Description'
+        save: 'Save'
+      fluid_wrapper_settings_modal:
+        settings: 'Settings'
+        size: 'Size'
+        cancel: 'Cancel'
+        save: 'Save'
+      one_column_wrapper_settings_modal:
+        settings: 'Settings'
+        cancel: 'Cancel'
+        save: 'Save'
+      two_columns_wrapper_settings_modal:
+        settings: 'Settings'
+        cancel: 'Cancel'
+        save: 'Save'
+      three_columns_wrapper_settings_modal:
+        settings: 'Settings'
+        cancel: 'Cancel'
+        save: 'Save'
+
+    admin_user_policies:
+      index:
+        dashboard: 'Dashboard'
+        admin_users: 'Admin users'
+        menu: 'Menu'
+        menu_items: 'Menu items'
+        pages: 'Pages'
+        galleries: 'Galleries'
+        gallery_items: 'Gallery images'
+        settings: 'Settings'
+
+    admin_users:
+      index:
+        filter:
+          first_name: 'First name'
+          last_name: 'Last name'
+          email: 'E-mail'
+        new_user: 'New user'
+        users: 'Users'
+        first_name: 'First name'
+        last_name: 'Last name'
+        email: 'E-mail'
+        signin_count: 'Signin count'
+        user_model_name: 'User'
+      new:
+        users: 'Users'
+        new_user: 'New user'
+        cancel: 'Cancel'
+      shared:
+        form:
+          new_user: 'New user'
+          first_name: 'First name'
+          last_name: 'Last name'
+          email: 'E-mail'
+          password: 'Password'
+          password_again: 'Password retype'
+          create_user: 'Create user'
+      show:
+        users: 'Users'
+        user: 'User'
+        first_name: 'First name'
+        last_name: 'Last name'
+        email: 'E-mail'
+        created_at: 'Created at'
+        updated_at: 'Updated at'
+        settings: 'Settings'
+        password: 'Password'
+        change_password: 'Change password'
+        user_policies: 'User policies'
+        edit_user_policies: 'Edit user policies'
+        module: 'Module'
+        policy: 'Policy'
+        cancel: 'Cancel'
+
+    menus:
+      index:
+        new_menu: 'New menu'
+        menu: 'Menu'
+        name: 'Name'
+        language: 'Language'
+      new:
+        menu: 'Menu'
+        new_menu: 'New menu'
+        cancel: 'Cancel'
+      shared:
+        form:
+          new_menu: 'New menu'
+          menu_copy: 'Menu copy'
+          create_menu: 'Create menu'
+          menu_settings: 'Menu settings'
+          layout: 'Layout'
+          language: 'Language'
+      show:
+        edit_order: 'Edit order'
+        add_link: 'Add link'
+        save_changes: 'Save changes'
+        menu: 'Menu'
+        menu_has_no_items: 'Menu has no items'
+
+    galleries:
+      index:
+        filter:
+          name: 'Name'
+        new_gallery: 'New gallery'
+        galleries: 'Galleries'
+        gallery: 'Gallery'
+        name: 'Name'
+        created_at: 'Created at'
+        updated_at: 'Updated at'
+        gallery_model_name: 'Gallery'
+      new:
+        galleries: 'Galleries'
+        new_gallery: 'New gallery'
+        cancel: 'Cancel'
+      shared:
+        form:
+          new_gallery: 'New gallery'
+          name: 'Name'
+          description: 'Description'
+          create_gallery: 'Create gallery'
+      show:
+        add_new_image: 'Add new image'
+        galleries: 'Galleries'
+        gallery: 'Gallery'
+        name: 'Name'
+        description: 'Description'
+        created_at: 'Created at'
+        updated_at: 'Updated at'
+        images: 'Images'
+        edit: 'Edit'
+
+    pages:
+      index:
+        filter:
+          title: 'Title'
+          language: 'Language'
+          state: 'State'
+        new_page: 'New page'
+        pages: 'Pages'
+        title: 'Title'
+        author: 'Author'
+        created_at: 'Created at'
+        updated_at: 'Updated at'
+        page_model_name: 'Page'
+      new:
+        pages: 'Pages'
+        new_page: 'New page'
+        cancel: 'Cancel'
+      shared:
+        form:
+          new_page: 'New page'
+          page_translation: 'Page translation'
+          title: 'Title'
+          copy: 'Copy'
+          change: 'Change'
+          lock: 'Lock'
+          create_page: 'Create page'
+          page_settings: 'Page settings'
+          layout: 'Layout'
+          language: 'Language'
+          state: 'State'
+      show:
+        pages: 'Pages'
+        edit_page: 'Edit page'
+        title: 'Title'
+        created_at: 'Created at'
+        updated_at: 'Updated at'
+        page_links: 'Page links'
+        change_page_link: 'Change page link'
+        permalink: 'Permalink'
+        type: 'Type'
+        date: 'Date'
+        page_settings: 'Page settings'
+        layout: 'Layout'
+        language: 'Language'
+        keywords: 'Keywords'
+        label: 'Label'
+        og_title: 'OG title'
+        og_image: 'OG image'
+        og_text: 'OG text'
+        translations: 'Translations'
+        create_translation: 'Create translation'
+        no_translations: 'Page has no translations'
+        close: 'Close'
+
+    sections:
+      index:
+        add_section: 'Add section'
+        basic_section: 'Basic section'
+        container_section: 'Container section'
+        save_all: 'Save all'
+        build_page: 'Build page'
+      shared:
+        wrapper_dropdown:
+          add_one_column: 'Add one column'
+          add_two_columns: 'Add two columns'
+          add_three_columns: 'Add three columns'
+
+    settings:
+      index:
+        settings: 'Settings'
+        home_page: 'Home page'
+        choose_page: 'Choose page'
+        set_home_page: 'Set homepage'
+        seo: 'SEO'
+        title: 'Title'
+        meta_title: 'Meta title'
+        meta_description: 'Meta description'
+        meta_keywords: 'Meta keywords'
+        share_web: 'Share web'
+        og_title: 'OG title'
+        og_description: 'OG description'
+        og_url: 'OG URL'
+        og_image: 'OG image'
+
+    wrappers:
+      forms:
+        container_fluid:
+          remove: 'Remove'
+        one_column:
+          remove: 'Remove'
+        two_columns:
+          remove: 'Remove'
+        three_columns:
+          remove: 'Remove'

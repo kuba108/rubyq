@@ -18,7 +18,7 @@ cs:
       logout: 'Odhlásit se'
       copyright_text: 'Jakub Malina, made with love for better web apps'
       filter:
-        filter: 'Filter'
+        filter: 'Filtr'
         cancel_filter: 'Zrušit filtr'
         search: 'hledat'
 
@@ -90,7 +90,7 @@ cs:
 
     admin_user_policies:
       index:
-        dashboard: 'Dashboardasdad'
+        dashboard: 'Dashboard'
         admin_users: 'Uživatelé'
         menu: 'Menu'
         menu_items: 'Položky menu'
