@@ -1,4 +1,4 @@
-<%= form_for widget, url: admin_widget_path(id: widget.id), method: :put, remote: true do |f| %>
+<%= form_for widget, url: admin_widget_path(id: widget.id), method: :put, remote: true, authenticity_token: true do |f| %>
   <%= f.hidden_field :page_id, value: page.id %>
   <%= f.fields_for :json do |fj| %>
     <div class="widget-map">
