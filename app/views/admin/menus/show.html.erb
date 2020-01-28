@@ -80,9 +80,9 @@
         </ul>
         <div class="tab-content">
           <div class="tab-pane fade show active" id="page-menu-link-tab" role="tabpanel" aria-labelledby="home-tab">
-            <%= form_for MenuItem.new, url: admin_menu_items_path, method: :post, remote: true, html: { class: 'form-horizontal' } do |f| %>
-              <%= f.hidden_field :menu_id, value: @menu.id %>
-              <%= f.hidden_field :kind, value: 'page' %>
+            <%= form_for MenuItem.new, url: admin_menu_items_path, method: :post, remote: true, html: { id: "new-item-form-page", class: 'form-horizontal' } do |f| %>
+              <%= f.hidden_field :menu_id, value: @menu.id, id: "menu_item_menu_id_page" %>
+              <%= f.hidden_field :kind, value: 'page', id: "menu_item_kind_page" %>
               <div class="form-group">
                 <%= f.label :page_id, t('admin.modal.create_menu_item_modal.choose_page'), class: 'col-sm-4 control-label' %>
                 <div class="col-sm-8">
@@ -98,9 +98,9 @@
             <% end %>
           </div>
           <div class="tab-pane fade" id="custom-menu-item-tab" role="tabpanel" aria-labelledby="profile-tab">
-            <%= form_for MenuItem.new, url: admin_menu_items_path, method: :post, remote: true, html: { class: 'form-horizontal' } do |f| %>
-              <%= f.hidden_field :menu_id, value: @menu.id %>
-              <%= f.hidden_field :kind, value: 'custom' %>
+            <%= form_for MenuItem.new, url: admin_menu_items_path, method: :post, remote: true, html: { id: "new-item-form-custom", class: 'form-horizontal' } do |f| %>
+              <%= f.hidden_field :menu_id, value: @menu.id, id: "menu_item_menu_id_custom" %>
+              <%= f.hidden_field :kind, value: 'custom', id: "menu_item_kind_custom" %>
               <div class="form-group">
                 <%= f.label :url, t('admin.modal.create_menu_item_modal.url'), class: 'col-sm-4 control-label' %>
                 <div class="col-sm-8">
@@ -110,7 +110,7 @@
               <div class="form-group">
                 <%= f.label :label, t('admin.modal.create_menu_item_modal.link_label'), class: 'col-sm-4 control-label' %>
                 <div class="col-sm-8">
-                  <%= f.text_field :label, class: 'form-control' %>
+                  <%= f.text_field :label, id: "menu_item_label_custom", class: 'form-control' %>
                 </div>
               </div>
               <div class="form-group">
@@ -122,14 +122,14 @@
             <% end %>
           </div>
           <div class="tab-pane fade" id="group-menu-item-tab" role="tabpanel" aria-labelledby="contact-tab">
-            <%= form_for MenuItem.new, url: admin_menu_items_path, method: :post, remote: true, html: { class: 'form-horizontal' } do |f| %>
-              <%= f.hidden_field :menu_id, value: @menu.id %>
-              <%= f.hidden_field :kind, value: 'group' %>
-              <%= f.hidden_field :url, value: '' %>
+            <%= form_for MenuItem.new, url: admin_menu_items_path, method: :post, remote: true, html: { id: "new-item-form-group", class: 'form-horizontal' } do |f| %>
+              <%= f.hidden_field :menu_id, value: @menu.id, id: "menu_item_menu_id_group" %>
+              <%= f.hidden_field :kind, value: 'group', id: "menu_item_kind_group" %>
+              <%= f.hidden_field :url, value: '', id: "menu_item_url_group" %>
               <div class="form-group">
                 <%= f.label :label, t('admin.modal.create_menu_item_modal.link_label'), class: 'col-sm-4 control-label' %>
                 <div class="col-sm-8">
-                  <%= f.text_field :label, class: 'form-control' %>
+                  <%= f.text_field :label, id: "menu_item_label_group", class: 'form-control' %>
                 </div>
               </div>
             <% end %>
@@ -157,18 +157,18 @@
         <div class="modal-body">
           <% if item.kind == 'page' %>
             <%= form_for MenuItem.new, url: admin_menu_item_path(id: item.id), method: :put, remote: true, html: { id: "update-menu-item-form-#{item.id}", class: 'form-horizontal' } do |f| %>
-              <%= f.hidden_field :menu_id, value: @menu.id %>
-              <%= f.hidden_field :kind, value: 'page' %>
+              <%= f.hidden_field :menu_id, value: @menu.id, id: "menu_item_menu_id_page_#{item.id}" %>
+              <%= f.hidden_field :kind, value: 'page', id: "menu_item_kind_page_#{item.id}" %>
               <div class="form-group">
                 <%= f.label :page_id, t('admin.modal.update_menu_item_modal.choose_page'), class: 'col-sm-4 control-label' %>
                 <div class="col-sm-8">
-                  <%= f.select(:page_id, options_for_select(Page.where(language: @menu.language).order(title: :asc).collect { |p| [p.title, p.id] }, item.page_id), { include_blank: false }, class: 'select-picker form-control' ) %>
+                  <%= f.select(:page_id, options_for_select(Page.where(language: @menu.language).order(title: :asc).collect { |p| [p.title, p.id] }, item.page_id), { include_blank: false }, id: "menu_item_page_id_page_#{item.id}", class: 'select-picker form-control' ) %>
                 </div>
               </div>
               <div class="form-group">
                 <%= f.label :label, t('admin.modal.update_menu_item_modal.link_label'), class: 'col-sm-4 control-label' %>
                 <div class="col-sm-8">
-                  <%= f.text_field :label, value: item.label, class: 'form-control' %>
+                  <%= f.text_field :label, value: item.label, id: "menu_item_label_page_#{item.id}", class: 'form-control' %>
                 </div>
               </div>
             <% end %>
@@ -176,24 +176,24 @@
 
           <% if item.kind == 'custom' %>
             <%= form_for MenuItem.new, url: admin_menu_item_path(id: item.id), method: :put, remote: true, html: { id: "update-menu-item-form-#{item.id}", class: 'form-horizontal' } do |f| %>
-              <%= f.hidden_field :menu_id, value: @menu.id %>
-              <%= f.hidden_field :kind, value: 'custom' %>
+              <%= f.hidden_field :menu_id, value: @menu.id, id: "menu_item_menu_id_custom_#{item.id}" %>
+              <%= f.hidden_field :kind, value: 'custom', id: "menu_item_kind_custom_#{item.id}" %>
               <div class="form-group">
                 <%= f.label :url, t('admin.modal.update_menu_item_modal.url'), class: 'col-sm-4 control-label' %>
                 <div class="col-sm-8">
-                  <%= f.text_field :url, class: 'form-control' %>
+                  <%= f.text_field :url, id: "menu_item_url_custom_#{item.id}", class: 'form-control' %>
                 </div>
               </div>
               <div class="form-group">
                 <%= f.label :label, t('admin.modal.update_menu_item_modal.link_label'), class: 'col-sm-4 control-label' %>
                 <div class="col-sm-8">
-                  <%= f.text_field :label, value: item.label, class: 'form-control' %>
+                  <%= f.text_field :label, value: item.label, id: "menu_item_label_custom_#{item.id}", class: 'form-control' %>
                 </div>
               </div>
               <div class="form-group">
                 <%= f.label :new_window, t('admin.modal.update_menu_item_modal.open_in_new_window'), class: 'col-sm-4 control-label' %>
                 <div class="col-sm-8">
-                  <%= f.check_box :new_window, class: 'form-control' %>
+                  <%= f.check_box :new_window, id: "menu_item_new_window_custom_#{item.id}", class: 'form-control' %>
                 </div>
               </div>
             <% end %>
@@ -201,13 +201,13 @@
 
           <% if item.kind == 'group' %>
             <%= form_for MenuItem.new, url: admin_menu_item_path(id: item.id), method: :put, remote: true, html: { id: "update-menu-item-form-#{item.id}", class: 'form-horizontal' } do |f| %>
-              <%= f.hidden_field :menu_id, value: @menu.id %>
-              <%= f.hidden_field :kind, value: 'group' %>
-              <%= f.hidden_field :url, value: '' %>
+              <%= f.hidden_field :menu_id, value: @menu.id, id: "menu_item_menu_id_group_#{item.id}" %>
+              <%= f.hidden_field :kind, value: 'group', id: "menu_item_kind_group_#{item.id}" %>
+              <%= f.hidden_field :url, value: '', id: "menu_item_url_group_#{item.id}" %>
               <div class="form-group">
                 <%= f.label :label, t('admin.modal.update_menu_item_modal.link_label'), class: 'col-sm-4 control-label' %>
                 <div class="col-sm-8">
-                  <%= f.text_field :label, value: item.label, class: 'form-control' %>
+                  <%= f.text_field :label, value: item.label, id: "menu_item_label_group_#{item.id}", class: 'form-control' %>
                 </div>
               </div>
             <% end %>
