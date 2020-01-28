@@ -95,7 +95,7 @@ en:
       name_label: 'Name label'
       name_placeholder: 'Name label placeholder'
       email_label: 'E-mail label'
-      email_placeholder: ''E-mail label placeholder'
+      email_placeholder: 'E-mail label placeholder'
       text_label: 'Text label'
       text_placeholder: 'Text label placeholder'
     icon_bucket:

@@ -1,4 +1,3 @@
----
 cs:
   activerecord:
     errors:
@@ -215,4 +214,6 @@ cs:
       default: "%a %e. %B %Y %H:%M %z"
       long: "%A %e. %B %Y %H:%M"
       short: "%e. %-m. %H:%M"
+      date: "%d. %m. %Y"
+      date_short: "%d. %m."
     pm: odpoledne
