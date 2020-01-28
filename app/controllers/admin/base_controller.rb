@@ -51,7 +51,11 @@ class Admin::BaseController < ActionController::Base
   end
 
   def set_locale
-    I18n.locale = :cs
+    if current_admin_user
+      I18n.locale = current_admin_user.locale.to_sym || I18n.default_locale
+    else
+      super
+    end
   end
 
 end

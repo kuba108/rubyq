@@ -26,6 +26,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'dotenv-rails'
 # Devise
 gem 'devise'
+# I18n
+gem 'rails-i18n', '~> 6.0.0'
 # Paranoia
 gem 'discard', '~> 1.0'
 # Ransack for searching and sorting
