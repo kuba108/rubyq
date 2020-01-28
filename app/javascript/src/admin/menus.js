@@ -1,5 +1,6 @@
 import Rails from "@rails/ujs";
-import sortable from "html5sortable/dist/html5sortable.es";
+//import sortable from "html5sortable/dist/html5sortable.es";
+import Sortable from 'sortablejs';
 
 export const MenuShowView = {
 
@@ -46,6 +47,26 @@ export const MenuShowView = {
       MenuShowView.choosePageItemSelected(modal);
     });
 
+    let menuItems = document.getElementById('menu-items');
+    Sortable.create(menuItems, {
+      handle: '.drag-placeholder',
+      group: 'items',
+      animation: 50,
+      ghostClass: 'menu-item-drop'
+    });
+
+    let nestedSortables = document.querySelectorAll('.sub-menu');
+    for (var i = 0; i < nestedSortables.length; i++) {
+      console.log(nestedSortables[i]);
+      new Sortable(nestedSortables[i], {
+        ghostClass: 'menu-item-drop',
+        group: 'items',
+        animation: 0,
+        fallbackOnBody: true,
+        swapThreshold: 0.65
+      });
+    }
+
     // $("#menu-items").sortable({
     //   handle: '.draggable',
     //   onDrop: function ($item, container, _super, event) {
@@ -54,13 +75,31 @@ export const MenuShowView = {
     //   }
     // });
 
-    sortable('#menu-items', {
-      forcePlaceholderSize: true,
-      items: '.menu-item',
-      acceptFrom: '.menu-list',
-      placeholderClass: 'menu-item-drop',
-      handle: '.drag-placeholder'
-    });
+    // sortable('#menu-items', {
+    //   forcePlaceholderSize: true,
+    //   items: '.menu-item',
+    //   acceptFrom: '.sub-menu',
+    //   placeholderClass: 'menu-item-drop',
+    //   handle: '.drag-placeholder'
+    // });
+    //
+    // sortable('.usub-men', {
+    //   forcePlaceholderSize: true,
+    //   items: '.menu-item',
+    //   acceptFrom: '#menu-items, .sub-menu',
+    //   placeholderClass: 'menu-item-drop',
+    //   handle: '.drag-placeholder'
+    // });
+
+    // sortable('#menu-items')[0].addEventListener('sortstart', function(e) {
+    //   let container = e.detail.origin.container;
+    //   container.classList.add('sorting');
+    // });
+    //
+    // sortable('#menu-items')[0].addEventListener('sortupdate', function(e) {
+    //   let container = e.detail.origin.container;
+    //   container.classList.remove('sorting');
+    // });
 
     document.getElementById('save-menu-items-order-btn')
       .addEventListener('click', MenuShowView.saveMenuItemsOrderBtnClickHandler);

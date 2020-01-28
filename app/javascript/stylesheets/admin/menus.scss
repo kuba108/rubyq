@@ -6,7 +6,7 @@ body.admin-menus.show {
 
       li {
         list-style: none;
-        padding: 6px 10px 6px 10px;
+        padding: 10px 14px 10px 14px;
         line-height: 22px;
         border-radius: 5px;
         margin-bottom: 10px;
@@ -18,7 +18,7 @@ body.admin-menus.show {
           display: inline-block;
         }
 
-        .draggable {
+        .drag-placeholder {
           display: none;
         }
 
@@ -45,11 +45,20 @@ body.admin-menus.show {
           cursor: pointer;
         }
 
-        .sub-menu li {
-          border: 1px dashed #ccc;
+        .sub-menu {
+          display: block;
 
-          &:first-child {
-            margin-top: 10px;
+          li {
+            border: 1px dashed #ccc;
+            &:first-child {
+              margin-top: 10px;
+            }
+          }
+
+          li.sortable-chosen {
+            .sub-menu {
+              display: none;
+            }
           }
         }
 
@@ -57,11 +66,7 @@ body.admin-menus.show {
       }
 
       &.edit {
-        li {
-          padding: 6px 10px 6px 10px;
-        }
-
-        .draggable {
+        .drag-placeholder {
           display: inline-block;
           margin-right: 10px;
           cursor: pointer;
