@@ -1,0 +1,57 @@
+en:
+  policy:
+
+    dashboard:
+      show_stats: 'Show statistics'
+
+    admin_user:
+      index: 'Show list'
+      show: 'Show detail'
+      create: 'Create'
+      update: 'Update'
+      destroy: 'Destroy'
+      update_acl: 'Update users rights'
+      change_passwords: 'Change passwords'
+
+    menu:
+      index: 'Show list'
+      show: 'Show detail'
+      create: 'Create'
+      update: 'Update'
+      destroy: 'Destroy'
+      change_order: 'Change order'
+
+    menu_item:
+      index: 'Show list'
+      show: 'Show detail'
+      create: 'Create'
+      update: 'Update'
+      destroy: 'Destroy'
+
+    page:
+      index: 'Show list'
+      show: 'Show detail'
+      create: 'Create'
+      update: 'Update'
+      destroy: 'Destroy'
+
+    gallery:
+      index: 'Show list'
+      show: 'Show detail'
+      create: 'Create'
+      update: 'Update'
+      destroy: 'Destroy'
+
+    gallery_item:
+      index: 'Show list'
+      show: 'Show detail'
+      create: 'Create'
+      update: 'Update'
+      destroy: 'Destroy'
+
+    setting:
+      index: 'Show list'
+      show: 'Show detail'
+      create: 'Create'
+      update: 'Update'
+      destroy: 'Destroy'

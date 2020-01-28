@@ -1,0 +1,128 @@
+en:
+
+  page:
+    state:
+      visible: 'Visible'
+      hidden: 'Hidden'
+    publish_type:
+      public: 'Public'
+      private: 'Private'
+
+  route:
+    route_type:
+      standard: 'Standard link'
+      redirect: 'Redirect'
+
+  menu_item:
+    kind:
+      page: 'Link to page'
+      custom: 'Custom link'
+      group: 'Group'
+
+  widget:
+    headline:
+      name: 'Headline'
+      size: 'Size'
+      size_options:
+        h1: 'h1'
+        h2: 'h2'
+        h3: 'h3'
+        h4: 'h4'
+        h5: 'h5'
+        h6: 'h6'
+      align: 'Align'
+      align_options:
+        left: 'left'
+        center: 'center'
+        right: 'right'
+      style: 'Style'
+      style_options:
+        without_style: 'without style'
+        with_icon: 'with icon'
+      icon: 'Icon'
+      icon_options:
+        pencil: 'fa-pencil'
+        users: 'fa-users'
+      text: 'Text'
+      headline: 'Headline'
+    text:
+      name: 'Text'
+      align: 'Align'
+      align_options:
+        left: 'left'
+        center: 'center'
+        right: 'right'
+      style: 'Style'
+      style_options:
+        without_style: 'without style'
+        jumbotron: 'jumbotron'
+      text: 'Text'
+      text_placeholder: 'Type something...'
+    wysiwyg:
+      name: 'HTML widget'
+    gallery:
+      name: 'Gallery'
+      gallery: 'Gallery'
+      columns: 'Columns count'
+      columns_options:
+        2: '2'
+        3: '3'
+        4: '4'
+        5: '5'
+    image:
+      name: 'Image'
+      image: 'Image'
+      choose_image: 'Choose image'
+      alt: 'Alt'
+      alt_placeholder: 'Type some alt...'
+    yt_video:
+      name: 'YouTube video'
+      youtube_url: 'YouTube URL'
+      youtube_url_placeholder: 'YouTube video URL'
+      align: 'Align'
+      align_options:
+        left: 'left'
+        center: 'center'
+        right: 'right'
+      video_width: 'Video width'
+      video_width_placeholder: 'For example 560'
+      video_height: 'Videa height'
+      video_height_placeholder: 'For example 315'
+    contact_form:
+      name: 'Contact form'
+      send_to_email: 'Receiver e-mail'
+      send_to_email_placeholder: 'E-mail address on which form data will ve delivered to.'
+      name_label: 'Name label'
+      name_placeholder: 'Name label placeholder'
+      email_label: 'E-mail label'
+      email_placeholder: ''E-mail label placeholder'
+      text_label: 'Text label'
+      text_placeholder: 'Text label placeholder'
+    icon_bucket:
+      name: Bucket with icon'
+      link: 'Link'
+      link_placeholder: 'URL address'
+      headline: 'Headline'
+      headline_placeholder: 'Headline'
+      text: 'Text'
+      text_placeholder: 'Text'
+    divide:
+      name: 'Divider'
+      size: 'Size'
+      size_options:
+        small: 'small'
+        middle: 'middle'
+        big: 'big'
+    map:
+      name: 'map'
+      map_type: 'Map type'
+      map_type_options:
+        roadmap: 'roadmap'
+        satellite: 'satellite'
+      zoom: 'Zoom'
+      zoom_placeholder: 'Zoom number'
+
+  wrapper:
+    one_column: 'One column'
+    two_columns: 'Two columns'
+    three_columns: 'Three columns'

@@ -1,27 +1,27 @@
-cs:
+en:
 
   filter:
-    all: 'Vše'
+    all: 'All'
 
   menu:
     layout:
       name:
-        default: 'Defaultní'
+        default: 'Default'
     name:
-      main_menu: 'Hlavní menu'
+      main_menu: 'Main menu'
 
   page:
     layout:
       name:
-        default: 'Defaultní'
-        reviews: 'Recenze'
+        default: 'Default'
+        reviews: 'Review'
     state:
-      hidden: 'Skrytá'
-      visible: 'Viditelná'
+      hidden: 'Hidden'
+      visible: 'Visible'
 
   language:
-    cs: 'Čeština'
-    en: 'Angličtina'
+    cs: 'Czech'
+    en: 'English'
 
   asset:
     type:
@@ -35,5 +35,5 @@ cs:
       format:
         format: '%n %u'
         precision: 0
-        unit: 'Kč'
+        unit: '$'
         delimiter: ' '
