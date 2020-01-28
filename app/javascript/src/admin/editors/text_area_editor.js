@@ -1,7 +1,6 @@
 import Rails from "@rails/ujs";
 
 const TextAreaEditor = {
-
   init: function () {
     document.addEventListener('ajax:success', function(event) {
       let json = event.detail[0];
@@ -14,34 +13,39 @@ const TextAreaEditor = {
 
     let textAreaEditors = document.getElementsByClassName('text-area-editor');
     Array.prototype.forEach.call(textAreaEditors, function(textAreaEditor) {
-      textAreaEditor.find('.btn-submit').on('click', function(e) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        let p = $(this).parents('.text-area-editor');
-        p.find('form').submit();
-      });
-
-      textAreaEditor.find('.btn-edit').on('click', function(e) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        let p = $(this).parents('.text-area-editor');
-        let text_area = p.find('form textarea');
-        TextAreaEditor.showTextEditForm(p.attr('id'));
-        text_area.focus();
-      });
-
-      textAreaEditor.find('.btn-cancel').on('click', function(e) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        let p = $(this).parents('.text-area-editor');
-        TextAreaEditor.hideTextEditForm(p.attr('id'));
-      });
+      textAreaEditor.querySelector('.btn-submit').addEventListener('click', TextAreaEditor.submitButtonClickHandler);
+      textAreaEditor.querySelector('.btn-edit').addEventListener('click', TextAreaEditor.editButtonClickHandler);
+      textAreaEditor.querySelector('.btn-cancel').addEventListener('click', TextAreaEditor.cancelButtonClickHandler);
     });
+  },
+
+  submitButtonClickHandler: function(e) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    let parent = this.closest('.text-area-editor');
+    let form = parent.querySelector('form');
+    Rails.fire(form, 'submit');
+  },
+
+  editButtonClickHandler: function(e) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    let parent = this.closest('.text-area-editor');
+    let textInput = parent.querySelector('form input[type=text]');
+    TextAreaEditor.showEditForm(parent.id);
+    textInput.focus();
+  },
+
+  cancelButtonClickHandler: function(e) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    let parent = this.closest('.text-area-editor');
+    TextAreaEditor.hideEditForm(parent.id);
   },
 
   showSavedAttribute: function (componentID, value) {
     let component = document.getElementById(componentID);
-    component.querySelector('.editor-text').innerHTML = value;
+    component.querySelector('.tea-show .editor-text').innerHTML = value;
     TextAreaEditor.hideEditForm(componentID);
   },
 
@@ -54,7 +58,6 @@ const TextAreaEditor = {
     let component = document.getElementById(componentID);
     component.classList.remove('edited');
   }
-
 };
 
 export default TextAreaEditor;

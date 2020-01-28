@@ -13,28 +13,34 @@ const DateEditor = {
 
     let dateEditors = document.getElementsByClassName('date-editor');
     Array.prototype.forEach.call(dateEditors, function(dateEditor) {
-      dateEditor.find('.btn-submit').on('click', function(e) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        let parent = this.closest('.date-editor');
-        let form = parent.querySelector('form');
-        Rails.fire(form, 'submit');
-      });
-
-      dateEditor.find('.btn-edit').on('click', function(e) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        let parent = this.closest('.date-editor');
-        TextEditor.showEditForm(parent.id);
-      });
-
-      dateEditor.find('.btn-cancel').on('click', function(e) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        let parent = this.closest('.date-editor');
-        DateEditor.hideEditForm(parent.id);
-      });
+      dateEditor.querySelector('.btn-submit').addEventListener('click', DateEditor.submitButtonClickHandler);
+      dateEditor.querySelector('.btn-edit').addEventListener('click', DateEditor.editButtonClickHandler);
+      dateEditor.querySelector('.btn-cancel').addEventListener('click', DateEditor.cancelButtonClickHandler);
     });
+  },
+
+  submitButtonClickHandler: function(e) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    let parent = this.closest('.date-editor');
+    let form = parent.querySelector('form');
+    Rails.fire(form, 'submit');
+  },
+
+  editButtonClickHandler: function(e) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    let parent = this.closest('.date-editor');
+    let textInput = parent.querySelector('form input[type=text]');
+    DateEditor.showEditForm(parent.id);
+    textInput.focus();
+  },
+
+  cancelButtonClickHandler: function(e) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    let parent = this.closest('.date-editor');
+    DateEditor.hideEditForm(parent.id);
   },
 
   showSavedAttribute: function (componentID, value) {
@@ -52,7 +58,6 @@ const DateEditor = {
     let component = document.getElementById(componentID);
     component.classList.remove('edited');
   }
-
 };
 
 export default DateEditor;

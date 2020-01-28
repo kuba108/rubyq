@@ -13,33 +13,39 @@ const SelectEditor = {
 
     let selectEditors = document.getElementsByClassName('select-editor');
     Array.prototype.forEach.call(selectEditors, function(selectEditor) {
-      selectEditor.find('.btn-submit').off('click').on('click', function(e) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        let parent = this.closest('.select-editor');
-        let form = parent.querySelector('form');
-        Rails.fire(form, 'submit');
-      });
-
-      selectEditor.find('.btn-edit').on('click', function(e) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        let parent = this.closest('.select-editor');
-        SelectEditor.showEditForm(parent.id);
-      });
-
-      selectEditor.find('.btn-cancel').on('click', function(e) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        let parent = this.closest('.select-editor');
-        NumberEditor.hideEditForm(parent.id);
-      });
+      selectEditor.querySelector('.btn-submit').addEventListener('click', SelectEditor.submitButtonClickHandler);
+      selectEditor.querySelector('.btn-edit').addEventListener('click', SelectEditor.editButtonClickHandler);
+      selectEditor.querySelector('.btn-cancel').addEventListener('click', SelectEditor.cancelButtonClickHandler);
     });
+  },
+
+  submitButtonClickHandler: function(e) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    let parent = this.closest('.select-editor');
+    let form = parent.querySelector('form');
+    Rails.fire(form, 'submit');
+  },
+
+  editButtonClickHandler: function(e) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    let parent = this.closest('.select-editor');
+    let textInput = parent.querySelector('form input[type=text]');
+    SelectEditor.showEditForm(parent.id);
+    textInput.focus();
+  },
+
+  cancelButtonClickHandler: function(e) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    let parent = this.closest('.select-editor');
+    SelectEditor.hideEditForm(parent.id);
   },
 
   showSavedAttribute: function (componentID, value) {
     let component = document.getElementById(componentID);
-    component.querySelector('.editor-text').innerHTML = value;
+    component.querySelector('.se-show .editor-text').innerHTML = value;
     SelectEditor.hideEditForm(componentID);
   },
 
