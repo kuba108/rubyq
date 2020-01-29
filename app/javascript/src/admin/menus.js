@@ -1,6 +1,6 @@
 import Rails from "@rails/ujs";
-//import sortable from "html5sortable/dist/html5sortable.es";
 import Sortable from 'sortablejs';
+import Flash from './components/flash';
 
 export const MenuShowView = {
 
@@ -8,27 +8,9 @@ export const MenuShowView = {
   sortedSubmenus: Array(),
 
   init: function() {
-    $(document).bind('ajaxSuccess', function (event, xhr, settings) {
-      try {
-        json = $.parseJSON(xhr.responseText);
-
-        switch(json.kind) {
-          case 'add_menu_item_result':
-            $('#add-menu-link-modal').modal('hide');
-            Turbolinks.visit(json.route);
-            window.flash_success = json.msg;
-            break;
-        }
-      }
-      catch(e) {
-        // not JSON
-      }
-    });
-
     $('#menu-edit-toggle-btn').on('click', function(e) {
       var btn = $(this);
       var menu = $('#menu-items');
-
       if(btn.hasClass('active')) {
         btn.removeClass('active');
         menu.removeClass('edit');
@@ -37,7 +19,6 @@ export const MenuShowView = {
         btn.addClass('active');
         menu.addClass('edit');
       }
-
       e.stopImmediatePropagation();
     });
 
@@ -69,40 +50,6 @@ export const MenuShowView = {
       });
     }
 
-    // $("#menu-items").sortable({
-    //   handle: '.draggable',
-    //   onDrop: function ($item, container, _super, event) {
-    //     $item.removeClass(container.group.options.draggedClass).removeAttr("style");
-    //     $("body").removeClass(container.group.options.bodyClass);
-    //   }
-    // });
-
-    // sortable('#menu-items', {
-    //   forcePlaceholderSize: true,
-    //   items: '.menu-item',
-    //   acceptFrom: '.sub-menu',
-    //   placeholderClass: 'menu-item-drop',
-    //   handle: '.drag-placeholder'
-    // });
-    //
-    // sortable('.usub-men', {
-    //   forcePlaceholderSize: true,
-    //   items: '.menu-item',
-    //   acceptFrom: '#menu-items, .sub-menu',
-    //   placeholderClass: 'menu-item-drop',
-    //   handle: '.drag-placeholder'
-    // });
-
-    // sortable('#menu-items')[0].addEventListener('sortstart', function(e) {
-    //   let container = e.detail.origin.container;
-    //   container.classList.add('sorting');
-    // });
-    //
-    // sortable('#menu-items')[0].addEventListener('sortupdate', function(e) {
-    //   let container = e.detail.origin.container;
-    //   container.classList.remove('sorting');
-    // });
-
     document.getElementById('save-menu-items-order-btn')
       .addEventListener('click', MenuShowView.saveMenuItemsOrderBtnClickHandler);
 
@@ -122,109 +69,37 @@ export const MenuShowView = {
   },
 
   saveMenuItemsOrderBtnClickHandler: function(e) {
-    //MenuShowView.saveMenuItemsOrderChanges();
-    const data = MenuShowView.sortedMenu.toArray();
-    console.log(data);
-    const json = { data: [] };
-
-    for(let i = 0; i < data.length; i++) {
-      //console.log(data[i]);
-
-      let submenu
-
-      json['data'].push({
-        itemPosition: i+1,
-        itemId: parseInt(data[i]),
-        children: []
+    let menu = document.getElementById('menu-items');
+    let data = { items: MenuShowView.serializeMenu(menu) };
+    if(data.typeof !== 'undefined') {
+      Rails.ajax({
+        type: "PUT",
+        url: menu.dataset.updateUrl,
+        beforeSend(xhr, options) {
+          xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+          options.data = JSON.stringify(data);
+          return true
+        },
+        success: function (array) {
+          Flash.success(array.msg);
+        }
       });
     }
-
-    console.log(json);
-
-
-    // for(let i = 0; i < MenuShowView.sortedSubmenus.length; i++) {
-    //   let sortedSubmenu = MenuShowView.sortedSubmenus[i];
-    //   let data = sortedSubmenu.toArray();
-    //   if(Array.isArray(data) && data.length > 0) {
-    //     console.log(sortedSubmenu.el.dataset.submenuId + ' : ' + data);
-    //   }
-    // }
-
-
   },
 
-  saveMenuItemsOrderChanges: function() {
-    // const myJSON = {data: [
-    //     {
-    //       itemPosition: 42,
-    //       itemId: 13,
-    //       children: []
-    //     }
-    //   ]};
-    //
-    // let data =  [
-    //   [
-    //     {
-    //       "itemPosition": 1,
-    //       "itemId": 13,
-    //       "children": [
-    //         []
-    //       ]
-    //     },
-    //     {
-    //       "itemPosition": 2,
-    //       "itemId": 12,
-    //       "children": [
-    //         []
-    //       ]
-    //     },
-    //     {
-    //       "itemPosition": 3,
-    //       "itemId": 11,
-    //       "children": [
-    //         []
-    //       ]
-    //     },
-    //     {
-    //       "itemPosition": 4,
-    //       "itemId": 10,
-    //       "children": [
-    //         []
-    //       ]
-    //     },
-    //     {
-    //       "itemPosition": 5,
-    //       "itemId": 14,
-    //       "children": [
-    //         []
-    //       ]
-    //     },
-    //     {
-    //       "itemPosition": 6,
-    //       "itemId": 15,
-    //       "children": [
-    //         []
-    //       ]
-    //     }
-    //   ]
-    // ]
-
-
-    // var menu = $('#menu-items');
-    // var data = menu.sortable("serialize").get();
-    // var json = JSON.stringify(data, null, ' ');
-    //
-    // if(json.typeof !== 'undefined') {
-    //   $.ajax({
-    //     method: 'put',
-    //     url: menu.attr('data-update-url'),
-    //     data: { data: json },
-    //     success: function() {
-    //       var save_btn = $('#save-menu-items-order-btn');
-    //       save_btn.attr('disabled', 'disabled').addClass('disabled');
-    //     }
-    //   })
-    // }
+  serializeMenu: function(menu) {
+    let dataItems = [];
+    // Solves problem with direct children items.
+    let menuItems = Array.prototype.filter.call(menu.children, function(item) {
+      return item.matches('.menu-item');
+    });
+    Array.prototype.forEach.call(menuItems, function(menuItem) {
+      dataItems.push({
+        itemId: parseInt(menuItem.dataset.id),
+        children: MenuShowView.serializeMenu(menuItem.querySelector('.sub-menu'))
+      });
+    });
+    return dataItems;
   }
 
 };

@@ -7,10 +7,10 @@ class MenuTreeService
       menu_item.save
     end
 
-    if item['children'].present?
-      children = item['children'][0]
+    if item[:children].present?
+      children = item[:children]
       nested_items_ids = menu_item.nested_items.pluck(:id)
-      new_nested_items_ids = children.map { |ch| ch['itemId'].to_i }
+      new_nested_items_ids = children.map { |ch| ch[:itemId].to_i }
       menu_items_to_add_ids = new_nested_items_ids - nested_items_ids
       menu_items_to_remove_ids = nested_items_ids - new_nested_items_ids
 

@@ -59,17 +59,14 @@ class Admin::MenusController < Admin::BaseController
     authorize Menu, :change_order?
     service = MenuTreeService.new
     menu = Menu.find(params[:id])
-    json = JSON.parse(params[:data])[0]
-
-    json.each_with_index do |item, i|
+    items = params[:items]
+    items.each_with_index do |item, i|
       service.change_item(item, i)
     end
-
     menu.cache_html
-
     render json: {
       result: 'success',
-      msg: "Změny v menu #{menu.name} byly uloženy.",
+      msg: "Změny v menu byly uloženy.",
       redirect_path: admin_menu_path(id: menu.id)
     }
   rescue StandardError => e
