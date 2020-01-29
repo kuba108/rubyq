@@ -4,6 +4,9 @@ import Sortable from 'sortablejs';
 
 export const MenuShowView = {
 
+  sortedMenu: null,
+  sortedSubmenus: Array(),
+
   init: function() {
     $(document).bind('ajaxSuccess', function (event, xhr, settings) {
       try {
@@ -48,17 +51,16 @@ export const MenuShowView = {
     });
 
     let menuItems = document.getElementById('menu-items');
-    Sortable.create(menuItems, {
+    MenuShowView.sortedMenu = Sortable.create(menuItems, {
       handle: '.drag-placeholder',
       group: 'items',
-      animation: 50,
+      animation: 150,
       ghostClass: 'menu-item-drop'
     });
 
     let nestedSortables = document.querySelectorAll('.sub-menu');
     for (var i = 0; i < nestedSortables.length; i++) {
-      console.log(nestedSortables[i]);
-      new Sortable(nestedSortables[i], {
+      MenuShowView.sortedSubmenus[i] = new Sortable(nestedSortables[i], {
         ghostClass: 'menu-item-drop',
         group: 'items',
         animation: 0,
@@ -120,10 +122,94 @@ export const MenuShowView = {
   },
 
   saveMenuItemsOrderBtnClickHandler: function(e) {
-    MenuShowView.saveMenuItemsOrderChanges();
+    //MenuShowView.saveMenuItemsOrderChanges();
+    const data = MenuShowView.sortedMenu.toArray();
+    console.log(data);
+    const json = { data: [] };
+
+    for(let i = 0; i < data.length; i++) {
+      //console.log(data[i]);
+
+      let submenu
+
+      json['data'].push({
+        itemPosition: i+1,
+        itemId: parseInt(data[i]),
+        children: []
+      });
+    }
+
+    console.log(json);
+
+
+    // for(let i = 0; i < MenuShowView.sortedSubmenus.length; i++) {
+    //   let sortedSubmenu = MenuShowView.sortedSubmenus[i];
+    //   let data = sortedSubmenu.toArray();
+    //   if(Array.isArray(data) && data.length > 0) {
+    //     console.log(sortedSubmenu.el.dataset.submenuId + ' : ' + data);
+    //   }
+    // }
+
+
   },
 
   saveMenuItemsOrderChanges: function() {
+    // const myJSON = {data: [
+    //     {
+    //       itemPosition: 42,
+    //       itemId: 13,
+    //       children: []
+    //     }
+    //   ]};
+    //
+    // let data =  [
+    //   [
+    //     {
+    //       "itemPosition": 1,
+    //       "itemId": 13,
+    //       "children": [
+    //         []
+    //       ]
+    //     },
+    //     {
+    //       "itemPosition": 2,
+    //       "itemId": 12,
+    //       "children": [
+    //         []
+    //       ]
+    //     },
+    //     {
+    //       "itemPosition": 3,
+    //       "itemId": 11,
+    //       "children": [
+    //         []
+    //       ]
+    //     },
+    //     {
+    //       "itemPosition": 4,
+    //       "itemId": 10,
+    //       "children": [
+    //         []
+    //       ]
+    //     },
+    //     {
+    //       "itemPosition": 5,
+    //       "itemId": 14,
+    //       "children": [
+    //         []
+    //       ]
+    //     },
+    //     {
+    //       "itemPosition": 6,
+    //       "itemId": 15,
+    //       "children": [
+    //         []
+    //       ]
+    //     }
+    //   ]
+    // ]
+
+
     // var menu = $('#menu-items');
     // var data = menu.sortable("serialize").get();
     // var json = JSON.stringify(data, null, ' ');
