@@ -11,11 +11,13 @@ module Admin::MenusHelper
     html += "<button type='button' class='change-menu-item-btn btn-simple btn-link' data-toggle='modal' data-target='#update-menu-item-modal-#{item.id}'>
             <span class='fa fa-edit'></span>
             </button>"
-    html += "<ul class='sub-menu' data-submenu-id='#{item.id}'>"
-    item.nested_items.each do |nested_item|
-      html += admin_menu_item(nested_item)
+    if item.kind == 'group'
+      html += "<ul class='sub-menu' data-submenu-id='#{item.id}'>"
+      item.nested_items.each do |nested_item|
+        html += admin_menu_item(nested_item)
+      end
+      html +="</ul>"
     end
-    html +="</ul>"
     html + "</li>"
   end
 

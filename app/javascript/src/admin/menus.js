@@ -89,6 +89,9 @@ export const MenuShowView = {
 
   serializeMenu: function(menu) {
     let dataItems = [];
+    if(!menu) {
+      return dataItems;
+    }
     // Solves problem with direct children items.
     let menuItems = Array.prototype.filter.call(menu.children, function(item) {
       return item.matches('.menu-item');
