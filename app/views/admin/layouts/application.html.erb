@@ -26,7 +26,7 @@
           <% end %>
         </div>
         <ul class="nav">
-          <% if policy(:dashboard).index? %>
+          <% if policy(:dashboard).show? %>
             <li class="nav-item <%= active_sidebar_item('dashboard') %>">
               <%= link_to admin_dashboard_path, class: 'nav-link' do %>
                 <i class="nc-icon nc-chart-pie-35"></i>

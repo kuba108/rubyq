@@ -51,11 +51,9 @@ class Admin::BaseController < ActionController::Base
   end
 
   def set_locale
-    if current_admin_user
-      I18n.locale = current_admin_user.locale.to_sym || I18n.default_locale
-    else
-      super
-    end
+    I18n.locale = current_admin_user.locale.to_sym
+  rescue StandardError => e
+    I18n.locale = I18n.default_locale
   end
 
 end
