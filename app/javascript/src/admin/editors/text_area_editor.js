@@ -6,7 +6,7 @@ const TextAreaEditor = {
       let json = event.detail[0];
       switch(json.source) {
         case 'text_area_editor':
-          TextAreaEditor.showSavedAttribute(json.comp_id, json.value);
+          TextAreaEditor.showSavedAttribute(json.comp_id, json.text);
           break;
       }
     });

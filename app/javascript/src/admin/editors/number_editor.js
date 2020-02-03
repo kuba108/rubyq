@@ -6,7 +6,7 @@ const NumberEditor = {
       let json = event.detail[0];
       switch(json.source) {
         case 'number_editor':
-          NumberEditor.showSavedAttribute(json.comp_id, json.value);
+          NumberEditor.showSavedAttribute(json.comp_id, json.text);
           break;
       }
     });

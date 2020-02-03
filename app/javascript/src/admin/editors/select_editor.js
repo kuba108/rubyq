@@ -6,7 +6,7 @@ const SelectEditor = {
       let json = event.detail[0];
       switch(json.source) {
         case 'select_editor':
-          SelectEditor.showSavedAttribute(json.comp_id, json.value);
+          SelectEditor.showSavedAttribute(json.comp_id, json.text);
           break;
       }
     });

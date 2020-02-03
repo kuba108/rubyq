@@ -6,7 +6,7 @@ const DateEditor = {
       let json = event.detail[0];
       switch(json.source) {
         case 'date_editor':
-          DateEditor.showSavedAttribute(json.comp_id, json.value);
+          DateEditor.showSavedAttribute(json.comp_id, json.text);
           break;
       }
     });
