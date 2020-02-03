@@ -14,6 +14,7 @@ const TextEditor = {
     let textEditors = document.getElementsByClassName('text-editor');
     Array.prototype.forEach.call(textEditors, function(textEditor) {
       textEditor.querySelector('.btn-submit').addEventListener('click', TextEditor.submitButtonClickHandler);
+      textEditor.querySelector('input[type="text"]').addEventListener('keypress', TextEditor.submitEnterHandler);
       textEditor.querySelector('.btn-edit').addEventListener('click', TextEditor.editButtonClickHandler);
       textEditor.querySelector('.btn-cancel').addEventListener('click', TextEditor.cancelButtonClickHandler);
     });
@@ -25,6 +26,14 @@ const TextEditor = {
     let parent = this.closest('.text-editor');
     let form = parent.querySelector('form');
     Rails.fire(form, 'submit');
+  },
+
+  submitEnterHandler: function(e) {
+    if (e.key === 'Enter') {
+      let parent = this.closest('.text-editor');
+      let form = parent.querySelector('form');
+      Rails.fire(form, 'submit');
+    }
   },
 
   editButtonClickHandler: function(e) {
