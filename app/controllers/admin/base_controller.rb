@@ -28,8 +28,9 @@ class Admin::BaseController < ActionController::Base
   def component_render(params, data)
     type = params[:type]
     component = params[:comp_id]
+    i18n_scope = params[:i18n_scope]
     value = data.values.first
-    { source: type, comp_id: component, value: format_value(type, value) }
+    { source: type, comp_id: component, text: format_value(type, value, i18n_scope) }
   end
 
   private
@@ -37,10 +38,10 @@ class Admin::BaseController < ActionController::Base
   # Formats value for label.
   #
   # For example sometimes in DB column is '0', but we want it to be return as 'no'.
-  def format_value(type, value)
+  def format_value(type, value, i18n_scope)
     case type
-    when 'check_box_editor'
-      value
+    when 'select_editor'
+      I18n.t(value, scope: i18n_scope)
     else
       value
     end
