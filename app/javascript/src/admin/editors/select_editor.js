@@ -31,9 +31,7 @@ const SelectEditor = {
     e.preventDefault();
     e.stopImmediatePropagation();
     let parent = this.closest('.select-editor');
-    let textInput = parent.querySelector('form input[type=text]');
     SelectEditor.showEditForm(parent.id);
-    textInput.focus();
   },
 
   cancelButtonClickHandler: function(e) {
@@ -43,18 +41,18 @@ const SelectEditor = {
     SelectEditor.hideEditForm(parent.id);
   },
 
-  showSavedAttribute: function (componentID, value) {
+  showSavedAttribute: function(componentID, value) {
     let component = document.getElementById(componentID);
     component.querySelector('.se-show .editor-text').innerHTML = value;
     SelectEditor.hideEditForm(componentID);
   },
 
-  showEditForm: function (componentID) {
+  showEditForm: function(componentID) {
     let component = document.getElementById(componentID);
     component.classList.add('edited');
   },
 
-  hideEditForm: function (componentID) {
+  hideEditForm: function(componentID) {
     let component = document.getElementById(componentID);
     component.classList.remove('edited');
   }
