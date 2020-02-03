@@ -43,18 +43,18 @@ const TextAreaEditor = {
     TextAreaEditor.hideEditForm(parent.id);
   },
 
-  showSavedAttribute: function (componentID, value) {
+  showSavedAttribute: function(componentID, value) {
     let component = document.getElementById(componentID);
     component.querySelector('.tea-show .editor-text').innerHTML = value;
     TextAreaEditor.hideEditForm(componentID);
   },
 
-  showEditForm: function (componentID) {
+  showEditForm: function(componentID) {
     let component = document.getElementById(componentID);
     component.classList.add('edited');
   },
 
-  hideEditForm: function (componentID) {
+  hideEditForm: function(componentID) {
     let component = document.getElementById(componentID);
     component.classList.remove('edited');
   }
