@@ -17,7 +17,7 @@ module Admin
             <span>#{label}</span>
           </div>
           <div class='te-show'>
-            <span class='editor-text'>#{format_label(text)}</span>
+            <span class='editor-text'>#{text}</span>
             <button class='btn-edit btn btn-sm btn-warning'><span class='fa fa-pencil-alt'></span></button>
           </div>
           <div class='te-edit'>

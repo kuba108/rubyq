@@ -2,7 +2,8 @@ module Admin
   module Editors
     module SelectEditorHelper
 
-      def select_editor(label, text, url, gname, name, comp_id, items = [], allow_update = false, args = {})
+      def select_editor(label, value, url, gname, name, comp_id, items = [], i18n_scope = nil, allow_update = false, args = {})
+        text = I18n.t(value, scope: i18n_scope)
         unique_id = rand(1000000)
         default = {
           method: 'put',
@@ -20,7 +21,7 @@ module Admin
             <span>#{label}</span>
           </div>
           <div class='se-show'>
-            <span class='editor-text'>#{format_label(text)}</span>
+            <span class='editor-text'>#{text}</span>
             <button class='btn-edit btn btn-sm btn-warning'><span class='fa fa-pencil-alt'></span></button>
           </div>
           <div class='se-edit'>
@@ -30,6 +31,7 @@ module Admin
                 #{hidden_field_tag 'update_type', 'admin_component'}
                 #{hidden_field_tag 'type', 'select_editor'}
                 #{hidden_field_tag 'comp_id', comp_id}
+                #{hidden_field_tag 'i18n_scope', i18n_scope}
                 #{args[:custom_values].map {|k, v| "#{hidden_field_tag k, v}" }.join('')}
                 <div class='input-group'>
                   #{select_tag "#{gname}[#{name}]", items, class: "form-control #{args[:class]}"}
