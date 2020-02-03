@@ -48,10 +48,10 @@ const SITENAME = {
 
       Filter.init();
       TextEditor.init();
-      //NumberEditor.init();
-      //TextAreaEditor.init();
-      //SelectEditor.init();
-      //DateEditor.init();
+      NumberEditor.init();
+      TextAreaEditor.init();
+      SelectEditor.init();
+      DateEditor.init();
     }
   },
 

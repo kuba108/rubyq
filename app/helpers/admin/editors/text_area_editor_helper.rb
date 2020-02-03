@@ -3,6 +3,7 @@ module Admin
     module TextAreaEditorHelper
 
       def text_area_editor(label, text, url, gname, name, comp_id, allow_update = false, args = {})
+        unique_id = rand(1000000)
         default = {
           method: 'put',
           remote: true,
@@ -31,6 +32,7 @@ module Admin
             </div>
             <form action='#{url}' accept-charset='UTF-8' data-remote='#{args[:remote]}' method='#{args[:method]}'>
               <div class='form-group'>
+                #{hidden_field_tag '_method', args[:method], id: "_method_#{unique_id}"}
                 #{hidden_field_tag 'update_type', 'admin_component'}
                 #{hidden_field_tag 'type', 'text_area_editor'}
                 #{hidden_field_tag 'comp_id', comp_id}
