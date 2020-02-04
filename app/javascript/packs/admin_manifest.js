@@ -5,7 +5,7 @@ require("channels")
 require("../src/admin/bootstrap_custom")
 require("trix")
 require("../src/admin/main")
-require('../stylesheets/admin/manifest.scss')
+require('../scss/admin/manifest.scss')
 
 
 //
