@@ -2,9 +2,9 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
-require("../src/admin/bootstrap_custom")
+require("../js/admin/bootstrap_custom")
 require("trix")
-require("../src/admin/main")
+require("../js/admin/main")
 require('../scss/admin/manifest.scss')
 
 
