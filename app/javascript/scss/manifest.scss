@@ -1,0 +1,13 @@
+$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+
+// Import custom variables (overrides Bootstrap default variables)
+@import "./template/variables.scss";
+
+// Import Bootstrap
+@import "bootstrap_custom";
+
+// Import custom styles
+@import "./template/global.scss";
+@import "./template/navbar.scss";
+@import "./template/masthead.scss";
+@import "./template/portfolio.scss";
