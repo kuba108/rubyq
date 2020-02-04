@@ -1,4 +1,8 @@
+$fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/solid';
 
 // Import custom variables (overrides Bootstrap default variables)
 @import "./template/variables.scss";
