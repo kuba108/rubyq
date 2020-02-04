@@ -102,10 +102,10 @@
           </div>
           <div class="card-body">
             <div class="card-row">
-              <%= select_editor(t('.layout'), I18n.t(@page.layout, scope: 'page.layout.name'), admin_page_path(id: @page.id), 'page', 'layout', 'page-layout', locale_options_to_select('page.layout.name'), policy(@page).update?) %>
+              <%= select_editor(t('.layout'), @page.layout, admin_page_path(id: @page.id), 'page', 'layout', 'page-layout', locale_options_to_select('page.layout.name', @page.layout), 'page.layout.name', policy(@page).update?) %>
             </div>
             <div class="card-row">
-              <%= select_editor(t('.language'), I18n.t(@page.language, scope: 'language'), admin_page_path(id: @page.id), 'page', 'language', 'page-language', locale_options_to_select('language'), policy(@page).update?) %>
+              <%= select_editor(t('.language'), @page.language, admin_page_path(id: @page.id), 'page', 'language', 'page-language', locale_options_to_select('language', @page.language), 'language', policy(@page).update?) %>
             </div>
           </div>
         </div>
@@ -138,16 +138,7 @@
 
         <div class="card striped-tabled-with-hover">
           <div class="card-header">
-            <div class="row">
-              <div class="col-md-6">
-                <h4 class="card-title"><%= t('.translations') %></h4>
-              </div>
-              <div class="col-md-6">
-                <div class="float-right">
-                  <%= link_to t('.create_translation'), new_admin_page_path(parent_id: @page.id), class: 'btn btn-primary' %>
-                </div>
-              </div>
-            </div>
+            <h4 class="card-title"><%= t('.translations') %></h4>
           </div>
           <div class="card-body">
             <% if @page.has_locales? %>
@@ -168,6 +159,11 @@
             <% else %>
               <p><%= t('.no_translations') %></p>
             <% end %>
+          </div>
+          <div class="card-footer">
+            <div class="float-right">
+              <%= link_to t('.create_translation'), new_admin_page_path(parent_id: @page.id), class: 'btn btn-primary' %>
+            </div>
           </div>
         </div>
       </div>
