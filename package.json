@@ -13,7 +13,7 @@
     "bootstrap-select": "^1.13.12",
     "es-jquery-sortable": "^0.9.13-patch2",
     "html5sortable": "^0.9.17",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jquery-ui-bundle": "^1.12.1-migrate",
     "notyf": "^3.1.0",
     "popper": "^1.0.1",
