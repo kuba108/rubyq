@@ -5,7 +5,7 @@
     <meta name="turbolinks-cache-control" content="no-cache">
     <%= csrf_meta_tags %>
     <%= stylesheet_pack_tag 'admin/manifest', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'admin_manifest', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'admin/manifest', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body class="admin <%= params[:controller].gsub('/', '-') %> <%= params[:action] %>" data-controller="<%= controller_name %>" data-action="<%= action_name %>">

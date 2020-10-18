@@ -12,3 +12,6 @@ require("@rails/activestorage").start()
 require("channels")
 require("bootstrap/dist/js/bootstrap")
 require('../scss/manifest.scss')
+
+const images = require.context('../../assets/images', true)
+const imagePath = (name) => images(name, true)

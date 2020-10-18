@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
-  devise_for :admin_users, path: 'admin', path_names: { sign_in: 'prihlaseni', sign_out: 'odhlaseni', password: 'zmena-hesla'},
-             controllers: { sessions: "admin_users/sessions", passwords: "admin_users/passwords" }
+  devise_for :admin_users, path: 'admin', path_names: { sign_in: 'prihlaseni', sign_out: 'odhlaseni', password: 'zmena-hesla'}
 
   root "pages#show"
 
