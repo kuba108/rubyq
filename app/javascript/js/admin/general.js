@@ -19,16 +19,6 @@ let General = {
       let fileName = $(this).val().split('\\').pop();
       $(this).siblings('.custom-file-label').addClass('selected').html(fileName);
     });
-
-    // let remoteForms = document.querySelectorAll('form[data-remote=true');
-    // Array.prototype.forEach.call(remoteForms, function(remoteForm) {
-    //   remoteForm.addEventListener('submit', function(e) {
-    //     e.preventDefault();
-    //     e.stopImmediatePropagation();
-    //     alert('remote');
-    //     //Rails.fire(remoteForm, "submit");
-    //   });
-    // });
   },
 
   showDeleteWindow: function(delete_label, delete_url) {
