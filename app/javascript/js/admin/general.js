@@ -1,7 +1,7 @@
 import LBD from "light-bootstrap-dashboard"
 import ButtonAction from "./components/button_action";
 
-let General = {
+const General = {
 
   init: function() {
     LBD.init();
